@@ -8,7 +8,11 @@
 #include <mvp/View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
 #include <touchgfx/widgets/TiledImage.hpp>
+#include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/widgets/TextAreaWithWildcard.hpp>
 #include <touchgfx/widgets/Button.hpp>
+#include <touchgfx/widgets/ButtonWithLabel.hpp>
 
 class Screen1ViewBase : public touchgfx::View<Screen1Presenter>
 {
@@ -16,6 +20,34 @@ public:
     Screen1ViewBase();
     virtual ~Screen1ViewBase() {}
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void buttonHourUpClicked()
+    {
+        // Override and implement this function in Screen1
+    }
+
+    virtual void buttonHourDownClicked()
+    {
+        // Override and implement this function in Screen1
+    }
+
+    virtual void buttonMinuteDownClicked()
+    {
+        // Override and implement this function in Screen1
+    }
+
+    virtual void buttonMinuteUpClicked()
+    {
+        // Override and implement this function in Screen1
+    }
+
+    virtual void buttonSaveClicked()
+    {
+        // Override and implement this function in Screen1
+    }
 
 protected:
     FrontendApplication& application() {
@@ -26,9 +58,38 @@ protected:
      * Member Declarations
      */
     touchgfx::TiledImage tiledImage1;
-    touchgfx::Button button1;
+    touchgfx::Box box2;
+    touchgfx::Box box2_1;
+    touchgfx::TextArea textAreaHourCaption;
+    touchgfx::TextAreaWithOneWildcard textAreaHour;
+    touchgfx::TextArea textAreaMinuteCaption;
+    touchgfx::TextAreaWithOneWildcard textAreaMinute;
+    touchgfx::Button buttonHourUp;
+    touchgfx::Button buttonHourDown;
+    touchgfx::Button buttonMinuteUp;
+    touchgfx::Button buttonMinuteDown;
+    touchgfx::ButtonWithLabel buttonSave;
+    touchgfx::ButtonWithLabel buttonClock;
+
+    /*
+     * Wildcard Buffers
+     */
+    static const uint16_t TEXTAREAHOUR_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar textAreaHourBuffer[TEXTAREAHOUR_SIZE];
+    static const uint16_t TEXTAREAMINUTE_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar textAreaMinuteBuffer[TEXTAREAMINUTE_SIZE];
 
 private:
+
+    /*
+     * Callback Declarations
+     */
+    touchgfx::Callback<Screen1ViewBase, const touchgfx::AbstractButton&> buttonCallback;
+
+    /*
+     * Callback Handler Declarations
+     */
+    void buttonCallbackHandler(const touchgfx::AbstractButton& src);
 
 };
 

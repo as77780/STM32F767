@@ -8,11 +8,32 @@
 #include <common/Partition.hpp>
 #include <mvp/MVPHeap.hpp>
 #include <touchgfx/transitions/NoTransition.hpp>
+#include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+
 #include <gui/common/FrontendApplication.hpp>
 #include <gui/model/Model.hpp>
 
 #include <gui/screen1_screen/Screen1View.hpp>
 #include <gui/screen1_screen/Screen1Presenter.hpp>
+#include <gui/screen2_screen/Screen2View.hpp>
+#include <gui/screen2_screen/Screen2Presenter.hpp>
+#include <gui/main_screen/MainView.hpp>
+#include <gui/main_screen/MainPresenter.hpp>
+#include <gui/equalizer_screen/EqualizerView.hpp>
+#include <gui/equalizer_screen/EqualizerPresenter.hpp>
+#include <gui/screeninputmenu_screen/ScreenInputMenuView.hpp>
+#include <gui/screeninputmenu_screen/ScreenInputMenuPresenter.hpp>
+#include <gui/screenplayer_screen/ScreenPlayerView.hpp>
+#include <gui/screenplayer_screen/ScreenPlayerPresenter.hpp>
 
 
 /**
@@ -36,7 +57,12 @@ public:
      * @note All view types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< Screen1View,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< Screen2View,
+            touchgfx::meta::TypeList< MainView,
+            touchgfx::meta::TypeList< EqualizerView,
+            touchgfx::meta::TypeList< ScreenInputMenuView,
+            touchgfx::meta::TypeList< ScreenPlayerView,
+            touchgfx::meta::Nil > > > > >
             > GeneratedViewTypes;
 
     /**
@@ -49,7 +75,12 @@ public:
      * @note All presenter types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< Screen1Presenter,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< Screen2Presenter,
+            touchgfx::meta::TypeList< MainPresenter,
+            touchgfx::meta::TypeList< EqualizerPresenter,
+            touchgfx::meta::TypeList< ScreenInputMenuPresenter,
+            touchgfx::meta::TypeList< ScreenPlayerPresenter,
+            touchgfx::meta::Nil > > > > >
             > GeneratedPresenterTypes;
 
     /**
@@ -62,7 +93,12 @@ public:
      * @note All transition types used in the application MUST be added to this list!
      */
     typedef touchgfx::meta::TypeList< touchgfx::NoTransition,
-            touchgfx::meta::Nil
+            touchgfx::meta::TypeList< CoverTransition<NORTH>,
+            touchgfx::meta::TypeList< SlideTransition<SOUTH>,
+            touchgfx::meta::TypeList< CoverTransition<EAST>,
+            touchgfx::meta::TypeList< CoverTransition<WEST>,
+            touchgfx::meta::TypeList< SlideTransition<NORTH>,
+            touchgfx::meta::Nil > > > > >
             > GeneratedTransitionTypes;
 
     /**
@@ -72,7 +108,7 @@ public:
 
     virtual void gotoStartScreen(FrontendApplication& app)
     {
-        app.gotoScreen1ScreenNoTransition();
+        app.gotoScreen2ScreenNoTransition();
     }
 protected:
     FrontendHeapBase(touchgfx::AbstractPartition& presenters, touchgfx::AbstractPartition& views, touchgfx::AbstractPartition& transitions, FrontendApplication& app)

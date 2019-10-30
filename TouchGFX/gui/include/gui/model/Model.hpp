@@ -1,6 +1,10 @@
 #ifndef MODEL_HPP
 #define MODEL_HPP
 
+#include <touchgfx/Utils.hpp>
+#include "main.h"
+
+extern  RTC_HandleTypeDef hrtc;
 class ModelListener;
 
 /**
@@ -28,7 +32,12 @@ public:
     {
         modelListener = listener;
     }
-
+    void saveHour(int16_t saveHour){ hour = saveHour;}
+    void saveMinute(int16_t saveMinute){ minute = saveMinute; }
+    int16_t getHour(){return hour;}
+    int16_t getMinute(){return minute;}
+    int16_t getSecond(){return second;}
+    void getTime();
     /**
      * This function will be called automatically every frame. Can be used to e.g. sample hardware
      * peripherals or read events from the surrounding system and inject events to the GUI through
@@ -40,6 +49,10 @@ protected:
      * Pointer to the currently active presenter.
      */
     ModelListener* modelListener;
+    int16_t hour;
+    int16_t minute;
+    int16_t second;
+    int16_t tickCount;
 };
 
 #endif /* MODEL_HPP */

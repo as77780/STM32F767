@@ -1,5 +1,5 @@
-#ifndef SCREEN1PRESENTER_HPP
-#define SCREEN1PRESENTER_HPP
+#ifndef SCREEN1_PRESENTER_HPP
+#define SCREEN1_PRESENTER_HPP
 
 #include <gui/model/ModelListener.hpp>
 #include <mvp/Presenter.hpp>
@@ -8,7 +8,7 @@ using namespace touchgfx;
 
 class Screen1View;
 
-class Screen1Presenter : public touchgfx::Presenter, public ModelListener
+class Screen1Presenter : public Presenter, public ModelListener
 {
 public:
     Screen1Presenter(Screen1View& v);
@@ -26,6 +26,11 @@ public:
     virtual void deactivate();
 
     virtual ~Screen1Presenter() {};
+    void saveHour(int16_t hour) { model->saveHour(hour);  }
+     void saveMinute(int16_t minute){ model->saveMinute(minute);  }
+     int16_t getHour(){ return model->getHour(); }
+     int16_t getMinute(){ return model->getMinute(); }
+     int16_t getSecond(){ return model->getSecond(); }
 
 private:
     Screen1Presenter();
@@ -34,4 +39,4 @@ private:
 };
 
 
-#endif // SCREEN1PRESENTER_HPP
+#endif // SCREEN1_PRESENTER_HPP

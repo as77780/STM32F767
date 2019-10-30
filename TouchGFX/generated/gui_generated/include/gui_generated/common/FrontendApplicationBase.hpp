@@ -16,7 +16,37 @@ public:
     virtual ~FrontendApplicationBase() { }
 
     // Screen1
-    void gotoScreen1ScreenNoTransition();
+    void gotoScreen1ScreenSlideTransitionSouth();
+
+
+    // Screen2
+    void gotoScreen2ScreenNoTransition();
+
+    void gotoScreen2ScreenCoverTransitionNorth();
+
+    void gotoScreen2ScreenCoverTransitionWest();
+
+
+    // Main
+    void gotoMainScreenCoverTransitionEast();
+
+    void gotoMainScreenCoverTransitionWest();
+
+    void gotoMainScreenSlideTransitionNorth();
+
+    void gotoMainScreenSlideTransitionSouth();
+
+
+    // Equalizer
+    void gotoEqualizerScreenCoverTransitionEast();
+
+
+    // ScreenInputMenu
+    void gotoScreenInputMenuScreenSlideTransitionSouth();
+
+
+    // ScreenPlayer
+    void gotoScreenPlayerScreenSlideTransitionNorth();
 
 protected:
     touchgfx::Callback<FrontendApplicationBase> transitionCallback;
@@ -24,7 +54,37 @@ protected:
     Model& model;
 
     // Screen1
-    void gotoScreen1ScreenNoTransitionImpl();
+    void gotoScreen1ScreenSlideTransitionSouthImpl();
+
+
+    // Screen2
+    void gotoScreen2ScreenNoTransitionImpl();
+
+    void gotoScreen2ScreenCoverTransitionNorthImpl();
+
+    void gotoScreen2ScreenCoverTransitionWestImpl();
+
+
+    // Main
+    void gotoMainScreenCoverTransitionEastImpl();
+
+    void gotoMainScreenCoverTransitionWestImpl();
+
+    void gotoMainScreenSlideTransitionNorthImpl();
+
+    void gotoMainScreenSlideTransitionSouthImpl();
+
+
+    // Equalizer
+    void gotoEqualizerScreenCoverTransitionEastImpl();
+
+
+    // ScreenInputMenu
+    void gotoScreenInputMenuScreenSlideTransitionSouthImpl();
+
+
+    // ScreenPlayer
+    void gotoScreenPlayerScreenSlideTransitionNorthImpl();
 };
 
 #endif // FRONTENDAPPLICATIONBASE_HPP
