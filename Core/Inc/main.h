@@ -60,8 +60,16 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define but_on_Pin GPIO_PIN_10
+#define but_on_GPIO_Port GPIOA
+#define sound_on_Pin GPIO_PIN_1
+#define sound_on_GPIO_Port GPIOI
 #define lcd_Pin GPIO_PIN_3
 #define lcd_GPIO_Port GPIOI
+#define touch_int_Pin GPIO_PIN_15
+#define touch_int_GPIO_Port GPIOA
+#define power_on_Pin GPIO_PIN_5
+#define power_on_GPIO_Port GPIOI
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
