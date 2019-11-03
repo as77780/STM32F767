@@ -5,6 +5,7 @@
 #include "main.h"
 
 extern  RTC_HandleTypeDef hrtc;
+extern UART_HandleTypeDef huart1;
 class ModelListener;
 
 /**

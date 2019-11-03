@@ -57,7 +57,6 @@ TIM_HandleTypeDef htim3;
 TIM_HandleTypeDef htim4;
 TIM_HandleTypeDef htim5;
 
-UART_HandleTypeDef huart7;
 UART_HandleTypeDef huart1;
 
 osThreadId defaultTaskHandle;
@@ -82,6 +81,7 @@ static void MX_TIM3_Init(void);
 static void MX_TIM4_Init(void);
 static void MX_UART7_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_DMA_Init(void);
 void StartDefaultTask(void const * argument);
 
 /* USER CODE BEGIN PFP */
@@ -103,6 +103,12 @@ int main(void)
 
   /* USER CODE END 1 */
   
+
+  /* Enable I-Cache---------------------------------------------------------*/
+  SCB_EnableICache();
+
+  /* Enable D-Cache---------------------------------------------------------*/
+  SCB_EnableDCache();
 
   /* MCU Configuration--------------------------------------------------------*/
 
@@ -133,6 +139,7 @@ int main(void)
   MX_TIM4_Init();
   MX_UART7_Init();
   MX_USART1_UART_Init();
+  MX_DMA_Init();
   /* USER CODE BEGIN 2 */
   HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
   TIM5->CCR1=100;
@@ -663,23 +670,77 @@ static void MX_UART7_Init(void)
 
   /* USER CODE END UART7_Init 0 */
 
+  LL_USART_InitTypeDef USART_InitStruct = {0};
+
+  LL_GPIO_InitTypeDef GPIO_InitStruct = {0};
+
+  /* Peripheral clock enable */
+  LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_UART7);
+  
+  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOF);
+  /**UART7 GPIO Configuration  
+  PF7   ------> UART7_TX 
+  */
+  GPIO_InitStruct.Pin = LL_GPIO_PIN_7;
+  GPIO_InitStruct.Mode = LL_GPIO_MODE_ALTERNATE;
+  GPIO_InitStruct.Speed = LL_GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.OutputType = LL_GPIO_OUTPUT_OPENDRAIN;
+  GPIO_InitStruct.Pull = LL_GPIO_PULL_NO;
+  GPIO_InitStruct.Alternate = LL_GPIO_AF_8;
+  LL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+
+  /* UART7 DMA Init */
+  
+  /* UART7_RX Init */
+  LL_DMA_SetChannelSelection(DMA1, LL_DMA_STREAM_3, LL_DMA_CHANNEL_5);
+
+  LL_DMA_SetDataTransferDirection(DMA1, LL_DMA_STREAM_3, LL_DMA_DIRECTION_PERIPH_TO_MEMORY);
+
+  LL_DMA_SetStreamPriorityLevel(DMA1, LL_DMA_STREAM_3, LL_DMA_PRIORITY_LOW);
+
+  LL_DMA_SetMode(DMA1, LL_DMA_STREAM_3, LL_DMA_MODE_NORMAL);
+
+  LL_DMA_SetPeriphIncMode(DMA1, LL_DMA_STREAM_3, LL_DMA_PERIPH_NOINCREMENT);
+
+  LL_DMA_SetMemoryIncMode(DMA1, LL_DMA_STREAM_3, LL_DMA_MEMORY_INCREMENT);
+
+  LL_DMA_SetPeriphSize(DMA1, LL_DMA_STREAM_3, LL_DMA_PDATAALIGN_BYTE);
+
+  LL_DMA_SetMemorySize(DMA1, LL_DMA_STREAM_3, LL_DMA_MDATAALIGN_BYTE);
+
+  LL_DMA_DisableFifoMode(DMA1, LL_DMA_STREAM_3);
+
+  /* UART7_TX Init */
+  LL_DMA_SetChannelSelection(DMA1, LL_DMA_STREAM_1, LL_DMA_CHANNEL_5);
+
+  LL_DMA_SetDataTransferDirection(DMA1, LL_DMA_STREAM_1, LL_DMA_DIRECTION_MEMORY_TO_PERIPH);
+
+  LL_DMA_SetStreamPriorityLevel(DMA1, LL_DMA_STREAM_1, LL_DMA_PRIORITY_LOW);
+
+  LL_DMA_SetMode(DMA1, LL_DMA_STREAM_1, LL_DMA_MODE_NORMAL);
+
+  LL_DMA_SetPeriphIncMode(DMA1, LL_DMA_STREAM_1, LL_DMA_PERIPH_NOINCREMENT);
+
+  LL_DMA_SetMemoryIncMode(DMA1, LL_DMA_STREAM_1, LL_DMA_MEMORY_INCREMENT);
+
+  LL_DMA_SetPeriphSize(DMA1, LL_DMA_STREAM_1, LL_DMA_PDATAALIGN_BYTE);
+
+  LL_DMA_SetMemorySize(DMA1, LL_DMA_STREAM_1, LL_DMA_MDATAALIGN_BYTE);
+
+  LL_DMA_DisableFifoMode(DMA1, LL_DMA_STREAM_1);
+
   /* USER CODE BEGIN UART7_Init 1 */
 
   /* USER CODE END UART7_Init 1 */
-  huart7.Instance = UART7;
-  huart7.Init.BaudRate = 115200;
-  huart7.Init.WordLength = UART_WORDLENGTH_8B;
-  huart7.Init.StopBits = UART_STOPBITS_1;
-  huart7.Init.Parity = UART_PARITY_NONE;
-  huart7.Init.Mode = UART_MODE_TX_RX;
-  huart7.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart7.Init.OverSampling = UART_OVERSAMPLING_16;
-  huart7.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  huart7.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_HalfDuplex_Init(&huart7) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  USART_InitStruct.BaudRate = 115200;
+  USART_InitStruct.DataWidth = LL_USART_DATAWIDTH_8B;
+  USART_InitStruct.StopBits = LL_USART_STOPBITS_1;
+  USART_InitStruct.Parity = LL_USART_PARITY_NONE;
+  USART_InitStruct.TransferDirection = LL_USART_DIRECTION_TX_RX;
+  USART_InitStruct.OverSampling = LL_USART_OVERSAMPLING_16;
+  LL_USART_Init(UART7, &USART_InitStruct);
+  LL_USART_ConfigHalfDuplexMode(UART7);
+  LL_USART_Enable(UART7);
   /* USER CODE BEGIN UART7_Init 2 */
 
   /* USER CODE END UART7_Init 2 */
@@ -718,6 +779,26 @@ static void MX_USART1_UART_Init(void)
   /* USER CODE BEGIN USART1_Init 2 */
 
   /* USER CODE END USART1_Init 2 */
+
+}
+
+/** 
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void) 
+{
+
+  /* Init with LL driver */
+  /* DMA controller clock enable */
+  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_DMA1);
+
+  /* DMA interrupt init */
+  /* DMA1_Stream1_IRQn interrupt configuration */
+  NVIC_SetPriority(DMA1_Stream1_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),5, 0));
+  NVIC_EnableIRQ(DMA1_Stream1_IRQn);
+  /* DMA1_Stream3_IRQn interrupt configuration */
+  NVIC_SetPriority(DMA1_Stream3_IRQn, NVIC_EncodePriority(NVIC_GetPriorityGrouping(),5, 0));
+  NVIC_EnableIRQ(DMA1_Stream3_IRQn);
 
 }
 

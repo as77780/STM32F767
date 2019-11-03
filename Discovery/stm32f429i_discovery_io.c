@@ -44,34 +44,7 @@
 
 static IO_DrvTypeDef *IoDrv;
 
-/**
-  * @}
-  */
 
-
-/** @defgroup STM32F429I_DISCOVERY_IO_Private_Function_Prototypes
-  * @{
-  */
-/**
-  * @}
-  */
-
-/** @defgroup STM32F429I_DISCOVERY_IO_Private_Functions
-  * @{
-  */
-
-/**
-  * @brief  Initializes and configures the IO functionalities and configures all
-  *         necessary hardware resources (GPIOs, clocks..).
-  * @note   BSP_IO_Init() is using HAL_Delay() function to ensure that stmpe811
-  *         IO Expander is correctly reset. HAL_Delay() function provides accurate
-  *         delay (in milliseconds) based on variable incremented in SysTick ISR. 
-  *         This implies that if BSP_IO_Init() is called from a peripheral ISR process,
-  *         then the SysTick interrupt must have higher priority (numerically lower)
-  *         than the peripheral interrupt. Otherwise the caller ISR process will be blocked.
-  * @param  None
-  * @retval IO_OK if all initializations done correctly. Other value if error.
-  */
 uint8_t BSP_IO_Init(void)
 {
   uint8_t ret = IO_ERROR;

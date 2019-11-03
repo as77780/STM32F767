@@ -38,137 +38,13 @@
   
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f429i_discovery.h"
-
-/** @addtogroup BSP
-  * @{
-  */ 
-
-/** @addtogroup STM32F429I_DISCOVERY
-  * @{
-  */
-      
-/** @defgroup STM32F429I_DISCOVERY_LOW_LEVEL 
-  * @brief This file provides set of firmware functions to manage Leds and push-button
-  *        available on STM32F429I-Discovery Kit from STMicroelectronics.
-  * @{
-  */ 
-
-/** @defgroup STM32F429I_DISCOVERY_LOW_LEVEL_Private_TypesDefinitions
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-/** @defgroup STM32F429I_DISCOVERY_LOW_LEVEL_Private_Defines
-  * @{
-  */ 
-  
-  /**
-  * @brief STM32F429I DISCO BSP Driver version number V2.1.0
-  */
-#define __STM32F429I_DISCO_BSP_VERSION_MAIN   (0x02) /*!< [31:24] main version */
-#define __STM32F429I_DISCO_BSP_VERSION_SUB1   (0x01) /*!< [23:16] sub1 version */
-#define __STM32F429I_DISCO_BSP_VERSION_SUB2   (0x02) /*!< [15:8]  sub2 version */
-#define __STM32F429I_DISCO_BSP_VERSION_RC     (0x00) /*!< [7:0]  release candidate */ 
-#define __STM32F429I_DISCO_BSP_VERSION        ((__STM32F429I_DISCO_BSP_VERSION_MAIN << 24)\
-                                             |(__STM32F429I_DISCO_BSP_VERSION_SUB1 << 16)\
-                                             |(__STM32F429I_DISCO_BSP_VERSION_SUB2 << 8 )\
-                                             |(__STM32F429I_DISCO_BSP_VERSION_RC)) 
-/**
-  * @}
-  */ 
-
-/** @defgroup STM32F429I_DISCOVERY_LOW_LEVEL_Private_Macros
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-/** @defgroup STM32F429I_DISCOVERY_LOW_LEVEL_Private_Variables
-  * @{
-  */ 
-
-
-
+#define I2cHandle hi2c2
 uint32_t I2cxTimeout = I2Cx_TIMEOUT_MAX; /*<! Value of Timeout when I2C communication fails */
 
 
-I2C_HandleTypeDef I2cHandle;
 
+I2C_HandleTypeDef hi2c2;
 
-void I2Cx_MspInit(I2C_HandleTypeDef *hi2c)
-{
-  GPIO_InitTypeDef  GPIO_InitStruct;  
-
-
-  if (hi2c->Instance == DISCOVERY_I2Cx)
-  {
-    /* Configure the GPIOs ---------------------------------------------------*/ 
-    /* Enable GPIO clock */
-    DISCOVERY_I2Cx_SDA_GPIO_CLK_ENABLE();
-    DISCOVERY_I2Cx_SCL_GPIO_CLK_ENABLE();
-      
-    /* Configure I2C Tx as alternate function  */
-    GPIO_InitStruct.Pin       = DISCOVERY_I2Cx_SCL_PIN;
-    GPIO_InitStruct.Mode      = GPIO_MODE_AF_OD;
-    GPIO_InitStruct.Pull      = GPIO_NOPULL;
-    GPIO_InitStruct.Speed     = GPIO_SPEED_FAST;
-    GPIO_InitStruct.Alternate = DISCOVERY_I2Cx_SCL_SDA_AF;
-    HAL_GPIO_Init(DISCOVERY_I2Cx_SCL_GPIO_PORT, &GPIO_InitStruct);
-      
-    /* Configure I2C Rx as alternate function  */
-    GPIO_InitStruct.Pin = DISCOVERY_I2Cx_SDA_PIN;
-    HAL_GPIO_Init(DISCOVERY_I2Cx_SDA_GPIO_PORT, &GPIO_InitStruct);
-    
-    
-    /* Configure the Discovery I2Cx peripheral -------------------------------*/ 
-    /* Enable I2C3 clock */
-    DISCOVERY_I2Cx_CLOCK_ENABLE();
-    
-    /* Force the I2C Peripheral Clock Reset */  
-    DISCOVERY_I2Cx_FORCE_RESET();
-      
-    /* Release the I2C Peripheral Clock Reset */  
-    DISCOVERY_I2Cx_RELEASE_RESET(); 
-    
-    /* Enable and set Discovery I2Cx Interrupt to the highest priority */
-    HAL_NVIC_SetPriority(DISCOVERY_I2Cx_EV_IRQn, 5, 0);
-    HAL_NVIC_EnableIRQ(DISCOVERY_I2Cx_EV_IRQn);
-    
-    /* Enable and set Discovery I2Cx Interrupt to the highest priority */
-    HAL_NVIC_SetPriority(DISCOVERY_I2Cx_ER_IRQn, 5, 0);
-    HAL_NVIC_EnableIRQ(DISCOVERY_I2Cx_ER_IRQn);  
-
-
-  }
-}
-
-/**
-  * @brief  I2Cx Bus initialization.
-  * @param  None
-  * @retval None
-  */
-void I2Cx_Init(void)
-{
-  if(HAL_I2C_GetState(&I2cHandle) == HAL_I2C_STATE_RESET)
-  {
-    I2cHandle.Instance              = DISCOVERY_I2Cx;
-   // I2cHandle.Init.ClockSpeed       = BSP_I2C_SPEED;
-   // I2cHandle.Init.DutyCycle        = I2C_DUTYCYCLE_2;
-    I2cHandle.Init.OwnAddress1      = 0;
-    I2cHandle.Init.AddressingMode   = I2C_ADDRESSINGMODE_7BIT;
-    I2cHandle.Init.DualAddressMode  = I2C_DUALADDRESS_DISABLED;
-    I2cHandle.Init.OwnAddress2      = 0;
-    I2cHandle.Init.GeneralCallMode  = I2C_GENERALCALL_DISABLED;
-    I2cHandle.Init.NoStretchMode    = I2C_NOSTRETCH_DISABLED;  
-    
-    /* Init the I2C */
-    I2Cx_MspInit(&I2cHandle);
-    HAL_I2C_Init(&I2cHandle);
-  }
-}
 
 /**
   * @brief  Configures Interruption pin for I2C communication.
@@ -303,55 +179,10 @@ uint8_t I2Cx_ReadBuffer(uint8_t Addr, uint8_t Reg, uint8_t *pBuffer, uint16_t Le
   I2Cx_Init();
 }
 
-/******************************* SPI Routines *********************************/
-
-/**
-  * @brief  SPIx Bus initialization
-  * @param  None
-  * @retval None
-  */
-
-/**
-  * @brief  Reads 4 bytes from device.
-  * @param  ReadSize: Number of bytes to read (max 4 bytes)
-  * @retval Value read on the SPI
-  */
-
-/**
-  * @brief  Writes a byte to device.
-  * @param  Value: value to be written
-  * @retval None
-  */
-
-
-/**
-  * @brief  SPIx error treatment function.
-  * @param  None
-  * @retval None
-  */
-
-/********************************* LINK LCD ***********************************/
-
-/**
-  * @brief  Configures the LCD_SPI interface.
-  * @param  None
-  * @retval None
-  */
-
-/*******************************************************************************
-                            LINK OPERATIONS
-*******************************************************************************/
-
-/********************************* LINK IOE ***********************************/
-
-/**
-  * @brief  IOE Low Level Initialization.
-  * @param  None
-  * @retval None
-  */
 void IOE_Init(void) 
 {
  I2Cx_Init();
+
 }
 
 /**
@@ -423,5 +254,45 @@ void IOE_Delay(uint32_t Delay)
   HAL_Delay(Delay);
 }
 
+void I2Cx_Init(void)
+{
+
+	  /* USER CODE BEGIN I2C2_Init 0 */
+
+	  /* USER CODE END I2C2_Init 0 */
+
+	  /* USER CODE BEGIN I2C2_Init 1 */
+
+	  /* USER CODE END I2C2_Init 1 */
+	  hi2c2.Instance = I2C2;
+	  hi2c2.Init.Timing = 0x20404768;
+	  hi2c2.Init.OwnAddress1 = 0;
+	  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+	  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+	  hi2c2.Init.OwnAddress2 = 0;
+	  hi2c2.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+	  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+	  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+	  if (HAL_I2C_Init(&hi2c2) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+	  /** Configure Analogue filter
+	  */
+	  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c2, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+	  /** Configure Digital filter
+	  */
+	  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c2, 0) != HAL_OK)
+	  {
+	    Error_Handler();
+	  }
+	  /* USER CODE BEGIN I2C2_Init 2 */
+
+	  /* USER CODE END I2C2_Init 2 */
+
+}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

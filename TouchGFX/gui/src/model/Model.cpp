@@ -1,5 +1,8 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
+#include "EEPROM.h"
+uint8_t str,str1;
+
 
 Model::Model() : modelListener(0)
 {
@@ -13,6 +16,12 @@ void Model::tick()
 		    {
 		getTime();
 		    tickCount = 0;
+		/*
+		    str++;
+		    EEPROM_writeData(0,&str,1);
+		    EEPROM_readData(0,&str1,1);
+		    debug(str1);
+		    */
 		    }
 		tickCount++;
 
@@ -28,3 +37,6 @@ void Model::getTime(){
 			 	    	minute =sTime.Minutes ;
 			 	    	second=sTime.Seconds;
 }
+
+
+
