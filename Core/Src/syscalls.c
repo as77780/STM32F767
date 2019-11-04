@@ -56,12 +56,15 @@
 #include <sys/time.h>
 #include <sys/times.h>
 
+#include "main.h"
 
 /* Variables */
 //#undef errno
 extern int errno;
 extern int __io_putchar(int ch) __attribute__((weak));
 extern int __io_getchar(void) __attribute__((weak));
+
+extern UART_HandleTypeDef huart1;
 
 register char * stack_ptr asm("sp");
 
@@ -182,3 +185,10 @@ int _execve(char *name, char **argv, char **env)
 	errno = ENOMEM;
 	return -1;
 }
+/* USER CODE BEGIN 5 */
+__attribute__((weak)) int __io_putchar(int ch)
+{
+    HAL_StatusTypeDef status = HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, 0xFFFF);
+    return (status == HAL_OK ? ch : 0);
+}
+/* USER CODE END 5 */

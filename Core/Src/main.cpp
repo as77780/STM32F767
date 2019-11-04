@@ -21,10 +21,16 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-
+/*
+#include "stdarg.h"
+#include <stdio.h>
+#include <stdlib.h>
+*/
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+//#include "../../BoardDriver/ds18b20.h"
+#include  <errno.h>
+#include  <sys/unistd.h> // STDOUT_FILENO, STDERR_FILENO
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -866,6 +872,28 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 
+
+
+/*
+void print(char* _string, uint8_t size, ...)
+{
+
+		uint16_t i;
+		uint32_t arg[10];
+		char _str[512];
+		va_list ap;
+		va_start(ap, size);
+		for(i=0;i<size;i++)
+			arg[i] = va_arg(ap, uint32_t);
+		sprintf(_str, _string, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9]);
+
+		for(i = 0; _str[i]; i++);
+			HAL_UART_Transmit(&huart1, (uint8_t*)_str, i,100);
+
+		va_end(ap);
+
+}
+*/
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
