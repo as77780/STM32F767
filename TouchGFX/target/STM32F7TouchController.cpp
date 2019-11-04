@@ -1,8 +1,8 @@
 #include "STM32F7TouchController.hpp"
 
-#include "../../BoardDriver/stm32f767_my_board_ts.h"
 /* USER CODE BEGIN BSP user includes */
-#include "../../BoardDriver/touch.h"
+
+#include "stm32f767_my_board_ts.h"
 /* USER CODE END BSP user includes */
 
 extern "C"

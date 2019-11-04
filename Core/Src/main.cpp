@@ -21,11 +21,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-/*
-#include "stdarg.h"
-#include <stdio.h>
-#include <stdlib.h>
-*/
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //#include "../../BoardDriver/ds18b20.h"
