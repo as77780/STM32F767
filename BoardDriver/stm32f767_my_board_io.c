@@ -37,7 +37,7 @@
   */ 
  
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f429i_discovery_io.h"
+#include "stm32f767_my_board_io.h"
 
 
 

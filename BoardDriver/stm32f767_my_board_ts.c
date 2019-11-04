@@ -38,8 +38,9 @@
   */ 
   
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f429i_discovery_ts.h"
-#include "stm32f429i_discovery_io.h"
+#include "stm32f767_my_board_ts.h"
+
+#include "stm32f767_my_board_io.h"
 
 /** @addtogroup BSP
   * @{

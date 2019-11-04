@@ -37,7 +37,7 @@
   */  
   
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f429i_discovery.h"
+#include "stm32f767_my_board.h"
 #define I2cHandle hi2c2
 uint32_t I2cxTimeout = I2Cx_TIMEOUT_MAX; /*<! Value of Timeout when I2C communication fails */
 

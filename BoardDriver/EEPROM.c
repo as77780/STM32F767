@@ -1,4 +1,4 @@
-#include "EEPROM.h"
+#include "../BoardDriver/EEPROM.h"
 
 #define EEPROM_DEVICE_ADDRESS   0x50
 #define EEPROM_ACCESS_TIMEOUT   1000

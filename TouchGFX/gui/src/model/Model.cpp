@@ -1,6 +1,7 @@
 #include <gui/model/Model.hpp>
 #include <gui/model/ModelListener.hpp>
-#include "EEPROM.h"
+
+#include "../../../../BoardDriver/EEPROM.h"
 uint8_t str,str1;
 
 

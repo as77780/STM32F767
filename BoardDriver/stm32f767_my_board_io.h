@@ -45,9 +45,9 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f429i_discovery.h"
+#include "stm32f767_my_board.h"
 /* Include IO component driver */
-#include "stmpe811.h"
+#include "../BoardDriver/stmpe811.h"
 
 /** @addtogroup BSP
   * @{

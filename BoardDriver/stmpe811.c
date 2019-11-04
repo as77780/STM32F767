@@ -37,7 +37,7 @@
   */  
 
 /* Includes ------------------------------------------------------------------*/
-#include "stmpe811.h"
+#include "../BoardDriver/stmpe811.h"
 
 /** @addtogroup BSP
   * @{

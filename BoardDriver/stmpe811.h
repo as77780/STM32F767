@@ -45,8 +45,8 @@
 #endif   
    
 /* Includes ------------------------------------------------------------------*/
-#include "ts.h"
-#include "io.h"
+#include "../BoardDriver/ts.h"
+#include "../BoardDriver/io.h"
 
 /** @addtogroup BSP
   * @{
