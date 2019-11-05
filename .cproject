@@ -48,6 +48,7 @@
 									<listOptionValue builtIn="false" value="../TouchGFX/generated/texts/include"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F7xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../TouchGFX/generated/images/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/767/BoardDriver}&quot;"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/767/onewire_uart}&quot;"/>
 									<listOptionValue builtIn="false" value="../Core/Inc"/>
@@ -57,7 +58,6 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy"/>
 									<listOptionValue builtIn="false" value="../TouchGFX/target"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/767/BoardDriver}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c.1114362148" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.c.compiler.input.c"/>
 							</tool>
@@ -78,6 +78,7 @@
 									<listOptionValue builtIn="false" value="../TouchGFX/generated/texts/include"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F7xx_HAL_Driver/Inc"/>
 									<listOptionValue builtIn="false" value="../TouchGFX/generated/images/include"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/767/BoardDriver}&quot;"/>
 									<listOptionValue builtIn="false" value="../Drivers/CMSIS/Include"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/767/onewire_uart}&quot;"/>
 									<listOptionValue builtIn="false" value="../Core/Inc"/>
@@ -87,7 +88,6 @@
 									<listOptionValue builtIn="false" value="../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS"/>
 									<listOptionValue builtIn="false" value="../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy"/>
 									<listOptionValue builtIn="false" value="../TouchGFX/target"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/767/BoardDriver}&quot;"/>
 								</option>
 								<inputType id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.cpp.compiler.input.cpp.348462567" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.cpp.compiler.input.cpp"/>
 							</tool>
@@ -125,12 +125,12 @@
 					</folderInfo>
 					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1970039566.1403086829" name="touch.h" rcbsApplicability="disable" resourcePath="BoardDriver/touch.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
-						<entry excluding="OW_LL|ow|touch.h|touch.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BoardDriver"/>
-						<entry excluding="simulator/main.cpp|generated/simulator/src/mainBase.cpp|simulator|generated/simulator" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
+						<entry excluding="ow|touch.h|touch.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BoardDriver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry excluding="ST/TouchGFX/touchgfx/os/OSWrappers_cmsis.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/OSWrappers.cpp|ST/TouchGFX/touchgfx_backup*|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator|ST/TouchGFX/touchgfx/framework/source/platform/driver/touch/SDL2TouchController.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2_icon.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
+						<entry excluding="ST/TouchGFX/touchgfx/os/OSWrappers_cmsis.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/OSWrappers.cpp|ST/TouchGFX/touchgfx_backup*|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator|ST/TouchGFX/touchgfx/framework/source/platform/driver/touch/SDL2TouchController.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2_icon.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
+						<entry excluding="simulator/main.cpp|generated/simulator/src/mainBase.cpp|simulator|generated/simulator" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

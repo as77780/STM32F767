@@ -7,16 +7,22 @@
 #include <stdio.h>
 #include "../../../../BoardDriver/EEPROM.h"
 uint8_t str,str1;
-/*
+
 ow_t ow;
 ow_rom_t rom_ids[20];
 size_t rom_found;
-*/
+
 Model::Model() : modelListener(0)
 {
-//	 ow_init(&ow, NULL);
-	// scan_onewire_devices(&ow, rom_ids, OW_ARRAYSIZE(rom_ids), &rom_found);
-	 printf("\r\nTest printf\r\n");
+	 ow_init(&ow, NULL);
+	 if (scan_onewire_devices(&ow, rom_ids, OW_ARRAYSIZE(rom_ids), &rom_found) == owOK) {
+	            printf("Devices scanned, found %d devices!\r\n", (int)rom_found);
+	        } else {
+	            printf("Device scan error\r\n");
+	        }
+	        if (rom_found == 0) {
+
+	        }
 }
 
 void Model::tick()
@@ -28,7 +34,8 @@ void Model::tick()
 		    {
 		getTime();
 		    tickCount = 0;
-/*
+		    printf("Start temperature conversion\r\n");
+		               ow_ds18x20_start(&ow, NULL);
 		    if (rom_found) {
 		        avg_temp = 0;
 		               avg_temp_count = 0;
@@ -52,7 +59,7 @@ void Model::tick()
 		               }
 		               printf("Average temperature: %d.%d degrees\r\n", (int)avg_temp, (int)((avg_temp * 100.0f) - ((int)avg_temp) * 100));
 		           }
-		    */
+
 		    }
 
 

@@ -48,19 +48,19 @@ extern "C" {
  * \{
  */
 
-#define ONEWIRE_USART                           USART1
-#define ONEWIRE_USART_CLK_EN                    LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_USART1)
+#define ONEWIRE_USART                          USART3
+#define ONEWIRE_USART_CLK_EN                   LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_USART3);
 
 /* USART TX PIN */
-#define ONEWIRE_TX_PORT                         GPIOA
-#define ONEWIRE_TX_PORT_CLK_EN                  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA)
-#define ONEWIRE_TX_PIN                          LL_GPIO_PIN_9
+#define ONEWIRE_TX_PORT                         GPIOC
+#define ONEWIRE_TX_PORT_CLK_EN                  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
+#define ONEWIRE_TX_PIN                          LL_GPIO_PIN_10
 #define ONEWIRE_TX_PIN_AF                       LL_GPIO_AF_7
 
 /* USART RX PIN */
-#define ONEWIRE_RX_PORT                         GPIOA
-#define ONEWIRE_RX_PORT_CLK_EN                  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOA)
-#define ONEWIRE_RX_PIN                          LL_GPIO_PIN_10
+#define ONEWIRE_RX_PORT                         GPIOC
+#define ONEWIRE_RX_PORT_CLK_EN                  LL_AHB1_GRP1_EnableClock(LL_AHB1_GRP1_PERIPH_GPIOC);
+#define ONEWIRE_RX_PIN                          LL_GPIO_PIN_11
 #define ONEWIRE_RX_PIN_AF                       LL_GPIO_AF_7
 
 uint8_t     ow_ll_init(void* arg);
