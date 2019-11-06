@@ -37,7 +37,7 @@
 #include "cmsis_os.h"
 
 /* User specific config which overwrites setup from ow_config_default.h file */
-#define OW_CFG_OS                               0
+#define OW_CFG_OS                              0
 #define OW_CFG_OS_MUTEX_HANDLE                  osMutexId
 
 /* Include default configuration setup */

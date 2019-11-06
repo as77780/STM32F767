@@ -15,6 +15,10 @@ void MainView::setupScreen()
   	 GetTimeOut();
   	image1.setAlpha(100);
 
+  	Count=presenter->GetVol();
+  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
+  	 textVolume.invalidate();
+
 }
 
 void MainView::tearDownScreen()
@@ -151,6 +155,7 @@ if(Count<80){
 	 Count++;
 	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
 	 textVolume.invalidate();
+	 presenter->SetVolume(Count);
 }
  }
 
@@ -160,32 +165,8 @@ if(Count<80){
 	 Count--;
 	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
 	 textVolume.invalidate();
+	 presenter->SetVolume(Count);
 	      }
  }
 
 
-/*
- void  MainView::scrollWheelVolumeUpdateItem(InputContainer1& item, int16_t itemIndex)
-    {
-	 item.updateText(itemIndex);
-    }
-
- void  MainView::scrollWheelVolumeUpdateCenterItem(InputCenterContainer& item, int16_t itemIndex)
-    {
-	 item.updateText(itemIndex);
-    }
-
- void  MainView::scrollWheelAnimateToHandler(int16_t itemSelected)
- {
-	switch (itemSelected)
-	     {
-	     case 0:
-	    	 GetTimeOut();
-	         break;
-
-	 case 1:
-	   	 GetTimeOut();
-	        break;
-	     }
- }
-*/

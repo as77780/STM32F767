@@ -44,7 +44,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "TDA7489.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

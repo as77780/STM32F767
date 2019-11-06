@@ -35,6 +35,8 @@ public:
         float getTempSound(){return model->getTempSound();}
         uint8_t getFan1(){return model->getFan1();}
         uint8_t getFan2(){return model->getFan2();}
+        void SetVolume(int8_t vol) { model->SetVolume(vol);  }
+        uint8_t GetVol(){return (model->GetVol()) ;}
 
 private:
     MainPresenter();

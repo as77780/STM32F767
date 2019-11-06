@@ -8,6 +8,7 @@
 #include "../../../../BoardDriver/EEPROM.h"
 extern TIM_HandleTypeDef htim4;
 
+
 uint8_t str,str1;
 
 ow_t ow;
@@ -29,19 +30,14 @@ Model::Model() : modelListener(0)
 
 void Model::tick()
 {
-	 float avg_temp;
-	    size_t avg_temp_count;
-
-	if (tickCount == 30)
+	if (tickCount == 60)
 		    {
 		getTime();
 		    tickCount = 0;
 		    printf("Start temperature conversion\r\n");
 		               ow_ds18x20_start(&ow, NULL);
 		    if (rom_found) {
-		       // avg_temp = 0;
-		         //      avg_temp_count = 0;
-		               for (size_t i = 0; i < rom_found; i++) {
+		                for (size_t i = 0; i < rom_found; i++) {
 		                   if (ow_ds18x20_is_b(&ow, &rom_ids[i])) {
 		                       float temp;
 		                    uint8_t resolution = ow_ds18x20_get_resolution(&ow, &rom_ids[i]);
@@ -49,19 +45,14 @@ void Model::tick()
 		                           printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
 		                               (unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
                                        temper[i]=temp;
-		                      //     avg_temp += temp;
-		                      //     avg_temp_count++;
-		                       } else {
+		                           } else {
 		                           printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
 		                       }
 		                   }
 		               }
-		         //      if (avg_temp_count > 0) {
-		         //          avg_temp = avg_temp / avg_temp_count;
-		           //    }
-		          //     printf("Average temperature: %d.%d degrees\r\n", (int)avg_temp, (int)((avg_temp * 100.0f) - ((int)avg_temp) * 100));
+
 		           }
-		    temp_check((uint8_t)temper[0],(uint8_t)temper[1]);
+		    temp_check((uint8_t)temper[t_power],(uint8_t)temper[T_sound]);
 		    }
 
 
@@ -90,7 +81,7 @@ void Model::getTime(){
 void Model::temp_check(uint8_t t_pow,uint8_t t_amp){
 
 
-	if(35<t_amp<50){
+	if((35<t_amp)&&(t_amp<50)){
 		if(((t_amp - 30)*((uint8_t)(t_amp/10)))>15){
 		TIM4->CCR1=(t_amp - 30)*((uint8_t)(t_amp/10));
 		                }
@@ -104,7 +95,7 @@ void Model::temp_check(uint8_t t_pow,uint8_t t_amp){
 
 
 
-	if(40<t_pow<50){
+	if((40<t_pow)&&(t_pow<50)){
 			if(((t_pow - 30)*((uint8_t)(t_pow/10)))>20){
 			TIM4->CCR2=(t_pow - 30)*((uint8_t)(t_pow/10));
 			}

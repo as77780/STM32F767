@@ -123,9 +123,11 @@
 							<tool id="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec.2120917019" name="MCU Output Converter Motorola S-rec with symbols" superClass="com.st.stm32cube.ide.mcu.gnu.managedbuild.tool.objcopy.symbolsrec"/>
 						</toolChain>
 					</folderInfo>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1970039566.465367783" name="EEPROM.h" rcbsApplicability="disable" resourcePath="BoardDriver/EEPROM.h" toolsToInvoke=""/>
 					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1970039566.1403086829" name="touch.h" rcbsApplicability="disable" resourcePath="BoardDriver/touch.h" toolsToInvoke=""/>
+					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1970039566.1891773532" name="ow_config_default.h" rcbsApplicability="disable" resourcePath="BoardDriver/OW_LL/ow_config_default.h" toolsToInvoke=""/>
 					<sourceEntries>
-						<entry excluding="ow|touch.h|touch.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BoardDriver"/>
+						<entry excluding="EEPROM.h|EEPROM.c|OW_LL/ow_config_default.h|OW_LL/ow_config_template.h|ow|touch.h|touch.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BoardDriver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>

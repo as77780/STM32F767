@@ -154,7 +154,8 @@ int main(void)
   HAL_Delay(1);
   HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_SET);
   /* USER CODE END 2 */
-
+  BH1750_Init();
+  TDA_Init();
 /* Initialise the graphical hardware */
   GRAPHICS_HW_Init();
 

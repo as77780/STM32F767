@@ -7,7 +7,7 @@
 extern  RTC_HandleTypeDef hrtc;
 extern UART_HandleTypeDef huart1;
 class ModelListener;
-//enum sensor {pow,sound};
+enum sensor {t_power=0,T_sound};
 
 /**
  * The Model class defines the data model in the model-view-presenter paradigm.
@@ -39,12 +39,14 @@ public:
     int16_t getHour(){return hour;}
     int16_t getMinute(){return minute;}
     int16_t getSecond(){return second;}
-    float getTempPow(){return temper[0];}
-    float getTempSound(){return temper[1];}
+    float getTempPow(){return temper[t_power];}
+    float getTempSound(){return temper[T_sound];}
     uint8_t getFan1(){return FAN1Speed;}
     uint8_t getFan2(){return FAN2Speed;}
     void getTime();
     void temp_check(uint8_t t_pow,uint8_t t_amp);
+    void SetVolume(int8_t vol){tda7439VolumeSet(vol);}
+    uint8_t GetVol(){return (GetTda7439Volume()) ;}
     /**
      * This function will be called automatically every frame. Can be used to e.g. sample hardware
      * peripherals or read events from the surrounding system and inject events to the GUI through
