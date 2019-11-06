@@ -57,14 +57,14 @@ protected:
     touchgfx::RepeatButton ButVolDown;
     touchgfx::BoxWithBorder boxWithBorder1;
     touchgfx::TextAreaWithOneWildcard textVolume;
-    touchgfx::CircleProgress circleProgress2;
-    touchgfx::PainterRGB888 circleProgress2Painter;
-    touchgfx::CircleProgress circleProgress2_1;
-    touchgfx::PainterRGB888 circleProgress2_1Painter;
-    touchgfx::LineProgress lineProgress1;
-    touchgfx::PainterRGB888 lineProgress1Painter;
-    touchgfx::LineProgress lineProgress1_1;
-    touchgfx::PainterRGB888 lineProgress1_1Painter;
+    touchgfx::CircleProgress circleProgressFAN2;
+    touchgfx::PainterRGB888 circleProgressFAN2Painter;
+    touchgfx::CircleProgress circleProgressFAN1;
+    touchgfx::PainterRGB888 circleProgressFAN1Painter;
+    touchgfx::LineProgress lineProgressTempSound;
+    touchgfx::PainterRGB888 lineProgressTempSoundPainter;
+    touchgfx::LineProgress lineProgressTempPow;
+    touchgfx::PainterRGB888 lineProgressTempPowPainter;
     touchgfx::Line line1;
     touchgfx::PainterRGB888 line1Painter;
     touchgfx::BoxWithBorder boxWithBorder1_1_1;
@@ -86,9 +86,9 @@ protected:
      */
     static const uint16_t TEXTVOLUME_SIZE = 3;
     touchgfx::Unicode::UnicodeChar textVolumeBuffer[TEXTVOLUME_SIZE];
-    static const uint16_t TEXTTEMPPOWER_SIZE = 3;
+    static const uint16_t TEXTTEMPPOWER_SIZE = 6;
     touchgfx::Unicode::UnicodeChar textTempPowerBuffer[TEXTTEMPPOWER_SIZE];
-    static const uint16_t TEXTTEMPSOUND_SIZE = 3;
+    static const uint16_t TEXTTEMPSOUND_SIZE = 6;
     touchgfx::Unicode::UnicodeChar textTempSoundBuffer[TEXTTEMPSOUND_SIZE];
 
 private:

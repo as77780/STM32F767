@@ -520,7 +520,7 @@
             "OffsetX": 0,
             "OffsetY": 0,
             "Name": "tiledImage1",
-            "X": -3,
+            "X": 0,
             "Y": 0,
             "Width": 480,
             "Height": 272,
@@ -744,8 +744,8 @@
             "ProgressRangeMax": 100,
             "ProgressRangeSteps": 0,
             "ProgressRangeStepsMin": 0,
-            "ProgressInitialValue": 32,
-            "Name": "circleProgress2",
+            "ProgressInitialValue": 0,
+            "Name": "circleProgressFAN2",
             "X": 227,
             "Y": 7,
             "Width": 54,
@@ -780,8 +780,8 @@
             "ProgressRangeMax": 100,
             "ProgressRangeSteps": 0,
             "ProgressRangeStepsMin": 0,
-            "ProgressInitialValue": 60,
-            "Name": "circleProgress2_1",
+            "ProgressInitialValue": 0,
+            "Name": "circleProgressFAN1",
             "X": 163,
             "Y": 7,
             "Width": 54,
@@ -815,8 +815,8 @@
             "ProgressRangeMax": 100,
             "ProgressRangeSteps": 0,
             "ProgressRangeStepsMin": 0,
-            "ProgressInitialValue": 46,
-            "Name": "lineProgress1",
+            "ProgressInitialValue": 0,
+            "Name": "lineProgressTempSound",
             "X": 292,
             "Y": 34,
             "Width": 184,
@@ -850,8 +850,8 @@
             "ProgressRangeMax": 100,
             "ProgressRangeSteps": 0,
             "ProgressRangeStepsMin": 0,
-            "ProgressInitialValue": 70,
-            "Name": "lineProgress1_1",
+            "ProgressInitialValue": 0,
+            "Name": "lineProgressTempPow",
             "X": 293,
             "Y": 7,
             "Width": 184,
@@ -970,18 +970,18 @@
               "Blue": 242
             },
             "Alpha": 255,
-            "AutoSize": true,
+            "AutoSize": false,
             "LineSpacing": 0,
             "Wildcard1": {
-              "TextId": "SingleUseId37",
+              "TextId": "SingleUseId43",
               "UseBuffer": true,
-              "BufferSize": 3
+              "BufferSize": 6
             },
             "Name": "textTempPower",
-            "X": 403,
-            "Y": 10,
-            "Width": 64,
-            "Height": 13,
+            "X": 358,
+            "Y": 11,
+            "Width": 112,
+            "Height": 15,
             "Type": "TextArea",
             "Visible": true,
             "Draggable": false,
@@ -998,17 +998,17 @@
               "Blue": 255
             },
             "Alpha": 255,
-            "AutoSize": true,
+            "AutoSize": false,
             "LineSpacing": 0,
             "Wildcard1": {
               "TextId": "SingleUseId39",
               "UseBuffer": true,
-              "BufferSize": 3
+              "BufferSize": 6
             },
             "Name": "textTempSound",
-            "X": 403,
+            "X": 358,
             "Y": 38,
-            "Width": 65,
+            "Width": 112,
             "Height": 13,
             "Type": "TextArea",
             "Visible": true,
@@ -2373,10 +2373,6 @@
         "IsResource": false
       },
       {
-        "TextEntryId": "SingleUseId37",
-        "IsResource": false
-      },
-      {
         "TextEntryId": "SingleUseId38",
         "IsResource": false
       },
@@ -2394,6 +2390,10 @@
       },
       {
         "TextEntryId": "SingleUseId42",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId43",
         "IsResource": false
       }
     ],

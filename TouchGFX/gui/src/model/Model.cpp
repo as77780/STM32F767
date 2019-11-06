@@ -6,6 +6,8 @@
 #include "../../../../BoardDriver/OW_LL/scan_devices.h"
 #include <stdio.h>
 #include "../../../../BoardDriver/EEPROM.h"
+extern TIM_HandleTypeDef htim4;
+
 uint8_t str,str1;
 
 ow_t ow;
@@ -37,29 +39,29 @@ void Model::tick()
 		    printf("Start temperature conversion\r\n");
 		               ow_ds18x20_start(&ow, NULL);
 		    if (rom_found) {
-		        avg_temp = 0;
-		               avg_temp_count = 0;
+		       // avg_temp = 0;
+		         //      avg_temp_count = 0;
 		               for (size_t i = 0; i < rom_found; i++) {
 		                   if (ow_ds18x20_is_b(&ow, &rom_ids[i])) {
 		                       float temp;
-		                       uint8_t resolution = ow_ds18x20_get_resolution(&ow, &rom_ids[i]);
+		                    uint8_t resolution = ow_ds18x20_get_resolution(&ow, &rom_ids[i]);
 		                       if (ow_ds18x20_read(&ow, &rom_ids[i], &temp)) {
 		                           printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
 		                               (unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
-
-		                           avg_temp += temp;
-		                           avg_temp_count++;
+                                       temper[i]=temp;
+		                      //     avg_temp += temp;
+		                      //     avg_temp_count++;
 		                       } else {
 		                           printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
 		                       }
 		                   }
 		               }
-		               if (avg_temp_count > 0) {
-		                   avg_temp = avg_temp / avg_temp_count;
-		               }
-		               printf("Average temperature: %d.%d degrees\r\n", (int)avg_temp, (int)((avg_temp * 100.0f) - ((int)avg_temp) * 100));
+		         //      if (avg_temp_count > 0) {
+		         //          avg_temp = avg_temp / avg_temp_count;
+		           //    }
+		          //     printf("Average temperature: %d.%d degrees\r\n", (int)avg_temp, (int)((avg_temp * 100.0f) - ((int)avg_temp) * 100));
 		           }
-
+		    temp_check((uint8_t)temper[0],(uint8_t)temper[1]);
 		    }
 
 
@@ -85,4 +87,35 @@ void Model::getTime(){
 }
 
 
+void Model::temp_check(uint8_t t_pow,uint8_t t_amp){
 
+
+	if(35<t_amp<50){
+		if(((t_amp - 30)*((uint8_t)(t_amp/10)))>15){
+		TIM4->CCR1=(t_amp - 30)*((uint8_t)(t_amp/10));
+		                }
+			       }
+	 if  (t_amp>=50) {
+		TIM4->CCR1=100;
+	}
+	if(t_amp<=35) {
+		TIM4->CCR1=10;
+	}
+
+
+
+	if(40<t_pow<50){
+			if(((t_pow - 30)*((uint8_t)(t_pow/10)))>20){
+			TIM4->CCR2=(t_pow - 30)*((uint8_t)(t_pow/10));
+			}
+		}
+		 if (t_pow>=50) {
+			TIM4->CCR2=100;
+		}
+		 if(t_pow<=40) {
+			TIM4->CCR2=20;
+		}
+		 FAN1Speed=(uint8_t)TIM4->CCR1;
+		 FAN2Speed=(uint8_t)TIM4->CCR2;
+
+}

@@ -143,9 +143,13 @@ int main(void)
   MX_DMA_Init();
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
+ /*timer lite lcd, start and init*/
   HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
   TIM5->CCR1=100;
-
+  /*timer FAN1 and FAN2 start*/
+  HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_1);
+  HAL_TIM_PWM_Start(&htim4,TIM_CHANNEL_2);
+  /*reset control pin lcd*/
   HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_RESET);
   HAL_Delay(1);
   HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_SET);

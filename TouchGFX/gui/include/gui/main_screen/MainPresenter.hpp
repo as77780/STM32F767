@@ -31,6 +31,10 @@ public:
         int16_t getHour(){ return model->getHour(); }
         int16_t getMinute(){ return model->getMinute(); }
         int16_t getSecond(){ return model->getSecond(); }
+        float getTempPow(){return model->getTempPow();}
+        float getTempSound(){return model->getTempSound();}
+        uint8_t getFan1(){return model->getFan1();}
+        uint8_t getFan2(){return model->getFan2();}
 
 private:
     MainPresenter();

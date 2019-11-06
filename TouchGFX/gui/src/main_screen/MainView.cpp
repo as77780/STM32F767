@@ -26,14 +26,32 @@ void MainView::tearDownScreen()
 void MainView::handleTickEvent()
 {
 	GetTimeOut();
+	ViewTemp();
 }
 
 
  void  MainView::GetTimeOut()
         {
-          	    digitalClock1.setTime24Hour(presenter->getHour(), presenter->getMinute(), presenter->getSecond());
-	           // digitalClock1.invalidate();
+	    digitalClock1.setTime24Hour(presenter->getHour(), presenter->getMinute(), presenter->getSecond());
 	 	 }
+ void MainView::ViewTemp() {
+	    /*Progress bar power*/
+	    Unicode::snprintfFloat(textTempPowerBuffer,TEXTTEMPPOWER_SIZE,"%0f",presenter->getTempPow());
+	 	textTempPower.invalidate();
+	 	lineProgressTempPow.setValue((uint8_t)presenter->getTempPow());
+	 	lineProgressTempPow.invalidate();
+	 	  /*Progress bar sound*/
+	 	Unicode::snprintfFloat(textTempSoundBuffer,TEXTTEMPSOUND_SIZE,"%0f",presenter->getTempSound());
+	 	textTempSound.invalidate();
+	 	lineProgressTempSound.setValue((uint8_t)presenter->getTempSound());
+	 	lineProgressTempSound.invalidate();
+	 	 /*Progress bar FAN1*/
+	 	circleProgressFAN1.setValue(presenter->getFan1());
+	 	circleProgressFAN1.invalidate();
+	 	circleProgressFAN2.setValue(presenter->getFan2());
+	 	circleProgressFAN2.invalidate();
+	 	 /*Progress bar FAN1*/
+        }
  void  MainView::FunVolUP()
  {
 if(Count<80){
