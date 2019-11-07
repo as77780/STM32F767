@@ -45,8 +45,23 @@ public:
     uint8_t getFan2(){return FAN2Speed;}
     void getTime();
     void temp_check(uint8_t t_pow,uint8_t t_amp);
-    void SetVolume(int8_t vol){tda7439VolumeSet(vol);}
+
+    void SetVolume(uint8_t vol){tda7439VolumeSet(vol);}
     uint8_t GetVol(){return (GetTda7439Volume()) ;}
+
+    void SetGain(uint8_t gain){tda7439GainSet(gain);}
+    uint8_t GetGain(){return (GetTda7439Gain()) ;}
+
+    void SetBass(uint8_t bass){tda7439BassSet(bass);}
+    uint8_t GetBass(){return (GetTda7439Bass()) ;}
+
+    void SetMiddle(uint8_t middle){tda7439MiddleSet(middle);}
+    uint8_t GetMiddle(){return (GetTda7439Middle()) ;}
+
+    void SetTrible(uint8_t trible){tda7439TribleSet(trible);}
+    uint8_t GetTrible(){return (GetTda7439Trible()) ;}
+
+
     /**
      * This function will be called automatically every frame. Can be used to e.g. sample hardware
      * peripherals or read events from the surrounding system and inject events to the GUI through

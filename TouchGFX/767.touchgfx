@@ -850,7 +850,7 @@
             "ProgressRangeMax": 100,
             "ProgressRangeSteps": 0,
             "ProgressRangeStepsMin": 0,
-            "ProgressInitialValue": 0,
+            "ProgressInitialValue": 100,
             "Name": "lineProgressTempPow",
             "X": 293,
             "Y": 7,
@@ -1540,6 +1540,54 @@
               "ScreenTransitionDirection": "West",
               "ActionComponent": "Main",
               "Type": "ActionGotoScreen"
+            }
+          },
+          {
+            "InteractionName": "InteractionChangeAmpl",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "SliderAmplified",
+              "Type": "TriggerSliderValueChanged"
+            },
+            "Action": {
+              "FunctionName": "ChangeAmpl",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionChangeBass",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "SliderBass",
+              "Type": "TriggerSliderValueChanged"
+            },
+            "Action": {
+              "FunctionName": "ChangeBass",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionChangeMid",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "SliderMid",
+              "Type": "TriggerSliderValueChanged"
+            },
+            "Action": {
+              "FunctionName": "ChangeMid",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionChangeTreble",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "SliderTreble",
+              "Type": "TriggerSliderValueChanged"
+            },
+            "Action": {
+              "FunctionName": "ChangeTreble",
+              "Type": "ActionCustom"
             }
           }
         ],

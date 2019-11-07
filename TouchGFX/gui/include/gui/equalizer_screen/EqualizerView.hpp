@@ -12,6 +12,25 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 protected:
+    virtual void ChangeAmpl(int value)
+       {
+          presenter->SetGain(value);
+       }
+
+       virtual void ChangeBass(int value)
+       {
+    	   presenter->SetBass(value);
+       }
+
+       virtual void ChangeMid(int value)
+       {
+    	   presenter->SetMiddle(value);
+       }
+
+       virtual void ChangeTreble(int value)
+       {
+    	   presenter->SetTrible(value);
+       }
 };
 
 #endif // EQUALIZER_VIEW_HPP

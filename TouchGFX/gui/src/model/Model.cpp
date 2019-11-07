@@ -56,12 +56,12 @@ void Model::tick()
 		    }
 
 
-		/*
+/*
 		    str++;
-		    EEPROM_writeData(0,&str,1);
-		    EEPROM_readData(0,&str1,1);
-		    debug(str1);
-		    */
+		    EEPROM_writeData(str,&str,1);
+		    EEPROM_readData(str,&str1,1);
+		    printf("EEprom read: %d\r\n",str1 );
+*/
 			tickCount++;
 
 }

@@ -110,7 +110,7 @@ MainViewBase::MainViewBase() :
     lineProgressTempPow.setEnd(9, 10);
     lineProgressTempPow.setLineWidth(16);
     lineProgressTempPow.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
-    lineProgressTempPow.setValue(0);
+    lineProgressTempPow.setValue(100);
 
     line1.setPosition(300, 112, 52, 10);
     line1Painter.setColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));

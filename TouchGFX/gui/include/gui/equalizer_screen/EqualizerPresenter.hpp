@@ -27,6 +27,20 @@ public:
 
     virtual ~EqualizerPresenter() {};
 
+    void SetGain(int8_t gain) { model->SetGain(gain);  }
+    uint8_t GetGain(){return (model->GetGain()) ;}
+
+    void SetBass(int8_t bass) { model->SetBass(bass);  }
+    uint8_t GetBass(){return (model->GetBass()) ;}
+
+    void SetMiddle(int8_t middle) { model->SetMiddle(middle);  }
+    uint8_t GetMiddle(){return (model->GetMiddle()) ;}
+
+    void SetTrible(int8_t trible) { model->SetTrible(trible);  }
+    uint8_t GetTrible(){return (model->GetTrible()) ;}
+
+
+
 private:
     EqualizerPresenter();
 

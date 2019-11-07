@@ -20,6 +20,29 @@ public:
     virtual ~EqualizerViewBase() {}
     virtual void setupScreen();
 
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void ChangeAmpl(int value)
+    {
+        // Override and implement this function in Equalizer
+    }
+
+    virtual void ChangeBass(int value)
+    {
+        // Override and implement this function in Equalizer
+    }
+
+    virtual void ChangeMid(int value)
+    {
+        // Override and implement this function in Equalizer
+    }
+
+    virtual void ChangeTreble(int value)
+    {
+        // Override and implement this function in Equalizer
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
@@ -47,11 +70,13 @@ private:
      * Callback Declarations
      */
     touchgfx::Callback<EqualizerViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<EqualizerViewBase, const touchgfx::Slider&, int> sliderValueChangedCallback;
 
     /*
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value);
 
 };
 

@@ -7,7 +7,8 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 EqualizerViewBase::EqualizerViewBase() :
-    buttonCallback(this, &EqualizerViewBase::buttonCallbackHandler)
+    buttonCallback(this, &EqualizerViewBase::buttonCallbackHandler),
+    sliderValueChangedCallback(this, &EqualizerViewBase::sliderValueChangedCallbackHandler)
 {
     tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_TEXTURES_CARBON_FIBRE_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
@@ -18,24 +19,28 @@ EqualizerViewBase::EqualizerViewBase() :
     SliderAmplified.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderAmplified.setValueRange(0, 16);
     SliderAmplified.setValue(0);
+    SliderAmplified.setNewValueCallback(sliderValueChangedCallback);
 
     SliderBass.setXY(6, 168);
     SliderBass.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderBass.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderBass.setValueRange(0, 16);
     SliderBass.setValue(8);
+    SliderBass.setNewValueCallback(sliderValueChangedCallback);
 
     SliderMid.setXY(6, 119);
     SliderMid.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderMid.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderMid.setValueRange(0, 16);
     SliderMid.setValue(8);
+    SliderMid.setNewValueCallback(sliderValueChangedCallback);
 
     SliderTreble.setXY(6, 62);
     SliderTreble.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderTreble.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderTreble.setValueRange(0, 16);
     SliderTreble.setValue(8);
+    SliderTreble.setNewValueCallback(sliderValueChangedCallback);
 
     box1.setPosition(345, 0, 135, 36);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
@@ -96,5 +101,37 @@ void EqualizerViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& sr
         //When ButtonBack clicked change screen to Main
         //Go to Main with screen transition towards West
         application().gotoMainScreenCoverTransitionWest();
+    }
+}
+
+void EqualizerViewBase::sliderValueChangedCallbackHandler(const touchgfx::Slider& src, int value)
+{
+    if (&src == &SliderAmplified)
+    {
+        //InteractionChangeAmpl
+        //When SliderAmplified value changed call virtual function
+        //Call ChangeAmpl
+        ChangeAmpl(value);
+    }
+    else if (&src == &SliderBass)
+    {
+        //InteractionChangeBass
+        //When SliderBass value changed call virtual function
+        //Call ChangeBass
+        ChangeBass(value);
+    }
+    else if (&src == &SliderMid)
+    {
+        //InteractionChangeMid
+        //When SliderMid value changed call virtual function
+        //Call ChangeMid
+        ChangeMid(value);
+    }
+    else if (&src == &SliderTreble)
+    {
+        //InteractionChangeTreble
+        //When SliderTreble value changed call virtual function
+        //Call ChangeTreble
+        ChangeTreble(value);
     }
 }

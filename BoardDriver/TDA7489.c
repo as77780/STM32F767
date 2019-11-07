@@ -469,5 +469,5 @@ uint8_t GetInput(void){
 	return INPUT;
 }
 void SetInput(uint8_t in){
-	INPUT=in;
+	tda7439SetInput(in);
 }
