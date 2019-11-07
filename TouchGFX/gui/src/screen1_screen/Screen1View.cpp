@@ -53,10 +53,20 @@ void Screen1View::buttonSaveClicked()
 {
 	 RTC_TimeTypeDef sTime ;
 
-	 sTime.Hours = hour+1;
-	 sTime.Minutes = minute;
+	 sTime.Hours = (uint8_t)hour;
+	 sTime.Minutes = (uint8_t)minute;
 	 sTime.Seconds = 0;
+	 sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+	 sTime.StoreOperation = RTC_STOREOPERATION_RESET;
 	 HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) ;
+	 /*
+	    sDate.WeekDay = RTC_WEEKDAY_THURSDAY;
+  sDate.Month = RTC_MONTH_NOVEMBER;
+  sDate.Date = 0x7;
+  sDate.Year = 0x0;
+
+  if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
+	  */
 
 }
 

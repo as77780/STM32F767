@@ -34,7 +34,8 @@ void Model::tick()
 		    {
 		getTime();
 		    tickCount = 0;
-		    printf("Start temperature conversion\r\n");
+		//    printf("Start temperature conversion\r\n");
+
 		               ow_ds18x20_start(&ow, NULL);
 		    if (rom_found) {
 		                for (size_t i = 0; i < rom_found; i++) {
@@ -46,13 +47,14 @@ void Model::tick()
 		                               (unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
                                        temper[i]=temp;
 		                           } else {
-		                           printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
+		                    //       printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
 		                       }
 		                   }
 		               }
 
 		           }
 		    temp_check((uint8_t)temper[t_power],(uint8_t)temper[T_sound]);
+
 		    }
 
 

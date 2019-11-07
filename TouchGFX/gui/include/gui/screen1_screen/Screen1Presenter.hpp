@@ -26,11 +26,11 @@ public:
     virtual void deactivate();
 
     virtual ~Screen1Presenter() {};
-    void saveHour(int16_t hour) { model->saveHour(hour);  }
-     void saveMinute(int16_t minute){ model->saveMinute(minute);  }
-     int16_t getHour(){ return model->getHour(); }
-     int16_t getMinute(){ return model->getMinute(); }
-     int16_t getSecond(){ return model->getSecond(); }
+    void saveHour(uint8_t hour) { model->saveHour(hour);  }
+     void saveMinute(uint8_t minute){ model->saveMinute(minute);  }
+     uint8_t getHour(){ return model->getHour(); }
+     uint8_t getMinute(){ return model->getMinute(); }
+     uint8_t getSecond(){ return model->getSecond(); }
 
 private:
     Screen1Presenter();

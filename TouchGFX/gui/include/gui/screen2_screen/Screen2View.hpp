@@ -15,9 +15,9 @@ public:
     virtual void handleTickEvent();
     virtual void TimeView();
 protected:
-    int16_t hour;
-    int16_t minute;
-    int16_t second;
+    uint8_t hour;
+    uint8_t minute;
+    uint8_t second;
    };
 
 extern  RTC_HandleTypeDef hrtc;

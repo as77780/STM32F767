@@ -44,12 +44,12 @@ void MainView::handleTickEvent()
 	 uint8_t FAN1=(uint8_t)presenter->getFan1();
 	 uint8_t FAN2=(uint8_t)presenter->getFan2();
 	    /*Progress bar power*/
-	    Unicode::snprintfFloat(textTempPowerBuffer,TEXTTEMPPOWER_SIZE,"%0f",tempPOW);
+	    Unicode::snprintfFloat(textTempPowerBuffer,TEXTTEMPPOWER_SIZE,"%0f",presenter->getTempPow());
 	 	textTempPower.invalidate();
 	 	lineProgressTempPow.setValue(tempPOW);
 	 	lineProgressTempPow.invalidate();
 	 	  /*Progress bar sound*/
-	 	Unicode::snprintfFloat(textTempSoundBuffer,TEXTTEMPSOUND_SIZE,"%0f",tempSOUND);
+	 	Unicode::snprintfFloat(textTempSoundBuffer,TEXTTEMPSOUND_SIZE,"%0f",presenter->getTempSound());
 	 	textTempSound.invalidate();
 	 	lineProgressTempSound.setValue(tempSOUND);
 	 	lineProgressTempSound.invalidate();

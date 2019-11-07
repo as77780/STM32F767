@@ -110,7 +110,7 @@ MainViewBase::MainViewBase() :
     lineProgressTempPow.setEnd(9, 10);
     lineProgressTempPow.setLineWidth(16);
     lineProgressTempPow.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
-    lineProgressTempPow.setValue(100);
+    lineProgressTempPow.setValue(0);
 
     line1.setPosition(300, 112, 52, 10);
     line1Painter.setColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
@@ -137,7 +137,7 @@ MainViewBase::MainViewBase() :
     buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));
     buttonPlay.setIconXY(5, 5);
 
-    textTempPower.setPosition(358, 11, 112, 15);
+    textTempPower.setPosition(358, 10, 112, 15);
     textTempPower.setColor(touchgfx::Color::getColorFrom24BitRGB(242, 242, 242));
     textTempPower.setLinespacing(0);
     Unicode::snprintf(textTempPowerBuffer, TEXTTEMPPOWER_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID43).getText());

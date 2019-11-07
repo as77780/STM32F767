@@ -21,8 +21,8 @@ public:
 
 
 protected:
-    int16_t hour;
-    int16_t minute;
+    uint8_t hour;
+    uint8_t minute;
 };
 extern  RTC_HandleTypeDef hrtc;
 #endif // SCREEN1_VIEW_HPP

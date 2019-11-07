@@ -21,10 +21,14 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "lwip.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 //#include "../../BoardDriver/ds18b20.h"
+//#include "network.h"
+//#include "lwip/sys.h"
+//#include "lwip/api.h"
 #include  <errno.h>
 #include  <sys/unistd.h> // STDOUT_FILENO, STDERR_FILENO
 /* USER CODE END Includes */
@@ -62,7 +66,18 @@ TIM_HandleTypeDef htim5;
 UART_HandleTypeDef huart1;
 
 osThreadId defaultTaskHandle;
+osThreadId TaskNet01Handle;
+osThreadId TaskNet02Handle;
+osMessageQId QueueNet01Handle;
+osTimerId Timer01Handle;
 /* USER CODE BEGIN PV */
+typedef struct struct_arg_t {
+ // char str_name[10];
+  uint16_t N_task;
+ // uint32_t delay_per;
+} struct_arg;
+
+struct_arg arg01, arg02;
 
 /* USER CODE END PV */
 
@@ -85,9 +100,11 @@ static void MX_USART1_UART_Init(void);
 static void MX_DMA_Init(void);
 static void MX_USART3_UART_Init(void);
 void StartDefaultTask(void const * argument);
+void StartTaskNet01(void const * argument);
+void CallbackTimer01(void const * argument);
 
 /* USER CODE BEGIN PFP */
-
+void NetRouting(uint8_t arg);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -102,7 +119,8 @@ void StartDefaultTask(void const * argument);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+	arg01.N_task=1;
+	arg02.N_task=2;
   /* USER CODE END 1 */
   
 
@@ -153,9 +171,10 @@ int main(void)
   HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_RESET);
   HAL_Delay(1);
   HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_SET);
-  /* USER CODE END 2 */
   BH1750_Init();
   TDA_Init();
+  /* USER CODE END 2 */
+
 /* Initialise the graphical hardware */
   GRAPHICS_HW_Init();
 
@@ -172,9 +191,20 @@ int main(void)
   /* add semaphores, ... */
   /* USER CODE END RTOS_SEMAPHORES */
 
+  /* Create the timer(s) */
+  /* definition and creation of Timer01 */
+  osTimerDef(Timer01, CallbackTimer01);
+  Timer01Handle = osTimerCreate(osTimer(Timer01), osTimerPeriodic, NULL);
+
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
+  osTimerStart(Timer01Handle, 1000);
   /* USER CODE END RTOS_TIMERS */
+
+  /* Create the queue(s) */
+  /* definition and creation of QueueNet01 */
+  osMessageQDef(QueueNet01, 16, uint16_t);
+  QueueNet01Handle = osMessageCreate(osMessageQ(QueueNet01), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -185,8 +215,17 @@ int main(void)
   osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 4096);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
+  /* definition and creation of TaskNet01 */
+  osThreadDef(TaskNet01, StartTaskNet01, osPriorityIdle, 0, 1024);
+  TaskNet01Handle = osThreadCreate(osThread(TaskNet01), (void*)&arg01);
+
+  /* definition and creation of TaskNet02 */
+  osThreadDef(TaskNet02, StartTaskNet01, osPriorityIdle, 0, 1024);
+  TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
+
   /* USER CODE END RTOS_THREADS */
 
   /* Start scheduler */
@@ -842,30 +881,6 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOI, sound_on_Pin|lcd_Pin|power_on_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : PC1 PC4 PC5 */
-  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_4|GPIO_PIN_5;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PA1 PA2 PA7 */
-  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_2|GPIO_PIN_7;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : PB11 PB12 PB13 */
-  GPIO_InitStruct.Pin = GPIO_PIN_11|GPIO_PIN_12|GPIO_PIN_13;
-  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-
   /*Configure GPIO pins : but_on_Pin touch_int_Pin */
   GPIO_InitStruct.Pin = but_on_Pin|touch_int_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
@@ -882,26 +897,89 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-
-
 /*
-void print(char* _string, uint8_t size, ...)
-{
+void NetRouting(uint8_t arg){
+	 struct netbuf *buf;
+		// uint8_t* data1="test\r\n";
+		 uint8_t N = arg;
+		void *data;
+		  u16_t len;
+		  int rc1, rc2;
+		  uint8_t DEST_PORT=23;
+		  	struct netconn *xNetConn = NULL;
+		  	uint8_t IP_ADDRESS_REM[4];
 
-		uint16_t i;
-		uint32_t arg[10];
-		char _str[512];
-		va_list ap;
-		va_start(ap, size);
-		for(i=0;i<size;i++)
-			arg[i] = va_arg(ap, uint32_t);
-		sprintf(_str, _string, arg[0], arg[1], arg[2], arg[3], arg[4], arg[5], arg[6], arg[7], arg[8], arg[9]);
+		  	  IP_ADDRESS_REM[0] = 192;
+		  	  IP_ADDRESS_REM[1] = 168;
+		  	  IP_ADDRESS_REM[2] = 1;
+		  	  IP_ADDRESS_REM[3] = 111;
+		  	  ip4_addr_t remote_ip;
+		  	  ip4_addr_t local_ip =gnetif.ip_addr;
 
-		for(i = 0; _str[i]; i++);
-			HAL_UART_Transmit(&huart1, (uint8_t*)_str, i,100);
 
-		va_end(ap);
+		  	  IP4_ADDR(&remote_ip, IP_ADDRESS_REM[0], IP_ADDRESS_REM[1], IP_ADDRESS_REM[2], IP_ADDRESS_REM[3]);
+
+		  	 while(gnetif.ip_addr.addr == 0);
+		  	 print("%d:Local IP address: %d.%d.%d.%d\n\r",5,N,local_ip.addr&0xFF,(local_ip.addr>>8)&0xFF,(local_ip.addr>>16)&0xFF,(local_ip.addr>>24)&0xFF);
+		  	 print("%d:Remote IP address: %d.%d.%d.%d\n\r",5,N,remote_ip.addr&0xFF,(remote_ip.addr>>8)&0xFF,(remote_ip.addr>>16)&0xFF,(remote_ip.addr>>24)&0xFF);
+
+
+
+
+
+		  	while(1){
+
+					 while(rc2!=ERR_OK)
+					 {
+						 print("%d:Connect to Remote IP address: %d.%d.%d.%d\n\r",5,N,remote_ip.addr&0xFF,(remote_ip.addr>>8)&0xFF,(remote_ip.addr>>16)&0xFF,(remote_ip.addr>>24)&0xFF);
+						 xNetConn = netconn_new ( NETCONN_TCP );
+						 rc1 = netconn_bind ( xNetConn, &local_ip, DEST_PORT );
+						 rc2 = netconn_connect ( xNetConn, &remote_ip, DEST_PORT );
+						 print("\r\n connect... \r\n",0);
+							NetConn[N] = xNetConn;
+						 if(rc2!=ERR_OK)
+						 {
+							 netconn_close(xNetConn);
+							 netconn_delete(xNetConn);
+						 }
+					 }
+
+					 print("\r\n%Remote host connected %d\r\n",1,N);
+
+
+					 uint8_t p=0;
+		 while (netconn_recv(xNetConn, &buf) == ERR_OK)
+		          {
+
+			         do
+		            {
+		              netbuf_data(buf, &data, &len);
+		             if(p<=10){
+		              netconn_write(xNetConn, data, len, NETCONN_COPY);
+		              p++;
+		             }
+
+		             // print(data,0);
+		             print_str(data,len);   //Log Enabl
+		              executeEthCommand(xNetConn,data,N);
+		            //  executeEthDate(xNetConn,data,NULL);
+		           //   ReadSTatEth(xNetConn);
+		                        }
+
+		            while (netbuf_next(buf) >= 0);
+
+		            netbuf_delete(buf);
+		          }
+		 netconn_close(xNetConn);
+		           netconn_delete(xNetConn);
+		           Eth_REDy[N]=incomplit;
+		           Eth_INET=incomplit;
+		           P_STOP();
+
+		 print("\r\%dnRemote host disconnected %d\r\n",1,N);
+		 rc2=ERR_ABRT;
+		 //	vTaskDelete(xTaskGetCurrentTaskHandle());
+	}
 
 }
 */
@@ -916,6 +994,9 @@ void print(char* _string, uint8_t size, ...)
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void const * argument)
 {
+  /* init code for LWIP */
+  MX_LWIP_Init();
+
 /* Graphic application */
   GRAPHICS_MainTask();
   /* USER CODE BEGIN 5 */
@@ -925,6 +1006,34 @@ void StartDefaultTask(void const * argument)
     osDelay(1);
   }
   /* USER CODE END 5 */ 
+}
+
+/* USER CODE BEGIN Header_StartTaskNet01 */
+/**
+* @brief Function implementing the TaskNet01 thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartTaskNet01 */
+void StartTaskNet01(void const * argument)
+{
+  /* USER CODE BEGIN StartTaskNet01 */
+	volatile struct_arg *arg;
+    arg = (struct_arg*) argument;
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartTaskNet01 */
+}
+
+/* CallbackTimer01 function */
+void CallbackTimer01(void const * argument)
+{
+  /* USER CODE BEGIN CallbackTimer01 */
+  uint8_t t;
+  /* USER CODE END CallbackTimer01 */
 }
 
 /**
