@@ -45,6 +45,7 @@ extern "C" {
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "TDA7489.h"
+#include "NEC_Decode.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

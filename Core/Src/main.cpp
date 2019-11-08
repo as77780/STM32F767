@@ -29,6 +29,10 @@
 //#include "network.h"
 //#include "lwip/sys.h"
 //#include "lwip/api.h"
+
+#include "../../../../BoardDriver/OW_LL/ow.h"
+#include "../../../../BoardDriver/OW_LL/ow_device_ds18x20.h"
+#include "../../../../BoardDriver/OW_LL/scan_devices.h"
 #include  <errno.h>
 #include  <sys/unistd.h> // STDOUT_FILENO, STDERR_FILENO
 /* USER CODE END Includes */
@@ -71,6 +75,16 @@ osThreadId TaskNet02Handle;
 osMessageQId QueueNet01Handle;
 osTimerId Timer01Handle;
 /* USER CODE BEGIN PV */
+
+osMailQId mail;
+typedef struct struct_temp_t {
+	float temper[2];
+}struct_temp;
+float tp[2];
+ow_t ow;
+ow_rom_t rom_ids[20];
+size_t rom_found;
+uint8_t FAN1Speed,FAN2Speed;
 typedef struct struct_arg_t {
  // char str_name[10];
   uint16_t N_task;
@@ -105,6 +119,8 @@ void CallbackTimer01(void const * argument);
 
 /* USER CODE BEGIN PFP */
 void NetRouting(uint8_t arg);
+void ds18b20init (void);
+void temp_check(uint8_t t_pow,uint8_t t_amp);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -173,6 +189,8 @@ int main(void)
   HAL_GPIO_WritePin(GPIOI, GPIO_PIN_3, GPIO_PIN_SET);
   BH1750_Init();
   TDA_Init();
+  ds18b20init();
+  NEC_Init(&htim3);
   /* USER CODE END 2 */
 
 /* Initialise the graphical hardware */
@@ -207,6 +225,10 @@ int main(void)
   QueueNet01Handle = osMessageCreate(osMessageQ(QueueNet01), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
+  osMailQDef(mail, 16, struct_temp);
+  mail = osMailCreate(osMailQ(mail), NULL);
+
+
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 
@@ -216,11 +238,11 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of TaskNet01 */
-  osThreadDef(TaskNet01, StartTaskNet01, osPriorityIdle, 0, 1024);
+  osThreadDef(TaskNet01, StartTaskNet01, osPriorityLow, 0, 1024);
   TaskNet01Handle = osThreadCreate(osThread(TaskNet01), (void*)&arg01);
 
   /* definition and creation of TaskNet02 */
-  osThreadDef(TaskNet02, StartTaskNet01, osPriorityIdle, 0, 1024);
+  osThreadDef(TaskNet02, StartTaskNet01, osPriorityLow, 0, 1024);
   TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -897,6 +919,50 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void ds18b20init (void)
+{
+	 ow_init(&ow, NULL);
+		 if (scan_onewire_devices(&ow, rom_ids, OW_ARRAYSIZE(rom_ids), &rom_found) == owOK) {
+		            printf("Devices scanned, found %d devices!\r\n", (int)rom_found);
+		        } else {
+		            printf("Device scan error\r\n");
+		        }
+		        if (rom_found == 0) {
+
+		        }
+}
+
+void temp_check(uint8_t t_pow,uint8_t t_amp){
+
+
+	if((35<t_amp)&&(t_amp<50)){
+		if(((t_amp - 30)*((uint8_t)(t_amp/10)))>15){
+		TIM4->CCR1=(t_amp - 30)*((uint8_t)(t_amp/10));
+		                }
+			       }
+	 if  (t_amp>=50) {
+		TIM4->CCR1=100;
+	}
+	if(t_amp<=35) {
+		TIM4->CCR1=10;
+	}
+
+
+
+	if((40<t_pow)&&(t_pow<50)){
+			if(((t_pow - 30)*((uint8_t)(t_pow/10)))>20){
+			TIM4->CCR2=(t_pow - 30)*((uint8_t)(t_pow/10));
+			}
+		}
+		 if (t_pow>=50) {
+			TIM4->CCR2=100;
+		}
+		 if(t_pow<=40) {
+			TIM4->CCR2=20;
+		}
+
+}
+
 /*
 void NetRouting(uint8_t arg){
 	 struct netbuf *buf;
@@ -1032,7 +1098,33 @@ void StartTaskNet01(void const * argument)
 void CallbackTimer01(void const * argument)
 {
   /* USER CODE BEGIN CallbackTimer01 */
-  uint8_t t;
+	enum sensor {t_power=0,T_sound};
+		struct_temp *qstruct;
+		qstruct =(struct_temp*) osMailAlloc(mail, osWaitForever);
+
+	ow_ds18x20_start(&ow, NULL);
+		    if (rom_found) {
+		                for (size_t i = 0; i < rom_found; i++) {
+		                   if (ow_ds18x20_is_b(&ow, &rom_ids[i])) {
+		                       float temp;
+		                    uint8_t resolution = ow_ds18x20_get_resolution(&ow, &rom_ids[i]);
+		                       if (ow_ds18x20_read(&ow, &rom_ids[i], &temp)) {
+		                           printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
+		                               (unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
+
+		                           tp[i]=temp;
+		                           qstruct->temper[i]=temp;
+		                       } else {
+		                    //       printf("Could not read temperature on sensor %u\r\n", (unsigned)i);
+		                       }
+		                   }
+		               }
+
+		           }
+		    temp_check((uint8_t)tp[t_power],(uint8_t)tp[T_sound]);
+		    osMailPut(mail, qstruct);
+
+
   /* USER CODE END CallbackTimer01 */
 }
 

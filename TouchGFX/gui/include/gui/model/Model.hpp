@@ -44,7 +44,7 @@ public:
     uint8_t getFan1(){return FAN1Speed;}
     uint8_t getFan2(){return FAN2Speed;}
     void getTime();
-    void temp_check(uint8_t t_pow,uint8_t t_amp);
+  // void temp_check(uint8_t t_pow,uint8_t t_amp);
 
     void SetVolume(uint8_t vol){tda7439VolumeSet(vol);}
     uint8_t GetVol(){return (GetTda7439Volume()) ;}
