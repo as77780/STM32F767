@@ -118,7 +118,7 @@ void StartTaskNet01(void const * argument);
 void CallbackTimer01(void const * argument);
 
 /* USER CODE BEGIN PFP */
-void NetRouting(uint8_t arg);
+//void NetRouting(uint8_t arg);
 void ds18b20init (void);
 void temp_check(uint8_t t_pow,uint8_t t_amp);
 /* USER CODE END PFP */
@@ -135,8 +135,8 @@ void temp_check(uint8_t t_pow,uint8_t t_amp);
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-	arg01.N_task=1;
-	arg02.N_task=2;
+	arg01.N_task=0;
+	arg02.N_task=1;
   /* USER CODE END 1 */
   
 
@@ -242,8 +242,8 @@ int main(void)
   TaskNet01Handle = osThreadCreate(osThread(TaskNet01), (void*)&arg01);
 
   /* definition and creation of TaskNet02 */
-  osThreadDef(TaskNet02, StartTaskNet01, osPriorityLow, 0, 1024);
-  TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
+   osThreadDef(TaskNet02, StartTaskNet01, osPriorityLow, 0, 1024);
+   TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -963,92 +963,7 @@ void temp_check(uint8_t t_pow,uint8_t t_amp){
 
 }
 
-/*
-void NetRouting(uint8_t arg){
-	 struct netbuf *buf;
-		// uint8_t* data1="test\r\n";
-		 uint8_t N = arg;
-		void *data;
-		  u16_t len;
-		  int rc1, rc2;
-		  uint8_t DEST_PORT=23;
-		  	struct netconn *xNetConn = NULL;
-		  	uint8_t IP_ADDRESS_REM[4];
 
-		  	  IP_ADDRESS_REM[0] = 192;
-		  	  IP_ADDRESS_REM[1] = 168;
-		  	  IP_ADDRESS_REM[2] = 1;
-		  	  IP_ADDRESS_REM[3] = 111;
-		  	  ip4_addr_t remote_ip;
-		  	  ip4_addr_t local_ip =gnetif.ip_addr;
-
-
-		  	  IP4_ADDR(&remote_ip, IP_ADDRESS_REM[0], IP_ADDRESS_REM[1], IP_ADDRESS_REM[2], IP_ADDRESS_REM[3]);
-
-		  	 while(gnetif.ip_addr.addr == 0);
-		  	 print("%d:Local IP address: %d.%d.%d.%d\n\r",5,N,local_ip.addr&0xFF,(local_ip.addr>>8)&0xFF,(local_ip.addr>>16)&0xFF,(local_ip.addr>>24)&0xFF);
-		  	 print("%d:Remote IP address: %d.%d.%d.%d\n\r",5,N,remote_ip.addr&0xFF,(remote_ip.addr>>8)&0xFF,(remote_ip.addr>>16)&0xFF,(remote_ip.addr>>24)&0xFF);
-
-
-
-
-
-		  	while(1){
-
-					 while(rc2!=ERR_OK)
-					 {
-						 print("%d:Connect to Remote IP address: %d.%d.%d.%d\n\r",5,N,remote_ip.addr&0xFF,(remote_ip.addr>>8)&0xFF,(remote_ip.addr>>16)&0xFF,(remote_ip.addr>>24)&0xFF);
-						 xNetConn = netconn_new ( NETCONN_TCP );
-						 rc1 = netconn_bind ( xNetConn, &local_ip, DEST_PORT );
-						 rc2 = netconn_connect ( xNetConn, &remote_ip, DEST_PORT );
-						 print("\r\n connect... \r\n",0);
-							NetConn[N] = xNetConn;
-						 if(rc2!=ERR_OK)
-						 {
-							 netconn_close(xNetConn);
-							 netconn_delete(xNetConn);
-						 }
-					 }
-
-					 print("\r\n%Remote host connected %d\r\n",1,N);
-
-
-					 uint8_t p=0;
-		 while (netconn_recv(xNetConn, &buf) == ERR_OK)
-		          {
-
-			         do
-		            {
-		              netbuf_data(buf, &data, &len);
-		             if(p<=10){
-		              netconn_write(xNetConn, data, len, NETCONN_COPY);
-		              p++;
-		             }
-
-		             // print(data,0);
-		             print_str(data,len);   //Log Enabl
-		              executeEthCommand(xNetConn,data,N);
-		            //  executeEthDate(xNetConn,data,NULL);
-		           //   ReadSTatEth(xNetConn);
-		                        }
-
-		            while (netbuf_next(buf) >= 0);
-
-		            netbuf_delete(buf);
-		          }
-		 netconn_close(xNetConn);
-		           netconn_delete(xNetConn);
-		           Eth_REDy[N]=incomplit;
-		           Eth_INET=incomplit;
-		           P_STOP();
-
-		 print("\r\%dnRemote host disconnected %d\r\n",1,N);
-		 rc2=ERR_ABRT;
-		 //	vTaskDelete(xTaskGetCurrentTaskHandle());
-	}
-
-}
-*/
 /* USER CODE END 4 */
 
 /* USER CODE BEGIN Header_StartDefaultTask */
@@ -1089,6 +1004,7 @@ void StartTaskNet01(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+	  NetRouting(arg->N_task);
     osDelay(1);
   }
   /* USER CODE END StartTaskNet01 */
@@ -1109,8 +1025,8 @@ void CallbackTimer01(void const * argument)
 		                       float temp;
 		                    uint8_t resolution = ow_ds18x20_get_resolution(&ow, &rom_ids[i]);
 		                       if (ow_ds18x20_read(&ow, &rom_ids[i], &temp)) {
-		                           printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
-		                               (unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
+		                         //  printf("Sensor %02u temperature is %d.%d degrees (%u bits resolution)\r\n",
+		                         //      (unsigned)i, (int)temp, (int)((temp * 1000.0f) - (((int)temp) * 1000)), (unsigned)resolution);
 
 		                           tp[i]=temp;
 		                           qstruct->temper[i]=temp;

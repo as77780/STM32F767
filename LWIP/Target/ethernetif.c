@@ -234,8 +234,6 @@ static void low_level_init(struct netif *netif)
     /* Set netif link flag */  
     netif->flags |= NETIF_FLAG_LINK_UP;
   }
-  /* Pass all multicast frames: needed for IPv6 protocol*/
-  heth.Instance->MACFFR |= ETH_MULTICASTFRAMESFILTER_NONE;
   /* Initialize Tx Descriptors list: Chain Mode */
   HAL_ETH_DMATxDescListInit(&heth, DMATxDscrTab, &Tx_Buff[0][0], ETH_TXBUFNB);
      
