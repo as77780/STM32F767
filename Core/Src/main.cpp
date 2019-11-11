@@ -85,6 +85,9 @@ ow_t ow;
 ow_rom_t rom_ids[20];
 size_t rom_found;
 uint8_t FAN1Speed,FAN2Speed;
+volatile uint8_t capture_is_ready = 0;
+volatile Direction direction = FORWARD;
+
 typedef struct struct_arg_t {
  // char str_name[10];
   uint16_t N_task;
@@ -191,6 +194,7 @@ int main(void)
   TDA_Init();
   ds18b20init();
   NEC_Init(&htim3);
+  HAL_TIM_Encoder_Start_IT(&htim2,TIM_CHANNEL_1);
   /* USER CODE END 2 */
 
 /* Initialise the graphical hardware */
@@ -919,6 +923,21 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
+	uint16_t cnt1, cnt2;
+
+
+	if(htim->Instance==TIM2){
+		 capture_is_ready = 1;
+		 direction = (TIM2->CR1 & TIM_CR1_DIR ? FORWARD : BACKWARD);
+	}
+
+	if (htim->Instance==TIM3) {
+	      //  NEC_TIM_IC_CaptureCallback(&nec);
+	    }
+
+
+}
 void ds18b20init (void)
 {
 	 ow_init(&ow, NULL);

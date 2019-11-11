@@ -182,6 +182,22 @@ void executeEthDate(struct netconn *xNetConn,uint8_t* STK_US,uint8_t* date){
 	 */
 
 }
+
 void net_wr(struct netconn *N_Conn,uint8_t* str){
 	 netconn_write(N_Conn, str, strlen(str), NETCONN_NOFLAG);
 }
+
+
+
+void reboot_eth (void){	net_wr(NetConn[0],"sudo reboot\r");}
+void poweroff_eth (void){net_wr(NetConn[0],"sudo poweroff\r");}
+void prog_eth (void){net_wr(NetConn[0],"./radio.sh\r");}
+void prog_pl_eth (void){net_wr(NetConn[0],"./music.sh\r");}
+void prog_bud_eth (void){net_wr(NetConn[0],"./bud.sh\r");}
+void R_stop_eth (void){net_wr(NetConn[0],"q\r");}
+void R_Left_eth (void){net_wr(NetConn[0],"<");}
+void R_Right_eth (void){net_wr(NetConn[0],">");}
+void R_V_PL_eth (void){net_wr(NetConn[0],"*");}
+void R_V_Min_eth (void){net_wr(NetConn[0],"/");}
+void Inet_test_eth (void){net_wr(NetConn[1],"./inet.sh\r");	net_wr(NetConn[1],"date\r");}
+
