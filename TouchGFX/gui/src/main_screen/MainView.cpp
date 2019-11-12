@@ -1,4 +1,7 @@
 #include <gui/main_screen/MainView.hpp>
+#include "cmsis_os.h"
+
+extern osMessageQId QueueIncoderHandle;
 
 MainView::MainView()
 //:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
@@ -13,8 +16,6 @@ void MainView::setupScreen()
     MainViewBase::setupScreen();
     TIM5->CCR1=100;
   	 GetTimeOut();
-  	image1.setAlpha(100);
-
   	Count=presenter->GetVol();
   	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
   	 textVolume.invalidate();
@@ -31,12 +32,14 @@ void MainView::handleTickEvent()
 {
 	GetTimeOut();
 	ViewTemp();
+	CheckIncoder();
 }
 
 
  void  MainView::GetTimeOut()
         {
 	    digitalClock1.setTime24Hour(presenter->getHour(), presenter->getMinute(), presenter->getSecond());
+	    if(presenter->GetStatLogin()==1){image1.setAlpha(255);image1.invalidate();}
 	 	 }
  void MainView::ViewTemp() {
 	 uint8_t tempPOW=(uint8_t)presenter->getTempPow();
@@ -170,3 +173,30 @@ if(Count<80){
  }
 
 
+void MainView::CheckIncoder(){
+	 osEvent event;
+	 event = osMessageGet(QueueIncoderHandle, 10);
+	 if (event.status == osEventMessage)
+	   {
+	  if(event.value.v){
+		  if(Count<80){
+		  	 Count++;
+		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
+		  	 textVolume.invalidate();
+		  	 presenter->SetVolume(Count);
+		  }
+
+	  }
+	  else{
+		  if(Count>0){
+		  	 Count--;
+		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
+		  	 textVolume.invalidate();
+		  	 presenter->SetVolume(Count);
+		  	      }
+
+	  }
+
+	   }
+
+}

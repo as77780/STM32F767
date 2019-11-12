@@ -2,9 +2,11 @@
 #include <gui/model/ModelListener.hpp>
 #include <stdio.h>
 #include "../../../../BoardDriver/EEPROM.h"
+#include "MyTask.h"
 
 #include "cmsis_os.h"
 extern TIM_HandleTypeDef htim4;
+STAT_t Eth_INET,Eth_REDy[task_N];
 
 typedef  struct struct_temp_t {
 	float temper[2];
@@ -54,5 +56,20 @@ void Model::getTime(){
 			 	    	second=sTime.Seconds;
 }
 
-
+uint8_t Model::GetStatLogin(){
+	if(Eth_REDy[0]==complit){
+		return 1;
+	}
+	else{
+		return 0;
+	}
+}
+uint8_t Model::GetStatInet(){
+	if(Eth_INET==complit){
+			return 1;
+		}
+		else{
+			return 0;
+		}
+}
 

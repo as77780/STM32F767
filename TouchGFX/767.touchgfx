@@ -493,11 +493,27 @@
             }
           },
           {
-            "InteractionName": "PowerOn",
-            "HasCompletedTrigger": false,
+            "InteractionName": "PowerOnPrepare",
+            "HasCompletedTrigger": true,
             "Trigger": {
               "TriggerComponent": "ButPowerOn",
               "Type": "TriggerClicked"
+            },
+            "Action": {
+              "Alpha": 0,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 2000,
+              "ActionComponent": "ButPowerOn",
+              "Type": "ActionFade"
+            }
+          },
+          {
+            "InteractionName": "GoToMain",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "InteractionToTriggerOn": "PowerOnPrepare",
+              "Type": "TriggerInteractionCompleted"
             },
             "Action": {
               "ScreenTransitionType": "ScreenTransitionCover",
@@ -1065,7 +1081,7 @@
           },
           {
             "RelativeFilename": "ethOn.png",
-            "Alpha": 255,
+            "Alpha": 67,
             "Name": "image1",
             "X": 213,
             "Y": 197,
@@ -1173,17 +1189,19 @@
         ],
         "Interactions": [
           {
-            "InteractionName": "PowerOff",
-            "HasCompletedTrigger": false,
+            "InteractionName": "PowerOffPrepare",
+            "HasCompletedTrigger": true,
             "Trigger": {
               "TriggerComponent": "buttonPowOff",
               "Type": "TriggerClicked"
             },
             "Action": {
-              "ScreenTransitionType": "ScreenTransitionCover",
-              "ScreenTransitionDirection": "West",
-              "ActionComponent": "Screen2",
-              "Type": "ActionGotoScreen"
+              "Alpha": 0,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 2000,
+              "ActionComponent": "buttonPowOff",
+              "Type": "ActionFade"
             }
           },
           {
@@ -1249,6 +1267,20 @@
               "ScreenTransitionType": "ScreenTransitionSlide",
               "ScreenTransitionDirection": "North",
               "ActionComponent": "ScreenPlayer",
+              "Type": "ActionGotoScreen"
+            }
+          },
+          {
+            "InteractionName": "GoToPowerOff",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "InteractionToTriggerOn": "PowerOffPrepare",
+              "Type": "TriggerInteractionCompleted"
+            },
+            "Action": {
+              "ScreenTransitionType": "ScreenTransitionCover",
+              "ScreenTransitionDirection": "West",
+              "ActionComponent": "Screen2",
               "Type": "ActionGotoScreen"
             }
           }

@@ -19,6 +19,8 @@
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/Image.hpp>
+#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/mixins/FadeAnimator.hpp>
 
 class MainViewBase : public touchgfx::View<MainPresenter>
 {
@@ -76,7 +78,7 @@ protected:
     touchgfx::TextArea textArea1;
     touchgfx::TextArea textArea1_1;
     touchgfx::Image image1;
-    touchgfx::ButtonWithIcon buttonPowOff;
+    touchgfx::FadeAnimator< touchgfx::ButtonWithIcon > buttonPowOff;
     touchgfx::ButtonWithIcon buttonInput;
     touchgfx::ButtonWithIcon buttonEqual;
     touchgfx::ButtonWithIcon buttonPlayer;
@@ -102,6 +104,16 @@ private:
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    /*
+     * Interaction Callback Declarations
+     */
+    touchgfx::Callback < MainViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  powerOffPrepareEndedCallback;
+
+
+    /*
+     * Interaction Handlers
+     */
+    void powerOffPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp);
 
     /*
      * Canvas Buffer Size

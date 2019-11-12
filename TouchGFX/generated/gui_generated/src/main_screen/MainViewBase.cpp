@@ -7,7 +7,8 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 MainViewBase::MainViewBase() :
-    buttonCallback(this, &MainViewBase::buttonCallbackHandler)
+    buttonCallback(this, &MainViewBase::buttonCallbackHandler),
+    powerOffPrepareEndedCallback(this, &MainViewBase::powerOffPrepareEndedCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
@@ -163,6 +164,7 @@ MainViewBase::MainViewBase() :
 
     image1.setXY(213, 197);
     image1.setBitmap(touchgfx::Bitmap(BITMAP_ETHON_ID));
+    image1.setAlpha(67);
 
     buttonPowOff.setXY(11, 199);
     buttonPowOff.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PO_ID), touchgfx::Bitmap(BITMAP_PO_ID));
@@ -217,6 +219,14 @@ void MainViewBase::setupScreen()
 
 }
 
+void MainViewBase::powerOffPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp)
+{
+    //GoToPowerOff
+    //When PowerOffPrepare completed change screen to Screen2
+    //Go to Screen2 with screen transition towards West
+    application().gotoScreen2ScreenCoverTransitionWest();
+}
+
 void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
 {
     if (&src == &ButVolUP)
@@ -235,10 +245,12 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
     }
     else if (&src == &buttonPowOff)
     {
-        //PowerOff
-        //When buttonPowOff clicked change screen to Screen2
-        //Go to Screen2 with screen transition towards West
-        application().gotoScreen2ScreenCoverTransitionWest();
+        //PowerOffPrepare
+        //When buttonPowOff clicked fade buttonPowOff
+        //Fade buttonPowOff to alpha:0 with LinearIn easing in 2000 ms (120 Ticks)
+        buttonPowOff.clearFadeAnimationEndedAction();
+        buttonPowOff.startFadeAnimation(0, 120, touchgfx::EasingEquations::linearEaseIn);
+        buttonPowOff.setFadeAnimationEndedAction(powerOffPrepareEndedCallback);
     }
     else if (&src == &buttonInput)
     {

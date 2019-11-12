@@ -12,9 +12,9 @@
 #include <touchgfx/transitions/SlideTransition.hpp>
 #include <touchgfx/transitions/CoverTransition.hpp>
 #include <touchgfx/transitions/CoverTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
+#include <touchgfx/transitions/SlideTransition.hpp>
 #include <touchgfx/transitions/CoverTransition.hpp>
-#include <touchgfx/transitions/SlideTransition.hpp>
-#include <touchgfx/transitions/SlideTransition.hpp>
 #include <touchgfx/transitions/CoverTransition.hpp>
 #include <touchgfx/transitions/SlideTransition.hpp>
 #include <touchgfx/transitions/SlideTransition.hpp>
@@ -96,8 +96,8 @@ public:
             touchgfx::meta::TypeList< CoverTransition<NORTH>,
             touchgfx::meta::TypeList< SlideTransition<SOUTH>,
             touchgfx::meta::TypeList< CoverTransition<EAST>,
-            touchgfx::meta::TypeList< CoverTransition<WEST>,
             touchgfx::meta::TypeList< SlideTransition<NORTH>,
+            touchgfx::meta::TypeList< CoverTransition<WEST>,
             touchgfx::meta::Nil > > > > >
             > GeneratedTransitionTypes;
 

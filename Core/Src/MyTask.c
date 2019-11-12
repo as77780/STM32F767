@@ -33,7 +33,7 @@ void NetRouting(uint8_t arg){
 		 uint8_t N = arg;
 		void *data;
 		  u16_t len;
-		  int rc1, rc2;
+		  err_t err;
 		  uint8_t DEST_PORT=23;
 		  	struct netconn *xNetConn = NULL;
 		  	uint8_t IP_ADDRESS_REM[4];
@@ -58,15 +58,24 @@ void NetRouting(uint8_t arg){
 
 		  	while(1){
 
-					 while(rc2!=ERR_OK)
+		  		while (!(netif_is_link_up(&gnetif)))
+		  		  {
+		  			netif_set_down(&gnetif);
+		  					  		  printf("\r\n%Link Down %d\r\n",N);
+		  					  		  osDelay(1000);
+		  					  		 netif_set_up(&gnetif);
+		  		  }
+
+
+					 while(err!=ERR_OK)
 					 {
 						 printf("%d:Connect to Remote IP address: %d.%d.%d.%d\n\r",N,remote_ip.addr&0xFF,(remote_ip.addr>>8)&0xFF,(remote_ip.addr>>16)&0xFF,(remote_ip.addr>>24)&0xFF);
 						 xNetConn = netconn_new ( NETCONN_TCP );
-						 rc1 = netconn_bind ( xNetConn, &local_ip, DEST_PORT );
-						 rc2 = netconn_connect ( xNetConn, &remote_ip, DEST_PORT );
+						 err = netconn_bind ( xNetConn, &local_ip, DEST_PORT );
+						 err = netconn_connect ( xNetConn, &remote_ip, DEST_PORT );
 						 printf("\r\n connect... \r\n");
 							NetConn[N] = xNetConn;
-						 if(rc2!=ERR_OK)
+						 if(err!=ERR_OK)
 						 {
 							 netconn_close(xNetConn);
 							 netconn_delete(xNetConn);
@@ -83,14 +92,12 @@ void NetRouting(uint8_t arg){
 			         do
 		            {
 		              netbuf_data(buf, &data, &len);
-		             if(p<=10){
+		             if(p<=8){
 		              netconn_write(xNetConn, data, len, NETCONN_COPY);
 		              p++;
 		             }
-
-		             // print(data,0);
-		             printf("%d: ",N);   //Log Enabl
-		             printf(data);
+		           printf("%d: ",N);   //Log Enabl
+		            printf(data);
 		              executeEthCommand(xNetConn,data,N);
 		            //  executeEthDate(xNetConn,data,NULL);
 		           //   ReadSTatEth(xNetConn);
@@ -107,7 +114,7 @@ void NetRouting(uint8_t arg){
 		       //    P_STOP();
 
 		 printf("\r\%dnRemote host disconnected %d\r\n",N);
-		 rc2=ERR_ABRT;
+		 err=ERR_ABRT;
 		 //	vTaskDelete(xTaskGetCurrentTaskHandle());
 	}
 

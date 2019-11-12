@@ -4,8 +4,10 @@
 #include <touchgfx/Utils.hpp>
 #include "main.h"
 
+
 extern  RTC_HandleTypeDef hrtc;
 extern UART_HandleTypeDef huart1;
+
 class ModelListener;
 enum sensor {t_power=0,T_sound};
 
@@ -34,6 +36,8 @@ public:
     {
         modelListener = listener;
     }
+    uint8_t GetStatLogin();
+    uint8_t GetStatInet();
     void saveHour(int16_t saveHour){ hour = saveHour;}
     void saveMinute(int16_t saveMinute){ minute = saveMinute; }
     int16_t getHour(){return hour;}

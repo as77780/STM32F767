@@ -37,6 +37,8 @@ public:
         uint8_t getFan2(){return model->getFan2();}
         void SetVolume(int8_t vol) { model->SetVolume(vol);  }
         uint8_t GetVol(){return (model->GetVol()) ;}
+        uint8_t GetStatLogin(){return model->GetStatLogin();}
+        uint8_t GetStatInet(){return model->GetStatInet();}
 
 private:
     MainPresenter();

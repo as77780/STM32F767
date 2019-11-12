@@ -10,6 +10,8 @@
 #include <touchgfx/widgets/TiledImage.hpp>
 #include <touchgfx/containers/clock/AnalogClock.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
+#include <touchgfx/EasingEquations.hpp>
+#include <touchgfx/mixins/FadeAnimator.hpp>
 #include <touchgfx/canvas_widget_renderer/CanvasWidgetRenderer.hpp>
 
 class Screen2ViewBase : public touchgfx::View<Screen2Presenter>
@@ -30,7 +32,7 @@ protected:
     touchgfx::TiledImage tiledImage1;
     touchgfx::AnalogClock analogClock1;
     touchgfx::ButtonWithIcon buttonSettings;
-    touchgfx::ButtonWithIcon ButPowerOn;
+    touchgfx::FadeAnimator< touchgfx::ButtonWithIcon > ButPowerOn;
 
 private:
 
@@ -43,6 +45,16 @@ private:
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    /*
+     * Interaction Callback Declarations
+     */
+    touchgfx::Callback < Screen2ViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  powerOnPrepareEndedCallback;
+
+
+    /*
+     * Interaction Handlers
+     */
+    void powerOnPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp);
 
     /*
      * Canvas Buffer Size

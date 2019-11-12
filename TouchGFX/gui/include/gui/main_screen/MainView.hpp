@@ -22,6 +22,8 @@ public:
     virtual void GetTimeOut();
     virtual void ViewTemp();
 
+    void CheckIncoder();
+
 protected:
     int16_t hour;
     int16_t minute;

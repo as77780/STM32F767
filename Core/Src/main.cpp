@@ -29,7 +29,7 @@
 //#include "network.h"
 //#include "lwip/sys.h"
 //#include "lwip/api.h"
-
+#include <stm32767_qspi.h>
 #include "../../../../BoardDriver/OW_LL/ow.h"
 #include "../../../../BoardDriver/OW_LL/ow_device_ds18x20.h"
 #include "../../../../BoardDriver/OW_LL/scan_devices.h"
@@ -72,7 +72,7 @@ UART_HandleTypeDef huart1;
 osThreadId defaultTaskHandle;
 osThreadId TaskNet01Handle;
 osThreadId TaskNet02Handle;
-osMessageQId QueueNet01Handle;
+osMessageQId QueueIncoderHandle;
 osTimerId Timer01Handle;
 /* USER CODE BEGIN PV */
 
@@ -122,6 +122,7 @@ void CallbackTimer01(void const * argument);
 
 /* USER CODE BEGIN PFP */
 //void NetRouting(uint8_t arg);
+void hw_init(void);
 void ds18b20init (void);
 void temp_check(uint8_t t_pow,uint8_t t_amp);
 /* USER CODE END PFP */
@@ -195,6 +196,7 @@ int main(void)
   ds18b20init();
   NEC_Init(&htim3);
   HAL_TIM_Encoder_Start_IT(&htim2,TIM_CHANNEL_1);
+  hw_init();
   /* USER CODE END 2 */
 
 /* Initialise the graphical hardware */
@@ -224,9 +226,9 @@ int main(void)
   /* USER CODE END RTOS_TIMERS */
 
   /* Create the queue(s) */
-  /* definition and creation of QueueNet01 */
-  osMessageQDef(QueueNet01, 16, uint16_t);
-  QueueNet01Handle = osMessageCreate(osMessageQ(QueueNet01), NULL);
+  /* definition and creation of QueueIncoder */
+  osMessageQDef(QueueIncoder, 16, uint16_t);
+  QueueIncoderHandle = osMessageCreate(osMessageQ(QueueIncoder), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   osMailQDef(mail, 16, struct_temp);
@@ -242,14 +244,15 @@ int main(void)
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* definition and creation of TaskNet01 */
-  osThreadDef(TaskNet01, StartTaskNet01, osPriorityLow, 0, 1024);
+  osThreadDef(TaskNet01, StartTaskNet01, osPriorityBelowNormal, 0, 1024);
   TaskNet01Handle = osThreadCreate(osThread(TaskNet01), (void*)&arg01);
 
   /* definition and creation of TaskNet02 */
-   osThreadDef(TaskNet02, StartTaskNet01, osPriorityLow, 0, 1024);
-   TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
+  osThreadDef(TaskNet02, StartTaskNet01, osPriorityBelowNormal, 0, 1024);
+  TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
 
   /* USER CODE BEGIN RTOS_THREADS */
+  // StartTasks();
   /* add threads, ... */
 
   /* USER CODE END RTOS_THREADS */
@@ -923,13 +926,20 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void hw_init(void){
+	  BSP_QSPI_Init();
+	  BSP_QSPI_EnableMemoryMappedMode();
+}
+
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
-	uint16_t cnt1, cnt2;
+	uint16_t cnt1;
 
 
 	if(htim->Instance==TIM2){
 		 capture_is_ready = 1;
 		 direction = (TIM2->CR1 & TIM_CR1_DIR ? FORWARD : BACKWARD);
+		 cnt1=(direction==FORWARD ? 0 : 1);
+		 osMessagePut(QueueIncoderHandle,cnt1,1000);
 	}
 
 	if (htim->Instance==TIM3) {
@@ -1003,7 +1013,7 @@ void StartDefaultTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    osDelay(10);
   }
   /* USER CODE END 5 */ 
 }
