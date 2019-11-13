@@ -100,7 +100,7 @@
 
 /* N25Q128A13EF840E Micron memory */
 /* Size of the flash */
-#define QSPI_FLASH_SIZE            25     /* Address bus width to access whole memory space */
+#define QSPI_FLASH_SIZE            24     /* Address bus width to access whole memory space */
 #define QSPI_PAGE_SIZE             256
 
 /* This alias is added as the name of Memory mapped fucntion changed */   

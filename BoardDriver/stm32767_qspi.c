@@ -542,12 +542,12 @@ __weak void BSP_QSPI_MspInit(QSPI_HandleTypeDef *hqspi, void *Params)
 
   /* QSPI D0 GPIO pin configuration  */
   gpio_init_structure.Pin       = QSPI_D0_PIN;
-  gpio_init_structure.Alternate = GPIO_AF9_QUADSPI;
+  gpio_init_structure.Alternate = GPIO_AF10_QUADSPI;
   HAL_GPIO_Init(QSPI_D0_GPIO_PORT, &gpio_init_structure);
 
   /* QSPI D1 GPIO pin configuration  */
   gpio_init_structure.Pin       = QSPI_D1_PIN;
-  gpio_init_structure.Alternate = GPIO_AF9_QUADSPI;
+  gpio_init_structure.Alternate = GPIO_AF10_QUADSPI;
   HAL_GPIO_Init(QSPI_D1_GPIO_PORT, &gpio_init_structure);
 
   /* QSPI D2 GPIO pin configuration  */
