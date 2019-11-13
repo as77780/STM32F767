@@ -2181,8 +2181,7 @@
           {
             "Alpha": 255,
             "ButtonTrigger": {
-              "Type": "ToggleButtonTrigger",
-              "InitalStatePressed": false
+              "Type": "ClickButtonTrigger"
             },
             "ButtonStyles": [
               {
@@ -2216,8 +2215,7 @@
           {
             "Alpha": 255,
             "ButtonTrigger": {
-              "Type": "ToggleButtonTrigger",
-              "InitalStatePressed": false
+              "Type": "ClickButtonTrigger"
             },
             "ButtonStyles": [
               {
@@ -2251,8 +2249,7 @@
           {
             "Alpha": 255,
             "ButtonTrigger": {
-              "Type": "ToggleButtonTrigger",
-              "InitalStatePressed": false
+              "Type": "ClickButtonTrigger"
             },
             "ButtonStyles": [
               {
@@ -2277,6 +2274,46 @@
             "Width": 60,
             "Height": 60,
             "Type": "FlexButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 41,
+              "Green": 37,
+              "Blue": 37
+            },
+            "BorderColor": {
+              "Red": 3,
+              "Green": 80,
+              "Blue": 94
+            },
+            "BorderSize": 5,
+            "Alpha": 255,
+            "Name": "boxWithBorder1_1_2",
+            "X": 234,
+            "Y": 112,
+            "Width": 73,
+            "Height": 68,
+            "Type": "BoxWithBorder",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "RelativeFilename": "bud.png",
+            "Alpha": 0,
+            "Name": "imagePlay",
+            "X": 246,
+            "Y": 121,
+            "Width": 50,
+            "Height": 50,
+            "Type": "Image",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,

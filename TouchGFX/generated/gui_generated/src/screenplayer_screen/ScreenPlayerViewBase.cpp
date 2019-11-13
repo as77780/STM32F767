@@ -77,6 +77,15 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     flexButtonBud.setPosition(167, 117, 60, 60);
     flexButtonBud.setAction(flexButtonCallback);
 
+    boxWithBorder1_1_2.setPosition(234, 112, 73, 68);
+    boxWithBorder1_1_2.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
+    boxWithBorder1_1_2.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
+    boxWithBorder1_1_2.setBorderSize(5);
+
+    imagePlay.setXY(246, 121);
+    imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_BUD_ID));
+    imagePlay.setAlpha(0);
+
     add(tiledImage1);
     add(boxWithBorder1_1_1);
     add(boxWithBorder1_1);
@@ -90,6 +99,8 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     add(flexButtonHDD);
     add(flexButtonRadio);
     add(flexButtonBud);
+    add(boxWithBorder1_1_2);
+    add(imagePlay);
 }
 
 void ScreenPlayerViewBase::setupScreen()

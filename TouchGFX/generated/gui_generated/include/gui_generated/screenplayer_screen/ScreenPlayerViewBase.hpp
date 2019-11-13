@@ -14,6 +14,7 @@
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
+#include <touchgfx/widgets/Image.hpp>
 
 class ScreenPlayerViewBase : public touchgfx::View<ScreenPlayerPresenter>
 {
@@ -78,9 +79,11 @@ protected:
     touchgfx::ButtonWithIcon buttonStop;
     touchgfx::Box box1;
     touchgfx::TextArea textArea1;
-    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ToggleButtonTrigger > > flexButtonHDD;
-    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ToggleButtonTrigger > > flexButtonRadio;
-    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ToggleButtonTrigger > > flexButtonBud;
+    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ClickButtonTrigger > > flexButtonHDD;
+    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ClickButtonTrigger > > flexButtonRadio;
+    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ClickButtonTrigger > > flexButtonBud;
+    touchgfx::BoxWithBorder boxWithBorder1_1_2;
+    touchgfx::Image imagePlay;
 
 private:
 
