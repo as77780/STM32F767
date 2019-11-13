@@ -1,9 +1,9 @@
 /**
   ******************************************************************************
-  * @file    stm32f769i_eval_qspi.h
+  * @file    stm32446e_eval_qspi.h
   * @author  MCD Application Team
   * @brief   This file contains the common defines and functions prototypes for
-  *          the stm32f769i_eval_qspi.c driver.
+  *          the stm32446e_eval_qspi.c driver.
   ******************************************************************************
   * @attention
   *
@@ -38,13 +38,13 @@
   * @{
   */ 
 
-/** @addtogroup STM32F769I_EVAL
+/** @addtogroup STM32446E_EVAL
   * @{
   */
     
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32F769I_EVAL_QSPI_H
-#define __STM32F769I_EVAL_QSPI_H
+#ifndef __STM32446E_EVAL_QSPI_H
+#define __STM32446E_EVAL_QSPI_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -52,15 +52,15 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
-#include "n25q512a.h"
+#include "n25q256a.h"
 
-/** @addtogroup STM32F769I_EVAL_QSPI
+/** @defgroup STM32446E_EVAL_QSPI STM32446E EVAL QSPI
   * @{
   */    
 
   
 /* Exported constants --------------------------------------------------------*/ 
-/** @defgroup STM32F769I_EVAL_QSPI_Exported_Constants Exported Constants
+/** @defgroup STM32446E_EVAL_QSPI_Exported_Constants STM32446E EVAL QSPI Exported Constants
   * @{
   */
 /* QSPI Error codes */
@@ -72,17 +72,22 @@
 
 
 /* Definition for QSPI clock resources */
-#define QSPI_CLK_ENABLE()          __HAL_RCC_QSPI_CLK_ENABLE()
-#define QSPI_CLK_DISABLE()         __HAL_RCC_QSPI_CLK_DISABLE()
-#define QSPI_CS_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOB_CLK_ENABLE()
-#define QSPI_CLK_GPIO_CLK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
-#define QSPI_D0_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
-#define QSPI_D1_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
-#define QSPI_D2_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
-#define QSPI_D3_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
+#define QSPI_CLK_ENABLE()           __HAL_RCC_QSPI_CLK_ENABLE()
+#define QSPI_CLK_DISABLE()          __HAL_RCC_QSPI_CLK_DISABLE()
+#define QSPI_CS_GPIO_CLK_ENABLE()   __HAL_RCC_GPIOG_CLK_ENABLE()
+#define QSPI_CS_GPIO_CLK_DISABLE()  __HAL_RCC_GPIOG_CLK_DISABLE()
+#if !defined(USE_STM32446E_EVAL_REVA)
+#define QSPI_CLK_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOD_CLK_ENABLE()
+#define QSPI_CLK_GPIO_CLK_DISABLE() __HAL_RCC_GPIOD_CLK_DISABLE()
+#else
+#define QSPI_CLK_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOB_CLK_ENABLE()
+#define QSPI_CLK_GPIO_CLK_DISABLE() __HAL_RCC_GPIOB_CLK_DISABLE()
+#endif // !USE_STM32446E_EVAL_REVA
+#define QSPI_Dx_GPIO_CLK_ENABLE()   __HAL_RCC_GPIOF_CLK_ENABLE()
+#define QSPI_Dx_GPIO_CLK_DISABLE()  __HAL_RCC_GPIOF_CLK_DISABLE()
 
-#define QSPI_FORCE_RESET()         __HAL_RCC_QSPI_FORCE_RESET()
-#define QSPI_RELEASE_RESET()       __HAL_RCC_QSPI_RELEASE_RESET()
+#define QSPI_FORCE_RESET()          __HAL_RCC_QSPI_FORCE_RESET()
+#define QSPI_RELEASE_RESET()        __HAL_RCC_QSPI_RELEASE_RESET()
 
 /* Definition for QSPI Pins */
 #define QSPI_CS_PIN                GPIO_PIN_6
@@ -93,22 +98,18 @@
 #define QSPI_D0_GPIO_PORT          GPIOF
 #define QSPI_D1_PIN                GPIO_PIN_9
 #define QSPI_D1_GPIO_PORT          GPIOF
-#define QSPI_D2_PIN                GPIO_PIN_6
+#define QSPI_D2_PIN                GPIO_PIN_7
 #define QSPI_D2_GPIO_PORT          GPIOF
 #define QSPI_D3_PIN                GPIO_PIN_6
 #define QSPI_D3_GPIO_PORT          GPIOF
 
-/* N25Q512A13GSF40E Micron memory */
-/* Size of the flash */
-#define QSPI_FLASH_SIZE            25     /* Address bus width to access whole memory space */
-#define QSPI_PAGE_SIZE             256
 
 /**
   * @}
   */
 
 /* Exported types ------------------------------------------------------------*/
-/** @defgroup STM32F769I_EVAL_QSPI_Exported_Types Exported Types
+/** @defgroup STM32446E_EVAL_QSPI_Exported_Types STM32446E EVAL QSPI Exported Types
   * @{
   */
 /* QSPI Info */
@@ -126,7 +127,7 @@ typedef struct {
 
   
 /* Exported functions --------------------------------------------------------*/
-/** @addtogroup STM32F769I_EVAL_QSPI_Exported_Functions
+/** @defgroup STM32446E_EVAL_QSPI_Exported_Functions  STM32446E EVAL QSPI Exported Functions
   * @{
   */  
 uint8_t BSP_QSPI_Init       (void);
@@ -138,8 +139,10 @@ uint8_t BSP_QSPI_Erase_Chip (void);
 uint8_t BSP_QSPI_GetStatus  (void);
 uint8_t BSP_QSPI_GetInfo    (QSPI_Info* pInfo);
 uint8_t BSP_QSPI_EnableMemoryMappedMode(void);
+/* BSP Aliased function maintained for legacy purpose */
+#define BSP_QSPI_MemoryMappedMode      BSP_QSPI_EnableMemoryMappedMode
 
-/* These functions can be modified in case the current settings
+/* These function can be modified in case the current settings (e.g. DMA stream)
    need to be changed for specific application needs */
 void BSP_QSPI_MspInit(QSPI_HandleTypeDef *hqspi, void *Params);
 void BSP_QSPI_MspDeInit(QSPI_HandleTypeDef *hqspi, void *Params);
@@ -156,7 +159,7 @@ void BSP_QSPI_MspDeInit(QSPI_HandleTypeDef *hqspi, void *Params);
 }
 #endif
 
-#endif /* __STM32F769I_EVAL_QSPI_H */
+#endif /* __STM32446E_EVAL_QSPI_H */
 /**
   * @}
   */ 

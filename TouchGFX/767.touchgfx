@@ -530,7 +530,7 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\blue_textures_carbon_fibre.png",
+            "FileName": "__designer\\Blue_Textures_carbon_fibre.png",
             "Alpha": 255,
             "Style": "Texture3",
             "OffsetX": 0,

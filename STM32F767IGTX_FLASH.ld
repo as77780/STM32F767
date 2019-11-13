@@ -53,23 +53,30 @@
 ENTRY(Reset_Handler)
 
 /* Highest address of the user mode stack */
-_estack = ORIGIN(RAM) + LENGTH(RAM);	/* end of "RAM" Ram type memory */
-
+/* _estack = ORIGIN(RAM) + LENGTH(RAM);	/* end of "RAM" Ram type memory */
+_estack = 0x20080000;    /* end of RAM */
 _Min_Heap_Size = 0x2000 ;	/* required amount of heap  */
 _Min_Stack_Size = 0x4000 ;	/* required amount of stack */
 
 
-/* Memories definition */
+/* Specify the memory areas */
 MEMORY
 {
-  RAM	(xrw)	: ORIGIN = 0x20000000,	LENGTH = 512K
-  FLASH	(rx)	: ORIGIN = 0x8000000,	LENGTH = 1024K
-}
+FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 1024K
+RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 512K
 
-/* Sections */
+MEMORY_ARRAY (rw)  : ORIGIN = 0xD0000000, LENGTH = 8M
+QSPI (xrw)  : ORIGIN = 0x90000000, LENGTH = 32768K
+}
+/*RAM (xrw)      : ORIGIN = 0x20020000, LENGTH = 384K
+CCMRAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 128K
+MEMORY_ARRAY (rw)  : ORIGIN = 0xD0000000, LENGTH = 8M
+QSPI (xrw)  : ORIGIN = 0x90000000, LENGTH = 32768K
+RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 512K
+/* Define output sections */
 SECTIONS
 {
-  /* The startup code into "FLASH" Rom type memory */
+  /* The startup code goes first into FLASH */
   .isr_vector :
   {
     . = ALIGN(4);
@@ -77,7 +84,7 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  /* The program code and other data into "FLASH" Rom type memory */
+  /* The program code and other data goes into FLASH */
   .text :
   {
     . = ALIGN(4);
@@ -94,7 +101,7 @@ SECTIONS
     _etext = .;        /* define a global symbols at end of code */
   } >FLASH
 
-  /* Constant data into "FLASH" Rom type memory */
+  /* Constant data goes into FLASH */
   .rodata :
   {
     . = ALIGN(4);
@@ -103,53 +110,38 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
-  .ARM.extab   : { 
-    . = ALIGN(4);
-    *(.ARM.extab* .gnu.linkonce.armextab.*)
-    . = ALIGN(4);
-  } >FLASH
-  
+  .ARM.extab   : { *(.ARM.extab* .gnu.linkonce.armextab.*) } >FLASH
   .ARM : {
-    . = ALIGN(4);
     __exidx_start = .;
     *(.ARM.exidx*)
     __exidx_end = .;
-    . = ALIGN(4);
   } >FLASH
 
   .preinit_array     :
   {
-    . = ALIGN(4);
     PROVIDE_HIDDEN (__preinit_array_start = .);
     KEEP (*(.preinit_array*))
     PROVIDE_HIDDEN (__preinit_array_end = .);
-    . = ALIGN(4);
   } >FLASH
-  
   .init_array :
   {
-    . = ALIGN(4);
     PROVIDE_HIDDEN (__init_array_start = .);
     KEEP (*(SORT(.init_array.*)))
     KEEP (*(.init_array*))
     PROVIDE_HIDDEN (__init_array_end = .);
-    . = ALIGN(4);
   } >FLASH
-  
   .fini_array :
   {
-    . = ALIGN(4);
     PROVIDE_HIDDEN (__fini_array_start = .);
     KEEP (*(SORT(.fini_array.*)))
     KEEP (*(.fini_array*))
     PROVIDE_HIDDEN (__fini_array_end = .);
-    . = ALIGN(4);
   } >FLASH
 
-  /* Used by the startup to initialize data */
+  /* used by the startup to initialize data */
   _sidata = LOADADDR(.data);
 
-  /* Initialized data sections into "RAM" Ram type memory */
+  /* Initialized data sections goes into RAM, load LMA copy after code */
   .data : 
   {
     . = ALIGN(4);
@@ -159,14 +151,33 @@ SECTIONS
 
     . = ALIGN(4);
     _edata = .;        /* define a global symbol at data end */
-    
   } >RAM AT> FLASH
+/*
+ _siccmram = LOADADDR(.ccmram);
 
-  /* Uninitialized data section into "RAM" Ram type memory */
+  /* CCM-RAM section 
+  * 
+  * IMPORTANT NOTE! 
+  * If initialized variables will be placed in this section,
+  * the startup code needs to be modified to copy the init-values.  
+  */
+  /*
+  .ccmram :
+  {
+    . = ALIGN(4);
+    _sccmram = .;       
+    *(.ccmram)
+    *(.ccmram*)
+    
+    . = ALIGN(4);
+    _eccmram = .;       
+  } >CCMRAM AT> FLASH
+ * /
+  /* Uninitialized data section */
   . = ALIGN(4);
   .bss :
   {
-    /* This is used by the startup in order to initialize the .bss section */
+    /* This is used by the startup in order to initialize the .bss secion */
     _sbss = .;         /* define a global symbol at bss start */
     __bss_start__ = _sbss;
     *(.bss)
@@ -178,7 +189,7 @@ SECTIONS
     __bss_end__ = _ebss;
   } >RAM
 
-  /* User_heap_stack section, used to check that there is enough "RAM" Ram  type memory left */
+  /* User_heap_stack section, used to check that there is enough RAM left */
   ._user_heap_stack :
   {
     . = ALIGN(8);
@@ -187,9 +198,9 @@ SECTIONS
     . = . + _Min_Heap_Size;
     . = . + _Min_Stack_Size;
     . = ALIGN(8);
-  } >RAM
+  } >RAM 
 
-  /* Remove information from the compiler libraries */
+  /* Remove information from the standard libraries */
   /DISCARD/ :
   {
     libc.a ( * )
@@ -198,8 +209,9 @@ SECTIONS
   }
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
+  .ExtFlashSection : {*(.ExtFlashSection)} >QSPI 
 }
 /*
-
+. ExtFlashSection : {*(.ExtFlashSection)} >QSPI 
 */
 
