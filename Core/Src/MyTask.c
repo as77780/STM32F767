@@ -29,8 +29,7 @@ void net_wr(struct netconn *N_Conn,uint8_t* str);
 
 void NetRouting(uint8_t arg){
 	 struct netbuf *buf;
-		// uint8_t* data1="test\r\n";
-		 uint8_t N = arg;
+		uint8_t N = arg;
 		void *data;
 		  u16_t len;
 		  err_t err;
@@ -86,31 +85,29 @@ void NetRouting(uint8_t arg){
 
 
 					 uint8_t p=0;
+
 		 while (netconn_recv(xNetConn, &buf) == ERR_OK)
 		          {
-
+			        netbuf_data(buf, &data, &len);
+			       osDelay(1);
 			         do
 		            {
-		              netbuf_data(buf, &data, &len);
-		             if(p<=8){
-		              netconn_write(xNetConn, data, len, NETCONN_COPY);
-		              p++;
+		             if(p<=10){
+		             netconn_write(xNetConn, data, strlen(data), NETCONN_COPY);
+		             p++;
 		             }
 		           printf("%d: ",N);   //Log Enabl
 		            printf(data);
 		              executeEthCommand(xNetConn,data,N);
-		            //  executeEthDate(xNetConn,data,NULL);
-		           //   ReadSTatEth(xNetConn);
-		                        }
-
+                      }
 		            while (netbuf_next(buf) >= 0);
 
 		            netbuf_delete(buf);
 		          }
 		 netconn_close(xNetConn);
 		           netconn_delete(xNetConn);
-	//	           Eth_REDy[N]=incomplit;
-	//	           Eth_INET=incomplit;
+		           Eth_REDy[N]=incomplit;
+		           Eth_INET=incomplit;
 		       //    P_STOP();
 
 		 printf("\r\%dnRemote host disconnected %d\r\n",N);
@@ -125,10 +122,12 @@ void executeEthCommand(struct netconn *xNetConn,uint8_t* STK_US,uint8_t n ){
 		if (compareCommand(STK_US, "as-UP-CHT01 login:")==1)
 				  {
 			         net_wr(xNetConn, "as\r");
+			         osDelay(500);
 				  }
 
 		 if (compareCommand(STK_US, "assword") == 1) {
 			            net_wr(xNetConn, "ASD777as\r");
+			            osDelay(500);
 				  }
 		 if (compareCommand(STK_US, "as@as-UP-CHT01:~$") == 1) {
 			 Eth_REDy[n]=complit;
@@ -191,7 +190,7 @@ void executeEthDate(struct netconn *xNetConn,uint8_t* STK_US,uint8_t* date){
 }
 
 void net_wr(struct netconn *N_Conn,uint8_t* str){
-	 netconn_write(N_Conn, str, strlen(str), NETCONN_NOFLAG);
+	 netconn_write(N_Conn, str, strlen(str), NETCONN_COPY);
 }
 
 
@@ -207,4 +206,16 @@ void R_Right_eth (void){net_wr(NetConn[0],">");}
 void R_V_PL_eth (void){net_wr(NetConn[0],"*");}
 void R_V_Min_eth (void){net_wr(NetConn[0],"/");}
 void Inet_test_eth (void){net_wr(NetConn[1],"./inet.sh\r");	net_wr(NetConn[1],"date\r");}
+int8_t IsLogin(uint8_t n){
+	if(n && Eth_REDy[n]==complit){
+		return 0;
+	}
+	else if(n && Eth_REDy[n]==complit){
+		return 1;
+	}
+	else{
+		return -1;
+	}
+
+}
 

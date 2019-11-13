@@ -2052,7 +2052,7 @@
             "IconWidth": 32,
             "ButtonStyle": "Style1",
             "IconStyle": "Icon23",
-            "Name": "buttonWithIcon1",
+            "Name": "buttonPlayToBack",
             "X": 17,
             "Y": 193,
             "Width": 60,
@@ -2076,7 +2076,7 @@
             "IconWidth": 32,
             "ButtonStyle": "Style1",
             "IconStyle": "Icon25",
-            "Name": "buttonWithIcon2",
+            "Name": "buttonPlayToFollow",
             "X": 167,
             "Y": 193,
             "Width": 60,
@@ -2100,7 +2100,7 @@
             "IconWidth": 23,
             "ButtonStyle": "Style1",
             "IconStyle": "Icon45",
-            "Name": "buttonWithIcon3",
+            "Name": "buttonPlay",
             "X": 93,
             "Y": 193,
             "Width": 60,
@@ -2124,7 +2124,7 @@
             "IconWidth": 32,
             "ButtonStyle": "Style1",
             "IconStyle": "Icon61",
-            "Name": "buttonWithIcon4",
+            "Name": "buttonStop",
             "X": 240,
             "Y": 193,
             "Width": 60,
@@ -2179,22 +2179,34 @@
             "Moveable": false
           },
           {
-            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
-            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
             "Alpha": 255,
-            "IconPressed": "hdd.png",
-            "IconReleased": "hdd.png",
-            "IconX": 5,
-            "IconY": 5,
-            "IconHeight": 50,
-            "IconWidth": 50,
-            "ButtonStyle": "Style1",
-            "Name": "buttonWithIcon5",
+            "ButtonTrigger": {
+              "Type": "ToggleButtonTrigger",
+              "InitalStatePressed": false
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 4,
+                "Y": 4,
+                "IconReleased": "hdd.png",
+                "IconPressed": "hdd.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "X": 0,
+                "Y": 0,
+                "LockFlexButtonToImageSize": true,
+                "ImageReleased": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
+                "ImagePressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png"
+              }
+            ],
+            "Name": "flexButtonHDD",
             "X": 17,
             "Y": 117,
             "Width": 60,
             "Height": 60,
-            "Type": "ButtonWithIcon",
+            "Type": "FlexButton",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -2202,22 +2214,34 @@
             "Moveable": false
           },
           {
-            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
-            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
             "Alpha": 255,
-            "IconPressed": "radio.png",
-            "IconReleased": "radio.png",
-            "IconX": 5,
-            "IconY": 5,
-            "IconHeight": 50,
-            "IconWidth": 50,
-            "ButtonStyle": "Style1",
-            "Name": "buttonWithIcon6",
+            "ButtonTrigger": {
+              "Type": "ToggleButtonTrigger",
+              "InitalStatePressed": false
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 4,
+                "Y": 4,
+                "IconReleased": "radio.png",
+                "IconPressed": "radio.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "X": 0,
+                "Y": 0,
+                "LockFlexButtonToImageSize": true,
+                "ImageReleased": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
+                "ImagePressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png"
+              }
+            ],
+            "Name": "flexButtonRadio",
             "X": 93,
             "Y": 117,
             "Width": 60,
             "Height": 60,
-            "Type": "ButtonWithIcon",
+            "Type": "FlexButton",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -2225,22 +2249,34 @@
             "Moveable": false
           },
           {
-            "Pressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png",
-            "Released": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
             "Alpha": 255,
-            "IconPressed": "bud.png",
-            "IconReleased": "bud.png",
-            "IconX": 5,
-            "IconY": 5,
-            "IconHeight": 50,
-            "IconWidth": 50,
-            "ButtonStyle": "Style1",
-            "Name": "buttonWithIcon7",
+            "ButtonTrigger": {
+              "Type": "ToggleButtonTrigger",
+              "InitalStatePressed": false
+            },
+            "ButtonStyles": [
+              {
+                "Type": "IconButtonStyle",
+                "X": 4,
+                "Y": 4,
+                "IconReleased": "bud.png",
+                "IconPressed": "bud.png"
+              },
+              {
+                "Type": "ImageButtonStyle",
+                "X": 0,
+                "Y": 0,
+                "LockFlexButtonToImageSize": true,
+                "ImageReleased": "__designer\\Dark_Buttons_Round_Edge_icon_button.png",
+                "ImagePressed": "__designer\\Dark_Buttons_Round_Edge_icon_button_pressed.png"
+              }
+            ],
+            "Name": "flexButtonBud",
             "X": 167,
             "Y": 117,
             "Width": 60,
             "Height": 60,
-            "Type": "ButtonWithIcon",
+            "Type": "FlexButton",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -2261,6 +2297,90 @@
               "ScreenTransitionDirection": "South",
               "ActionComponent": "Main",
               "Type": "ActionGotoScreen"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayToBack",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "buttonPlayToBack",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayToBack",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayToPlay",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "buttonPlay",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayToPlay",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayToFollow",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "buttonPlayToFollow",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayToFollow",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayToStop",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "buttonStop",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayToStop",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayHDD",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "flexButtonHDD",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayHDD",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayRadio",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "flexButtonRadio",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayRadio",
+              "Type": "ActionCustom"
+            }
+          },
+          {
+            "InteractionName": "InteractionPlayBUD",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "flexButtonBud",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "PlayBUD",
+              "Type": "ActionCustom"
             }
           }
         ],

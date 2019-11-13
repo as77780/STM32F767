@@ -26,6 +26,8 @@ public:
     virtual void deactivate();
 
     virtual ~ScreenPlayerPresenter() {};
+    uint8_t GetStatLogin(){return model->GetStatLogin();}
+    uint8_t GetStatInet(){return model->GetStatInet();}
 
 private:
     ScreenPlayerPresenter();

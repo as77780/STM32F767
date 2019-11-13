@@ -35,6 +35,7 @@ void R_Right_eth (void);
 void R_V_PL_eth (void);
 void R_V_Min_eth (void);
 void Inet_test_eth (void);
+int8_t IsLogin(uint8_t);
 
 #ifdef __cplusplus
 }

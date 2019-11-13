@@ -47,7 +47,7 @@ extern "C" {
 #include "TDA7489.h"
 #include "NEC_Decode.h"
 #include "MyTask.h"
-#include "EthTask.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/

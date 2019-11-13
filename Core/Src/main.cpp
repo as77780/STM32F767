@@ -29,7 +29,10 @@
 //#include "network.h"
 //#include "lwip/sys.h"
 //#include "lwip/api.h"
-#include <stm32767_qspi.h>
+//#include <stm32767_qspi.h>
+
+#include "stm32f769i_eval_qspi.h"
+
 #include "../../../../BoardDriver/OW_LL/ow.h"
 #include "../../../../BoardDriver/OW_LL/ow_device_ds18x20.h"
 #include "../../../../BoardDriver/OW_LL/scan_devices.h"
@@ -39,7 +42,7 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+#define SDRAM_DEVICE_ADDR  ((uint32_t)0xd0000000)
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -196,7 +199,7 @@ int main(void)
   ds18b20init();
   NEC_Init(&htim3);
   HAL_TIM_Encoder_Start_IT(&htim2,TIM_CHANNEL_1);
-  hw_init();
+//  hw_init();
   /* USER CODE END 2 */
 
 /* Initialise the graphical hardware */
@@ -252,7 +255,7 @@ int main(void)
   TaskNet02Handle = osThreadCreate(osThread(TaskNet02), (void*)&arg02);
 
   /* USER CODE BEGIN RTOS_THREADS */
-  // StartTasks();
+//  NetRoutingSock(0);
   /* add threads, ... */
 
   /* USER CODE END RTOS_THREADS */
@@ -929,6 +932,87 @@ static void MX_GPIO_Init(void)
 void hw_init(void){
 	  BSP_QSPI_Init();
 	  BSP_QSPI_EnableMemoryMappedMode();
+	  MPU_Region_InitTypeDef MPU_InitStruct;
+
+	  MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+	    MPU_InitStruct.BaseAddress = 0x20020000;
+	    MPU_InitStruct.Size = MPU_REGION_SIZE_512KB;
+	    MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+	    MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+	    MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+	    MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+	    MPU_InitStruct.Number = MPU_REGION_NUMBER0;
+	    MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+	    MPU_InitStruct.SubRegionDisable = 0x00;
+	    MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+	    HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+	    /* Configure unused area of QSPI region as strongly ordered.
+	    * This is *important* to avoid unintentional fetches from illegal
+	    * addresses due to cache/speculation which would halt the MCU.
+	    */
+	    MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+	    MPU_InitStruct.BaseAddress = 0x90000000;
+	    MPU_InitStruct.Size = MPU_REGION_SIZE_256MB;
+	    MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+	    MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+	    MPU_InitStruct.IsCacheable = MPU_ACCESS_NOT_CACHEABLE;
+	    MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+	    MPU_InitStruct.Number = MPU_REGION_NUMBER1;
+	    MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+	    MPU_InitStruct.SubRegionDisable = 0x00;
+	    MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+	    HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+	    /* Configure the MPU attributes as WT for QSPI (used 64Mbytes) */
+	    MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+	    MPU_InitStruct.BaseAddress = 0x90000000;
+	    MPU_InitStruct.Size = MPU_REGION_SIZE_64MB;
+	    MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+	    MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+	    MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+	    MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+	    MPU_InitStruct.Number = MPU_REGION_NUMBER2;
+	    MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+	    MPU_InitStruct.SubRegionDisable = 0x00;
+	    MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_ENABLE;
+	    HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+	    /* Enable D-cache on SDRAM for Bitmap Cache data */
+	    MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+	    MPU_InitStruct.BaseAddress = SDRAM_DEVICE_ADDR;
+	    MPU_InitStruct.Size = MPU_REGION_SIZE_64MB;
+	    MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+	    MPU_InitStruct.IsBufferable = MPU_ACCESS_BUFFERABLE;
+	    MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+	    MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+	    MPU_InitStruct.Number = MPU_REGION_NUMBER3;
+	    MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+	    MPU_InitStruct.SubRegionDisable = 0x00;
+	    MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
+	    HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+	    /* Configure the MPU attributes as Write-through for Framebuffers (used first 4Mbytes) */
+	    MPU_InitStruct.Enable = MPU_REGION_ENABLE;
+	    MPU_InitStruct.BaseAddress = SDRAM_DEVICE_ADDR;
+	    MPU_InitStruct.Size = MPU_REGION_SIZE_4MB;
+	    MPU_InitStruct.AccessPermission = MPU_REGION_FULL_ACCESS;
+	    MPU_InitStruct.IsBufferable = MPU_ACCESS_NOT_BUFFERABLE;
+	    MPU_InitStruct.IsCacheable = MPU_ACCESS_CACHEABLE;
+	    MPU_InitStruct.IsShareable = MPU_ACCESS_NOT_SHAREABLE;
+	    MPU_InitStruct.Number = MPU_REGION_NUMBER4;
+	    MPU_InitStruct.TypeExtField = MPU_TEX_LEVEL0;
+	    MPU_InitStruct.SubRegionDisable = 0x00;
+	    MPU_InitStruct.DisableExec = MPU_INSTRUCTION_ACCESS_DISABLE;
+	    HAL_MPU_ConfigRegion(&MPU_InitStruct);
+
+	     /* Enable the MPU */
+	     HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
+
+	    /* Enable L1 Cache */
+	    SCB_EnableDCache();
+	    SCB_EnableICache();
+	    FMC_Bank1->BTCR[0] = 0x000030D2;
 }
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
@@ -1068,6 +1152,9 @@ void CallbackTimer01(void const * argument)
 		           }
 		    temp_check((uint8_t)tp[t_power],(uint8_t)tp[T_sound]);
 		    osMailPut(mail, qstruct);
+		    if(IsLogin(1)==1){
+		    	Inet_test_eth();
+		    }
 
 
   /* USER CODE END CallbackTimer01 */

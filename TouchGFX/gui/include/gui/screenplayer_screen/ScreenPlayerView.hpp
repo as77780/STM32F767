@@ -12,6 +12,13 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
 protected:
+    virtual void PlayToBack();
+    virtual void PlayToPlay();
+    virtual void PlayToFollow();
+    virtual void PlayToStop();
+    virtual void PlayHDD();
+    virtual void PlayRadio();
+    virtual void PlayBUD();
 };
 
 #endif // SCREENPLAYERVIEW_HPP

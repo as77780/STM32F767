@@ -7,7 +7,8 @@
 #include <texts/TextKeysAndLanguages.hpp>
 
 ScreenPlayerViewBase::ScreenPlayerViewBase() :
-    buttonCallback(this, &ScreenPlayerViewBase::buttonCallbackHandler)
+    buttonCallback(this, &ScreenPlayerViewBase::buttonCallbackHandler),
+    flexButtonCallback(this, &ScreenPlayerViewBase::flexButtonCallbackHandler)
 {
     tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_DARK_TEXTURES_CARBON_FIBRE_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
@@ -27,21 +28,25 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     buttonBack.setBitmaps(touchgfx::Bitmap(BITMAP_IC_ID), touchgfx::Bitmap(BITMAP_IC_ID));
     buttonBack.setAction(buttonCallback);
 
-    buttonWithIcon1.setXY(17, 193);
-    buttonWithIcon1.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID));
-    buttonWithIcon1.setIconXY(14, 15);
+    buttonPlayToBack.setXY(17, 193);
+    buttonPlayToBack.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_BACK_32_ID));
+    buttonPlayToBack.setIconXY(14, 15);
+    buttonPlayToBack.setAction(buttonCallback);
 
-    buttonWithIcon2.setXY(167, 193);
-    buttonWithIcon2.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_NEXT_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_NEXT_32_ID));
-    buttonWithIcon2.setIconXY(14, 15);
+    buttonPlayToFollow.setXY(167, 193);
+    buttonPlayToFollow.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_NEXT_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_GO_NEXT_32_ID));
+    buttonPlayToFollow.setIconXY(14, 15);
+    buttonPlayToFollow.setAction(buttonCallback);
 
-    buttonWithIcon3.setXY(93, 193);
-    buttonWithIcon3.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID));
-    buttonWithIcon3.setIconXY(19, 14);
+    buttonPlay.setXY(93, 193);
+    buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_PLAY_32_ID));
+    buttonPlay.setIconXY(19, 14);
+    buttonPlay.setAction(buttonCallback);
 
-    buttonWithIcon4.setXY(240, 193);
-    buttonWithIcon4.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_STOP_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_STOP_32_ID));
-    buttonWithIcon4.setIconXY(14, 14);
+    buttonStop.setXY(240, 193);
+    buttonStop.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_STOP_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_STOP_32_ID));
+    buttonStop.setIconXY(14, 14);
+    buttonStop.setAction(buttonCallback);
 
     box1.setPosition(393, 0, 87, 32);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
@@ -51,31 +56,40 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID42));
 
-    buttonWithIcon5.setXY(17, 117);
-    buttonWithIcon5.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_HDD_ID), touchgfx::Bitmap(BITMAP_HDD_ID));
-    buttonWithIcon5.setIconXY(5, 5);
+    flexButtonHDD.setBitmaps(Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID));
+    flexButtonHDD.setBitmapXY(0, 0);
+    flexButtonHDD.setIconBitmaps(Bitmap(BITMAP_HDD_ID), Bitmap(BITMAP_HDD_ID));
+    flexButtonHDD.setIconXY(4, 4);
+    flexButtonHDD.setPosition(17, 117, 60, 60);
+    flexButtonHDD.setAction(flexButtonCallback);
 
-    buttonWithIcon6.setXY(93, 117);
-    buttonWithIcon6.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_RADIO_ID), touchgfx::Bitmap(BITMAP_RADIO_ID));
-    buttonWithIcon6.setIconXY(5, 5);
+    flexButtonRadio.setBitmaps(Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID));
+    flexButtonRadio.setBitmapXY(0, 0);
+    flexButtonRadio.setIconBitmaps(Bitmap(BITMAP_RADIO_ID), Bitmap(BITMAP_RADIO_ID));
+    flexButtonRadio.setIconXY(4, 4);
+    flexButtonRadio.setPosition(93, 117, 60, 60);
+    flexButtonRadio.setAction(flexButtonCallback);
 
-    buttonWithIcon7.setXY(167, 117);
-    buttonWithIcon7.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BUD_ID), touchgfx::Bitmap(BITMAP_BUD_ID));
-    buttonWithIcon7.setIconXY(5, 5);
+    flexButtonBud.setBitmaps(Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID));
+    flexButtonBud.setBitmapXY(0, 0);
+    flexButtonBud.setIconBitmaps(Bitmap(BITMAP_BUD_ID), Bitmap(BITMAP_BUD_ID));
+    flexButtonBud.setIconXY(4, 4);
+    flexButtonBud.setPosition(167, 117, 60, 60);
+    flexButtonBud.setAction(flexButtonCallback);
 
     add(tiledImage1);
     add(boxWithBorder1_1_1);
     add(boxWithBorder1_1);
     add(buttonBack);
-    add(buttonWithIcon1);
-    add(buttonWithIcon2);
-    add(buttonWithIcon3);
-    add(buttonWithIcon4);
+    add(buttonPlayToBack);
+    add(buttonPlayToFollow);
+    add(buttonPlay);
+    add(buttonStop);
     add(box1);
     add(textArea1);
-    add(buttonWithIcon5);
-    add(buttonWithIcon6);
-    add(buttonWithIcon7);
+    add(flexButtonHDD);
+    add(flexButtonRadio);
+    add(flexButtonBud);
 }
 
 void ScreenPlayerViewBase::setupScreen()
@@ -91,5 +105,58 @@ void ScreenPlayerViewBase::buttonCallbackHandler(const touchgfx::AbstractButton&
         //When buttonBack clicked change screen to Main
         //Go to Main with screen transition towards South
         application().gotoMainScreenSlideTransitionSouth();
+    }
+    else if (&src == &buttonPlayToBack)
+    {
+        //InteractionPlayToBack
+        //When buttonPlayToBack clicked call virtual function
+        //Call PlayToBack
+        PlayToBack();
+    }
+    else if (&src == &buttonPlayToFollow)
+    {
+        //InteractionPlayToFollow
+        //When buttonPlayToFollow clicked call virtual function
+        //Call PlayToFollow
+        PlayToFollow();
+    }
+    else if (&src == &buttonPlay)
+    {
+        //InteractionPlayToPlay
+        //When buttonPlay clicked call virtual function
+        //Call PlayToPlay
+        PlayToPlay();
+    }
+    else if (&src == &buttonStop)
+    {
+        //InteractionPlayToStop
+        //When buttonStop clicked call virtual function
+        //Call PlayToStop
+        PlayToStop();
+    }
+}
+
+void ScreenPlayerViewBase::flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src)
+{
+    if (&src == &flexButtonHDD)
+    {
+        //InteractionPlayHDD
+        //When flexButtonHDD clicked call virtual function
+        //Call PlayHDD
+        PlayHDD();
+    }
+    else if (&src == &flexButtonRadio)
+    {
+        //InteractionPlayRadio
+        //When flexButtonRadio clicked call virtual function
+        //Call PlayRadio
+        PlayRadio();
+    }
+    else if (&src == &flexButtonBud)
+    {
+        //InteractionPlayBUD
+        //When flexButtonBud clicked call virtual function
+        //Call PlayBUD
+        PlayBUD();
     }
 }

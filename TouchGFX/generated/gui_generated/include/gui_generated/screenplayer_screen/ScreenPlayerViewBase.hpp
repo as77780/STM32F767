@@ -13,6 +13,7 @@
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
 #include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
+#include <touchgfx/containers/buttons/Buttons.hpp>
 
 class ScreenPlayerViewBase : public touchgfx::View<ScreenPlayerPresenter>
 {
@@ -20,6 +21,44 @@ public:
     ScreenPlayerViewBase();
     virtual ~ScreenPlayerViewBase() {}
     virtual void setupScreen();
+
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void PlayToBack()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
+
+    virtual void PlayToPlay()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
+
+    virtual void PlayToFollow()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
+
+    virtual void PlayToStop()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
+
+    virtual void PlayHDD()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
+
+    virtual void PlayRadio()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
+
+    virtual void PlayBUD()
+    {
+        // Override and implement this function in ScreenPlayer
+    }
 
 protected:
     FrontendApplication& application() {
@@ -33,15 +72,15 @@ protected:
     touchgfx::BoxWithBorder boxWithBorder1_1_1;
     touchgfx::BoxWithBorder boxWithBorder1_1;
     touchgfx::Button buttonBack;
-    touchgfx::ButtonWithIcon buttonWithIcon1;
-    touchgfx::ButtonWithIcon buttonWithIcon2;
-    touchgfx::ButtonWithIcon buttonWithIcon3;
-    touchgfx::ButtonWithIcon buttonWithIcon4;
+    touchgfx::ButtonWithIcon buttonPlayToBack;
+    touchgfx::ButtonWithIcon buttonPlayToFollow;
+    touchgfx::ButtonWithIcon buttonPlay;
+    touchgfx::ButtonWithIcon buttonStop;
     touchgfx::Box box1;
     touchgfx::TextArea textArea1;
-    touchgfx::ButtonWithIcon buttonWithIcon5;
-    touchgfx::ButtonWithIcon buttonWithIcon6;
-    touchgfx::ButtonWithIcon buttonWithIcon7;
+    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ToggleButtonTrigger > > flexButtonHDD;
+    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ToggleButtonTrigger > > flexButtonRadio;
+    touchgfx::IconButtonStyle< touchgfx::ImageButtonStyle< touchgfx::ToggleButtonTrigger > > flexButtonBud;
 
 private:
 
@@ -49,11 +88,13 @@ private:
      * Callback Declarations
      */
     touchgfx::Callback<ScreenPlayerViewBase, const touchgfx::AbstractButton&> buttonCallback;
+    touchgfx::Callback<ScreenPlayerViewBase, const touchgfx::AbstractButtonContainer&> flexButtonCallback;
 
     /*
      * Callback Handler Declarations
      */
     void buttonCallbackHandler(const touchgfx::AbstractButton& src);
+    void flexButtonCallbackHandler(const touchgfx::AbstractButtonContainer& src);
 
 };
 

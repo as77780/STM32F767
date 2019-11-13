@@ -1,13 +1,13 @@
 /**
   ******************************************************************************
-  * @file    stm32746g_discovery_qspi.h
+  * @file    stm32f769i_eval_qspi.h
   * @author  MCD Application Team
   * @brief   This file contains the common defines and functions prototypes for
-  *          the stm32746g_discovery_qspi.c driver.
+  *          the stm32f769i_eval_qspi.c driver.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -38,13 +38,13 @@
   * @{
   */ 
 
-/** @addtogroup STM32746G_DISCOVERY
+/** @addtogroup STM32F769I_EVAL
   * @{
   */
     
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __STM32746G_DISCOVERY_QSPI_H
-#define __STM32746G_DISCOVERY_QSPI_H
+#ifndef __STM32F769I_EVAL_QSPI_H
+#define __STM32F769I_EVAL_QSPI_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -52,15 +52,15 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f7xx_hal.h"
-#include "n25q128a.h"
+#include "n25q512a.h"
 
-/** @addtogroup STM32746G_DISCOVERY_QSPI
+/** @addtogroup STM32F769I_EVAL_QSPI
   * @{
   */    
 
   
 /* Exported constants --------------------------------------------------------*/ 
-/** @defgroup STM32746G_DISCOVERY_QSPI_Exported_Constants STM32746G_DISCOVERY_QSPI Exported Constants
+/** @defgroup STM32F769I_EVAL_QSPI_Exported_Constants Exported Constants
   * @{
   */
 /* QSPI Error codes */
@@ -76,10 +76,10 @@
 #define QSPI_CLK_DISABLE()         __HAL_RCC_QSPI_CLK_DISABLE()
 #define QSPI_CS_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOB_CLK_ENABLE()
 #define QSPI_CLK_GPIO_CLK_ENABLE() __HAL_RCC_GPIOB_CLK_ENABLE()
-#define QSPI_D0_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOD_CLK_ENABLE()
-#define QSPI_D1_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOD_CLK_ENABLE()
-#define QSPI_D2_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOE_CLK_ENABLE()
-#define QSPI_D3_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOD_CLK_ENABLE()
+#define QSPI_D0_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
+#define QSPI_D1_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
+#define QSPI_D2_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
+#define QSPI_D3_GPIO_CLK_ENABLE()  __HAL_RCC_GPIOF_CLK_ENABLE()
 
 #define QSPI_FORCE_RESET()         __HAL_RCC_QSPI_FORCE_RESET()
 #define QSPI_RELEASE_RESET()       __HAL_RCC_QSPI_RELEASE_RESET()
@@ -98,19 +98,17 @@
 #define QSPI_D3_PIN                GPIO_PIN_6
 #define QSPI_D3_GPIO_PORT          GPIOF
 
-/* N25Q128A13EF840E Micron memory */
+/* N25Q512A13GSF40E Micron memory */
 /* Size of the flash */
 #define QSPI_FLASH_SIZE            25     /* Address bus width to access whole memory space */
 #define QSPI_PAGE_SIZE             256
 
-/* This alias is added as the name of Memory mapped fucntion changed */   
-#define BSP_QSPI_MemoryMappedMode  BSP_QSPI_EnableMemoryMappedMode   
 /**
   * @}
   */
 
 /* Exported types ------------------------------------------------------------*/
-/** @defgroup STM32746G_DISCOVERY_QSPI_Exported_Types STM32746G_DISCOVERY_QSPI Exported Types
+/** @defgroup STM32F769I_EVAL_QSPI_Exported_Types Exported Types
   * @{
   */
 /* QSPI Info */
@@ -128,7 +126,7 @@ typedef struct {
 
   
 /* Exported functions --------------------------------------------------------*/
-/** @addtogroup STM32746G_DISCOVERY_QSPI_Exported_Functions
+/** @addtogroup STM32F769I_EVAL_QSPI_Exported_Functions
   * @{
   */  
 uint8_t BSP_QSPI_Init       (void);
@@ -158,7 +156,7 @@ void BSP_QSPI_MspDeInit(QSPI_HandleTypeDef *hqspi, void *Params);
 }
 #endif
 
-#endif /* __STM32746G_DISCOVERY_QSPI_H */
+#endif /* __STM32F769I_EVAL_QSPI_H */
 /**
   * @}
   */ 
