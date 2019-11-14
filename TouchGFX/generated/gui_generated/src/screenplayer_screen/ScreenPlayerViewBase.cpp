@@ -10,19 +10,22 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     buttonCallback(this, &ScreenPlayerViewBase::buttonCallbackHandler),
     flexButtonCallback(this, &ScreenPlayerViewBase::flexButtonCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_TEKSTURA_SERYY_FON_UZORY_OBOI_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_ABSTRAKTSIIA_RISUNOK_KHOLST_AKRIL_TEKSTURA_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(0, 0);
+    tiledImage1.setOffset(396, 0);
 
     boxWithBorder1_1_1.setPosition(11, 188, 296, 68);
     boxWithBorder1_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
     boxWithBorder1_1_1.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder1_1_1.setBorderSize(5);
 
-    boxWithBorder1_1.setPosition(11, 112, 223, 68);
+    boxWithBorder1_1.setPosition(11, 0, 73, 188);
     boxWithBorder1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
     boxWithBorder1_1.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder1_1.setBorderSize(5);
+
+    box1_1.setPosition(400, 204, 68, 42);
+    box1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
 
     buttonBack.setXY(404, 193);
     buttonBack.setBitmaps(touchgfx::Bitmap(BITMAP_IC_ID), touchgfx::Bitmap(BITMAP_IC_ID));
@@ -50,6 +53,7 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
 
     box1.setPosition(393, 0, 87, 32);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
+    box1.setAlpha(175);
 
     textArea1.setXY(400, 0);
     textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(69, 250, 121));
@@ -60,35 +64,37 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     flexButtonHDD.setBitmapXY(0, 0);
     flexButtonHDD.setIconBitmaps(Bitmap(BITMAP_HDD_ID), Bitmap(BITMAP_HDD_ID));
     flexButtonHDD.setIconXY(4, 4);
-    flexButtonHDD.setPosition(17, 117, 60, 60);
+    flexButtonHDD.setPosition(17, 121, 60, 60);
     flexButtonHDD.setAction(flexButtonCallback);
 
     flexButtonRadio.setBitmaps(Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID));
     flexButtonRadio.setBitmapXY(0, 0);
     flexButtonRadio.setIconBitmaps(Bitmap(BITMAP_RADIO_ID), Bitmap(BITMAP_RADIO_ID));
     flexButtonRadio.setIconXY(4, 4);
-    flexButtonRadio.setPosition(93, 117, 60, 60);
+    flexButtonRadio.setPosition(17, 63, 60, 60);
     flexButtonRadio.setAction(flexButtonCallback);
 
     flexButtonBud.setBitmaps(Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID));
     flexButtonBud.setBitmapXY(0, 0);
     flexButtonBud.setIconBitmaps(Bitmap(BITMAP_BUD_ID), Bitmap(BITMAP_BUD_ID));
     flexButtonBud.setIconXY(4, 4);
-    flexButtonBud.setPosition(167, 117, 60, 60);
+    flexButtonBud.setPosition(17, 6, 60, 60);
     flexButtonBud.setAction(flexButtonCallback);
 
-    boxWithBorder1_1_2.setPosition(234, 112, 73, 68);
+    boxWithBorder1_1_2.setPosition(117, 6, 73, 68);
     boxWithBorder1_1_2.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
     boxWithBorder1_1_2.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder1_1_2.setBorderSize(5);
+    boxWithBorder1_1_2.setAlpha(38);
 
-    imagePlay.setXY(246, 121);
+    imagePlay.setXY(128, 15);
     imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_BUD_ID));
     imagePlay.setAlpha(0);
 
     add(tiledImage1);
     add(boxWithBorder1_1_1);
     add(boxWithBorder1_1);
+    add(box1_1);
     add(buttonBack);
     add(buttonPlayToBack);
     add(buttonPlayToFollow);

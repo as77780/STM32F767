@@ -12,9 +12,9 @@ MainViewBase::MainViewBase() :
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_ABSTRAKTSIIA_ZOLOTAIA_FANTAZIIA_SFERA_LINII_FRAKTALY_FON_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_TEKSTURA_UZOR_CHERNYY_FON_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(21, 0);
+    tiledImage1.setOffset(106, 0);
 
     boxWithBorder1_1.setPosition(7, 194, 183, 68);
     boxWithBorder1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));

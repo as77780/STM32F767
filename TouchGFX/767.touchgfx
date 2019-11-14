@@ -538,9 +538,9 @@
       {
         "Components": [
           {
-            "FileName": "abstraktsiia-zolotaia-fantaziia-sfera-linii-fraktaly-fon.png",
+            "FileName": "tekstura-uzor-chernyy-fon.png",
             "Alpha": 255,
-            "OffsetX": 21,
+            "OffsetX": 106,
             "OffsetY": 0,
             "Name": "tiledImage1",
             "X": 0,
@@ -1649,9 +1649,9 @@
       {
         "Components": [
           {
-            "FileName": "tekstura-chernyi-fon-seryi-uzor-ornament-vintazh-oboi.png",
+            "FileName": "abstraktsiia-zolotaia-fantaziia-sfera-linii-fraktaly-fon.png",
             "Alpha": 255,
-            "OffsetX": 0,
+            "OffsetX": 415,
             "OffsetY": 0,
             "Name": "tiledImage1",
             "X": 0,
@@ -1671,7 +1671,7 @@
               "Green": 39,
               "Blue": 39
             },
-            "Alpha": 78,
+            "Alpha": 24,
             "Name": "box1_2",
             "X": 31,
             "Y": 16,
@@ -1778,7 +1778,7 @@
               "Green": 0,
               "Blue": 3
             },
-            "Alpha": 20,
+            "Alpha": 157,
             "Name": "box1_1",
             "X": 404,
             "Y": 203,
@@ -1830,9 +1830,9 @@
             "TextId": "SingleUseId28",
             "TextRotation": "0",
             "Color": {
-              "Red": 69,
-              "Green": 250,
-              "Blue": 121
+              "Red": 200,
+              "Green": 255,
+              "Blue": 5
             },
             "Alpha": 255,
             "AutoSize": true,
@@ -2013,9 +2013,9 @@
       {
         "Components": [
           {
-            "FileName": "tekstura-seryy-fon-uzory-oboi.png",
+            "FileName": "abstraktsiia-risunok-kholst-akril-tekstura.png",
             "Alpha": 255,
-            "OffsetX": 0,
+            "OffsetX": 396,
             "OffsetY": 0,
             "Name": "tiledImage1",
             "X": 0,
@@ -2069,10 +2069,29 @@
             "Alpha": 255,
             "Name": "boxWithBorder1_1",
             "X": 11,
-            "Y": 112,
-            "Width": 223,
-            "Height": 68,
+            "Y": 0,
+            "Width": 73,
+            "Height": 188,
             "Type": "BoxWithBorder",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 43,
+              "Green": 39,
+              "Blue": 39
+            },
+            "Alpha": 255,
+            "Name": "box1_1",
+            "X": 400,
+            "Y": 204,
+            "Width": 68,
+            "Height": 42,
+            "Type": "Box",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -2197,7 +2216,7 @@
               "Green": 39,
               "Blue": 39
             },
-            "Alpha": 255,
+            "Alpha": 175,
             "Name": "box1",
             "X": 393,
             "Y": 0,
@@ -2257,7 +2276,7 @@
             ],
             "Name": "flexButtonHDD",
             "X": 17,
-            "Y": 117,
+            "Y": 121,
             "Width": 60,
             "Height": 60,
             "Type": "FlexButton",
@@ -2290,8 +2309,8 @@
               }
             ],
             "Name": "flexButtonRadio",
-            "X": 93,
-            "Y": 117,
+            "X": 17,
+            "Y": 63,
             "Width": 60,
             "Height": 60,
             "Type": "FlexButton",
@@ -2324,8 +2343,8 @@
               }
             ],
             "Name": "flexButtonBud",
-            "X": 167,
-            "Y": 117,
+            "X": 17,
+            "Y": 6,
             "Width": 60,
             "Height": 60,
             "Type": "FlexButton",
@@ -2347,10 +2366,10 @@
               "Blue": 94
             },
             "BorderSize": 5,
-            "Alpha": 255,
+            "Alpha": 38,
             "Name": "boxWithBorder1_1_2",
-            "X": 234,
-            "Y": 112,
+            "X": 117,
+            "Y": 6,
             "Width": 73,
             "Height": 68,
             "Type": "BoxWithBorder",
@@ -2364,8 +2383,8 @@
             "RelativeFilename": "bud.png",
             "Alpha": 0,
             "Name": "imagePlay",
-            "X": 246,
-            "Y": 121,
+            "X": 128,
+            "Y": 15,
             "Width": 50,
             "Height": 50,
             "Type": "Image",

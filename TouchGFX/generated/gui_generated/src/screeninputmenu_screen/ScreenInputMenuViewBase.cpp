@@ -10,13 +10,13 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     buttonCallback(this, &ScreenInputMenuViewBase::buttonCallbackHandler),
     radioButtonSelectedCallback(this, &ScreenInputMenuViewBase::radioButtonSelectedCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_TEKSTURA_CHERNYI_FON_SERYI_UZOR_ORNAMENT_VINTAZH_OBOI_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_ABSTRAKTSIIA_ZOLOTAIA_FANTAZIIA_SFERA_LINII_FRAKTALY_FON_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(0, 0);
+    tiledImage1.setOffset(415, 0);
 
     box1_2.setPosition(31, 16, 160, 230);
     box1_2.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
-    box1_2.setAlpha(78);
+    box1_2.setAlpha(24);
 
     InternalBut.setXY(41, 22);
     InternalBut.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_INACTIVE_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_NORMAL_ID));
@@ -40,7 +40,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
 
     box1_1.setPosition(404, 203, 64, 43);
     box1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 3));
-    box1_1.setAlpha(20);
+    box1_1.setAlpha(157);
 
     buttonBack.setXY(404, 193);
     buttonBack.setBitmaps(touchgfx::Bitmap(BITMAP_IC_ID), touchgfx::Bitmap(BITMAP_IC_ID));
@@ -51,7 +51,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     box1.setAlpha(118);
 
     textArea1.setXY(400, 0);
-    textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(69, 250, 121));
+    textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(200, 255, 5));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID28));
 

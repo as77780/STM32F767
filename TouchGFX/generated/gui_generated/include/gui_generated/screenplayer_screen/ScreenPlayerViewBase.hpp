@@ -9,9 +9,9 @@
 #include <gui/screenplayer_screen/ScreenPlayerPresenter.hpp>
 #include <touchgfx/widgets/TiledImage.hpp>
 #include <touchgfx/widgets/BoxWithBorder.hpp>
+#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
-#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/containers/buttons/Buttons.hpp>
 #include <touchgfx/widgets/Image.hpp>
@@ -72,6 +72,7 @@ protected:
     touchgfx::TiledImage tiledImage1;
     touchgfx::BoxWithBorder boxWithBorder1_1_1;
     touchgfx::BoxWithBorder boxWithBorder1_1;
+    touchgfx::Box box1_1;
     touchgfx::Button buttonBack;
     touchgfx::ButtonWithIcon buttonPlayToBack;
     touchgfx::ButtonWithIcon buttonPlayToFollow;
