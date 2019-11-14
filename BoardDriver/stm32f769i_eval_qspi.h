@@ -54,6 +54,7 @@
 #include "stm32f7xx_hal.h"
 #include "n25q512a.h"
 
+
 /** @addtogroup STM32F769I_EVAL_QSPI
   * @{
   */    

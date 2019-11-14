@@ -10,7 +10,7 @@ EqualizerViewBase::EqualizerViewBase() :
     buttonCallback(this, &EqualizerViewBase::buttonCallbackHandler),
     sliderValueChangedCallback(this, &EqualizerViewBase::sliderValueChangedCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_TEXTURES_CARBON_FIBRE_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_OBOI_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
 

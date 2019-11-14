@@ -12,17 +12,17 @@ MainViewBase::MainViewBase() :
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_TEXTURES_CARBON_FIBRE_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_MAKRO_BOKE_DOZHD_KAPLI_VODA_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
 
     boxWithBorder1_1.setPosition(7, 194, 183, 68);
-    boxWithBorder1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
+    boxWithBorder1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
     boxWithBorder1_1.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder1_1.setBorderSize(5);
 
     boxWithBorder3.setPosition(7, 7, 149, 55);
-    boxWithBorder3.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
+    boxWithBorder3.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
     boxWithBorder3.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder3.setBorderSize(5);
 
@@ -34,7 +34,7 @@ MainViewBase::MainViewBase() :
     digitalClock1.setTime24Hour(10, 10, 0);
 
     boxWithBorder2.setPosition(292, 62, 69, 110);
-    boxWithBorder2.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
+    boxWithBorder2.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
     boxWithBorder2.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder2.setBorderSize(5);
 
@@ -51,7 +51,7 @@ MainViewBase::MainViewBase() :
     ButVolDown.setAction(buttonCallback);
 
     boxWithBorder1.setPosition(361, 62, 116, 109);
-    boxWithBorder1.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
+    boxWithBorder1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
     boxWithBorder1.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(217, 114, 7));
     boxWithBorder1.setBorderSize(5);
 
@@ -122,7 +122,7 @@ MainViewBase::MainViewBase() :
     line1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
 
     boxWithBorder1_1_1.setPosition(292, 194, 178, 68);
-    boxWithBorder1_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(41, 37, 37));
+    boxWithBorder1_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
     boxWithBorder1_1_1.setBorderColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     boxWithBorder1_1_1.setBorderSize(5);
 

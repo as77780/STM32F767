@@ -10,7 +10,7 @@ ScreenPlayerViewBase::ScreenPlayerViewBase() :
     buttonCallback(this, &ScreenPlayerViewBase::buttonCallbackHandler),
     flexButtonCallback(this, &ScreenPlayerViewBase::flexButtonCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_DARK_TEXTURES_CARBON_FIBRE_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_TEKSTURA_SERYY_FON_UZORY_OBOI_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
 

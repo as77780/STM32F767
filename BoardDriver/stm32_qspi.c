@@ -516,9 +516,9 @@ __weak void BSP_QSPI_MspInit(QSPI_HandleTypeDef *hqspi, void *Params)
   QSPI_FORCE_RESET();
   QSPI_RELEASE_RESET();
   /* Enable GPIO clocks */
-  QSPI_CS_GPIO_CLK_ENABLE();
-  QSPI_CLK_GPIO_CLK_ENABLE();
-  QSPI_Dx_GPIO_CLK_ENABLE();
+//  QSPI_CS_GPIO_CLK_ENABLE();
+//  QSPI_CLK_GPIO_CLK_ENABLE();
+//  QSPI_Dx_GPIO_CLK_ENABLE();
 
   /*##-2- Configure peripheral GPIO ##########################################*/
   /* QSPI CS GPIO pin configuration  */
@@ -570,10 +570,24 @@ __weak void BSP_QSPI_MspDeInit(QSPI_HandleTypeDef *hqspi, void *Params)
 
     /*##-2- Disable peripherals and GPIO Clocks ################################*/
     /* De-Configure QSPI specific pins (not common to any other blocks) */
-    HAL_GPIO_DeInit(QSPI_D0_GPIO_PORT, QSPI_D0_PIN);
-    HAL_GPIO_DeInit(QSPI_D1_GPIO_PORT, QSPI_D1_PIN);
-    HAL_GPIO_DeInit(QSPI_D2_GPIO_PORT, QSPI_D2_PIN);
-    HAL_GPIO_DeInit(QSPI_D3_GPIO_PORT, QSPI_D3_PIN);
+///    HAL_GPIO_DeInit(QSPI_D0_GPIO_PORT, QSPI_D0_PIN);
+ //   HAL_GPIO_DeInit(QSPI_D1_GPIO_PORT, QSPI_D1_PIN);
+//    HAL_GPIO_DeInit(QSPI_D2_GPIO_PORT, QSPI_D2_PIN);
+//    HAL_GPIO_DeInit(QSPI_D3_GPIO_PORT, QSPI_D3_PIN);
+
+    __HAL_RCC_QSPI_CLK_DISABLE();
+
+        /**QUADSPI GPIO Configuration
+        PF6     ------> QUADSPI_BK1_IO3
+        PF7     ------> QUADSPI_BK1_IO2
+        PF8     ------> QUADSPI_BK1_IO0
+        PF9     ------> QUADSPI_BK1_IO1
+        PB2     ------> QUADSPI_CLK
+        PB6     ------> QUADSPI_BK1_NCS
+        */
+        HAL_GPIO_DeInit(GPIOF, GPIO_PIN_6|GPIO_PIN_7|GPIO_PIN_8|GPIO_PIN_9);
+
+        HAL_GPIO_DeInit(GPIOB, GPIO_PIN_2|GPIO_PIN_6);
 
     /*##-3- Reset peripherals ##################################################*/
     /* Reset the QuadSPI memory interface */

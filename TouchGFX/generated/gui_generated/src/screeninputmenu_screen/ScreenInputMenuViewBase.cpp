@@ -10,7 +10,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     buttonCallback(this, &ScreenInputMenuViewBase::buttonCallbackHandler),
     radioButtonSelectedCallback(this, &ScreenInputMenuViewBase::radioButtonSelectedCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_DARK_TEXTURES_CARBON_FIBRE_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_MAKRO_LISTIK_LISTOCHEK_LISTYA_6128_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
 
@@ -33,6 +33,9 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     ButInput_3.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_INACTIVE_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_NORMAL_ID));
     ButInput_3.setSelected(false);
     ButInput_3.setDeselectionEnabled(false);
+
+    box1_1.setPosition(404, 203, 64, 43);
+    box1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 3));
 
     buttonBack.setXY(404, 193);
     buttonBack.setBitmaps(touchgfx::Bitmap(BITMAP_IC_ID), touchgfx::Bitmap(BITMAP_IC_ID));
@@ -71,6 +74,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     add(ButInput_1);
     add(ButInput_2);
     add(ButInput_3);
+    add(box1_1);
     add(buttonBack);
     add(box1);
     add(textArea1);

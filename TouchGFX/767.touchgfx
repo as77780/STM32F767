@@ -4,14 +4,13 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\blue_textures_carbon_fibre.png",
+            "FileName": "uzory-siniy-zavitushki.png",
             "Alpha": 255,
-            "Style": "Texture3",
             "OffsetX": 0,
             "OffsetY": 0,
             "Name": "tiledImage1",
             "X": 0,
-            "Y": 1,
+            "Y": 0,
             "Width": 480,
             "Height": 272,
             "Type": "TiledImage",
@@ -23,11 +22,11 @@
           },
           {
             "Color": {
-              "Red": 64,
-              "Green": 58,
-              "Blue": 58
+              "Red": 4,
+              "Green": 4,
+              "Blue": 28
             },
-            "Alpha": 255,
+            "Alpha": 100,
             "Name": "box2",
             "X": 80,
             "Y": 35,
@@ -42,11 +41,11 @@
           },
           {
             "Color": {
-              "Red": 64,
-              "Green": 58,
-              "Blue": 58
+              "Red": 4,
+              "Green": 4,
+              "Blue": 28
             },
-            "Alpha": 255,
+            "Alpha": 100,
             "Name": "box2_1",
             "X": 303,
             "Y": 35,
@@ -365,17 +364,14 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\blue_textures_carbon_fibre.png",
+            "RelativeFilename": "oboi.png",
             "Alpha": 255,
-            "Style": "Texture3",
-            "OffsetX": 0,
-            "OffsetY": 0,
-            "Name": "tiledImage1",
+            "Name": "image1",
             "X": 0,
             "Y": 0,
             "Width": 480,
             "Height": 272,
-            "Type": "TiledImage",
+            "Type": "Image",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -530,9 +526,8 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\Blue_Textures_carbon_fibre.png",
+            "FileName": "makro-boke-dozhd-kapli-voda.png",
             "Alpha": 255,
-            "Style": "Texture3",
             "OffsetX": 0,
             "OffsetY": 0,
             "Name": "tiledImage1",
@@ -549,9 +544,9 @@
           },
           {
             "Color": {
-              "Red": 41,
-              "Green": 37,
-              "Blue": 37
+              "Red": 1,
+              "Green": 4,
+              "Blue": 18
             },
             "BorderColor": {
               "Red": 3,
@@ -574,9 +569,9 @@
           },
           {
             "Color": {
-              "Red": 41,
-              "Green": 37,
-              "Blue": 37
+              "Red": 1,
+              "Green": 4,
+              "Blue": 18
             },
             "BorderColor": {
               "Red": 3,
@@ -625,9 +620,9 @@
           },
           {
             "Color": {
-              "Red": 41,
-              "Green": 37,
-              "Blue": 37
+              "Red": 1,
+              "Green": 4,
+              "Blue": 18
             },
             "BorderColor": {
               "Red": 3,
@@ -686,9 +681,9 @@
           },
           {
             "Color": {
-              "Red": 41,
-              "Green": 37,
-              "Blue": 37
+              "Red": 1,
+              "Green": 4,
+              "Blue": 18
             },
             "BorderColor": {
               "Red": 217,
@@ -906,9 +901,9 @@
           },
           {
             "Color": {
-              "Red": 41,
-              "Green": 37,
-              "Blue": 37
+              "Red": 1,
+              "Green": 4,
+              "Blue": 18
             },
             "BorderColor": {
               "Red": 3,
@@ -1292,7 +1287,7 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\blue_textures_carbon_fibre.png",
+            "FileName": "oboi.png",
             "Alpha": 255,
             "OffsetX": 0,
             "OffsetY": 0,
@@ -1630,9 +1625,8 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\Dark_Textures_carbon_fibre.png",
+            "FileName": "makro-listik-listochek-listya-6128.png",
             "Alpha": 255,
-            "Style": "Texture3",
             "OffsetX": 0,
             "OffsetY": 0,
             "Name": "tiledImage1",
@@ -1729,6 +1723,25 @@
             "Width": 44,
             "Height": 44,
             "Type": "RadioButton",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 0,
+              "Green": 0,
+              "Blue": 3
+            },
+            "Alpha": 255,
+            "Name": "box1_1",
+            "X": 404,
+            "Y": 203,
+            "Width": 64,
+            "Height": 43,
+            "Type": "Box",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -1957,9 +1970,8 @@
       {
         "Components": [
           {
-            "FileName": "__designer\\Dark_Textures_carbon_fibre.png",
+            "FileName": "tekstura-seryy-fon-uzory-oboi.png",
             "Alpha": 255,
-            "Style": "Texture3",
             "OffsetX": 0,
             "OffsetY": 0,
             "Name": "tiledImage1",

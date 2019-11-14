@@ -9,8 +9,8 @@
 #include <gui/screeninputmenu_screen/ScreenInputMenuPresenter.hpp>
 #include <touchgfx/widgets/TiledImage.hpp>
 #include <touchgfx/widgets/RadioButton.hpp>
-#include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/RadioButtonGroup.hpp>
 
@@ -57,6 +57,7 @@ protected:
     touchgfx::RadioButton ButInput_1;
     touchgfx::RadioButton ButInput_2;
     touchgfx::RadioButton ButInput_3;
+    touchgfx::Box box1_1;
     touchgfx::Button buttonBack;
     touchgfx::Box box1;
     touchgfx::TextArea textArea1;

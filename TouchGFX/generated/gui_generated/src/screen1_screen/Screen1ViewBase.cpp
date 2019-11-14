@@ -9,15 +9,17 @@
 Screen1ViewBase::Screen1ViewBase() :
     buttonCallback(this, &Screen1ViewBase::buttonCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_TEXTURES_CARBON_FIBRE_ID));
-    tiledImage1.setPosition(0, 1, 480, 272);
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_UZORY_SINIY_ZAVITUSHKI_ID));
+    tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
 
     box2.setPosition(80, 35, 97, 96);
-    box2.setColor(touchgfx::Color::getColorFrom24BitRGB(64, 58, 58));
+    box2.setColor(touchgfx::Color::getColorFrom24BitRGB(4, 4, 28));
+    box2.setAlpha(100);
 
     box2_1.setPosition(303, 35, 97, 96);
-    box2_1.setColor(touchgfx::Color::getColorFrom24BitRGB(64, 58, 58));
+    box2_1.setColor(touchgfx::Color::getColorFrom24BitRGB(4, 4, 28));
+    box2_1.setAlpha(100);
 
     textAreaHourCaption.setPosition(86, 46, 85, 24);
     textAreaHourCaption.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));

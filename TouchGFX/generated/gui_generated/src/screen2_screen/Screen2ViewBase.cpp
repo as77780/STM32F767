@@ -10,9 +10,8 @@ Screen2ViewBase::Screen2ViewBase() :
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_BLUE_TEXTURES_CARBON_FIBRE_ID));
-    tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(0, 0);
+    image1.setXY(0, 0);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_OBOI_ID));
 
     analogClock1.setXY(124, 20);
     analogClock1.setBackground(BITMAP_DARK_CLOCKS_BACKGROUNDS_CLOCK_CLASSIC_BACKGROUND_ID, 116, 116);
@@ -34,7 +33,7 @@ Screen2ViewBase::Screen2ViewBase() :
     ButPowerOn.setIconXY(5, 5);
     ButPowerOn.setAction(buttonCallback);
 
-    add(tiledImage1);
+    add(image1);
     add(analogClock1);
     add(buttonSettings);
     add(ButPowerOn);

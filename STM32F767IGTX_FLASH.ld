@@ -209,7 +209,7 @@ SECTIONS
   }
 
   .ARM.attributes 0 : { *(.ARM.attributes) }
-  .ExtFlashSection : {*(.ExtFlashSection)} >QSPI 
+  ExtFlashSection : {*(ExtFlashSection)} >QSPI 
 }
 /*
 . ExtFlashSection : {*(.ExtFlashSection)} >QSPI 

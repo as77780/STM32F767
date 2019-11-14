@@ -173,7 +173,7 @@ int main(void)
   MX_RTC_Init();
   MX_TIM5_Init();
   MX_CRC_Init();
- // MX_QUADSPI_Init();
+  MX_QUADSPI_Init();
   MX_I2C2_Init();
   MX_I2C3_Init();
   MX_TIM2_Init();
@@ -184,6 +184,7 @@ int main(void)
   MX_USART3_UART_Init();
   /* USER CODE BEGIN 2 */
  /*timer lite lcd, start and init*/
+  hw_init();
   HAL_TIM_PWM_Start(&htim5,TIM_CHANNEL_1);
   TIM5->CCR1=100;
   /*timer FAN1 and FAN2 start*/
@@ -198,7 +199,7 @@ int main(void)
   ds18b20init();
   NEC_Init(&htim3);
   HAL_TIM_Encoder_Start_IT(&htim2,TIM_CHANNEL_1);
-  hw_init();
+
   /* USER CODE END 2 */
 
 /* Initialise the graphical hardware */

@@ -7,7 +7,7 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <mvp/View.hpp>
 #include <gui/screen2_screen/Screen2Presenter.hpp>
-#include <touchgfx/widgets/TiledImage.hpp>
+#include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/containers/clock/AnalogClock.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
 #include <touchgfx/EasingEquations.hpp>
@@ -29,7 +29,7 @@ protected:
     /*
      * Member Declarations
      */
-    touchgfx::TiledImage tiledImage1;
+    touchgfx::Image image1;
     touchgfx::AnalogClock analogClock1;
     touchgfx::ButtonWithIcon buttonSettings;
     touchgfx::FadeAnimator< touchgfx::ButtonWithIcon > ButPowerOn;
