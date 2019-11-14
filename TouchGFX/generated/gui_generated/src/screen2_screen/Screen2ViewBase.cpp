@@ -6,7 +6,7 @@
 
 Screen2ViewBase::Screen2ViewBase() :
     buttonCallback(this, &Screen2ViewBase::buttonCallbackHandler),
-    powerOnPrepareEndedCallback(this, &Screen2ViewBase::powerOnPrepareEndedCallbackHandler)
+    interactionPrepareNextEndedCallback(this, &Screen2ViewBase::interactionPrepareNextEndedCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
@@ -44,10 +44,10 @@ void Screen2ViewBase::setupScreen()
 
 }
 
-void Screen2ViewBase::powerOnPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp)
+void Screen2ViewBase::interactionPrepareNextEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp)
 {
     //GoToMain
-    //When PowerOnPrepare completed change screen to Main
+    //When InteractionPrepareNext completed change screen to Main
     //Go to Main with screen transition towards East
     application().gotoMainScreenCoverTransitionEast();
 }
@@ -64,10 +64,15 @@ void Screen2ViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
     else if (&src == &ButPowerOn)
     {
         //PowerOnPrepare
-        //When ButPowerOn clicked fade ButPowerOn
+        //When ButPowerOn clicked call virtual function
+        //Call PowerOnPrepare
+        PowerOnPrepare();
+
+        //InteractionPrepareNext
+        //When PowerOnPrepare completed fade ButPowerOn
         //Fade ButPowerOn to alpha:0 with LinearIn easing in 2000 ms (120 Ticks)
         ButPowerOn.clearFadeAnimationEndedAction();
         ButPowerOn.startFadeAnimation(0, 120, touchgfx::EasingEquations::linearEaseIn);
-        ButPowerOn.setFadeAnimationEndedAction(powerOnPrepareEndedCallback);
+        ButPowerOn.setFadeAnimationEndedAction(interactionPrepareNextEndedCallback);
     }
 }

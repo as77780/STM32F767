@@ -1,5 +1,5 @@
 #include <gui/screen2_screen/Screen2View.hpp>
-
+#include "main.h"
 
 Screen2View::Screen2View()
 {
@@ -11,6 +11,7 @@ void Screen2View::setupScreen()
 	Screen2ViewBase::setupScreen();
 	  TIM5->CCR1=100;
 	  TimeView();
+	  POWER_OFF();
 }
 
 void Screen2View::tearDownScreen()

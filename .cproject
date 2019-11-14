@@ -161,13 +161,13 @@
 					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1970039566.2028436627" name="n25q128a.h" rcbsApplicability="disable" resourcePath="BoardDriver/n25q128a.h" toolsToInvoke=""/>
 					<fileInfo id="com.st.stm32cube.ide.mcu.gnu.managedbuild.config.exe.debug.1970039566.110811670" name="stm32767_qspi.h" rcbsApplicability="disable" resourcePath="BoardDriver/stm32767_qspi.h" toolsToInvoke=""/>
 					<sourceEntries>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
+						<entry excluding="simulator/main.cpp|generated/simulator/src/mainBase.cpp|simulator|generated/simulator" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
 						<entry excluding="stm32767_qspi.c|n25q128a.h|n25q512a.h|stm32f769i_eval_qspi.c|stm32f769i_eval_qspi.h|stm32767_qspi.h|EEPROM.h|EEPROM.c|OW_LL/ow_config_default.h|OW_LL/ow_config_template.h|ow|touch.h|touch.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="BoardDriver"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="GRAPHICS"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="LWIP"/>
 						<entry excluding="ST/TouchGFX/touchgfx/os/OSWrappers_cmsis.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/OSWrappers.cpp|ST/TouchGFX/touchgfx_backup*|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator|ST/TouchGFX/touchgfx/framework/source/platform/driver/touch/SDL2TouchController.cpp|ST/TouchGFX/touchgfx/framework/source/platform/hal/simulator/sdl2/HALSDL2_icon.cpp" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Middlewares"/>
-						<entry excluding="simulator/main.cpp|generated/simulator/src/mainBase.cpp|simulator|generated/simulator" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="TouchGFX"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Drivers"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

@@ -21,6 +21,14 @@ public:
     virtual ~Screen2ViewBase() {}
     virtual void setupScreen();
 
+    /*
+     * Virtual Action Handlers
+     */
+    virtual void PowerOnPrepare()
+    {
+        // Override and implement this function in Screen2
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());
@@ -48,13 +56,13 @@ private:
     /*
      * Interaction Callback Declarations
      */
-    touchgfx::Callback < Screen2ViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  powerOnPrepareEndedCallback;
+    touchgfx::Callback < Screen2ViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  interactionPrepareNextEndedCallback;
 
 
     /*
      * Interaction Handlers
      */
-    void powerOnPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp);
+    void interactionPrepareNextEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp);
 
     /*
      * Canvas Buffer Size

@@ -8,13 +8,13 @@
 
 MainViewBase::MainViewBase() :
     buttonCallback(this, &MainViewBase::buttonCallbackHandler),
-    powerOffPrepareEndedCallback(this, &MainViewBase::powerOffPrepareEndedCallbackHandler)
+    interactionPreOffNextEndedCallback(this, &MainViewBase::interactionPreOffNextEndedCallbackHandler)
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_MAKRO_BOKE_DOZHD_KAPLI_VODA_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_ABSTRAKTSIIA_ZOLOTAIA_FANTAZIIA_SFERA_LINII_FRAKTALY_FON_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(0, 0);
+    tiledImage1.setOffset(21, 0);
 
     boxWithBorder1_1.setPosition(7, 194, 183, 68);
     boxWithBorder1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
@@ -219,10 +219,10 @@ void MainViewBase::setupScreen()
 
 }
 
-void MainViewBase::powerOffPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp)
+void MainViewBase::interactionPreOffNextEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp)
 {
     //GoToPowerOff
-    //When PowerOffPrepare completed change screen to Screen2
+    //When InteractionPreOffNext completed change screen to Screen2
     //Go to Screen2 with screen transition towards West
     application().gotoScreen2ScreenCoverTransitionWest();
 }
@@ -246,11 +246,16 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
     else if (&src == &buttonPowOff)
     {
         //PowerOffPrepare
-        //When buttonPowOff clicked fade buttonPowOff
+        //When buttonPowOff clicked call virtual function
+        //Call prepareOff
+        prepareOff();
+
+        //InteractionPreOffNext
+        //When PowerOffPrepare completed fade buttonPowOff
         //Fade buttonPowOff to alpha:0 with LinearIn easing in 2000 ms (120 Ticks)
         buttonPowOff.clearFadeAnimationEndedAction();
         buttonPowOff.startFadeAnimation(0, 120, touchgfx::EasingEquations::linearEaseIn);
-        buttonPowOff.setFadeAnimationEndedAction(powerOffPrepareEndedCallback);
+        buttonPowOff.setFadeAnimationEndedAction(interactionPreOffNextEndedCallback);
     }
     else if (&src == &buttonInput)
     {

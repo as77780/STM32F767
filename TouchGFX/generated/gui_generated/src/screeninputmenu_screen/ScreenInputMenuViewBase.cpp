@@ -10,7 +10,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     buttonCallback(this, &ScreenInputMenuViewBase::buttonCallbackHandler),
     radioButtonSelectedCallback(this, &ScreenInputMenuViewBase::radioButtonSelectedCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_FRACTAL_DIGITAL_ART_COLORFUL_BLUE_RED_GREEN_ABSTRACT_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_TEKSTURA_CHERNYI_FON_SERYI_UZOR_ORNAMENT_VINTAZH_OBOI_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
 
@@ -40,7 +40,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
 
     box1_1.setPosition(404, 203, 64, 43);
     box1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 3));
-    box1_1.setAlpha(36);
+    box1_1.setAlpha(20);
 
     buttonBack.setXY(404, 193);
     buttonBack.setBitmaps(touchgfx::Bitmap(BITMAP_IC_ID), touchgfx::Bitmap(BITMAP_IC_ID));

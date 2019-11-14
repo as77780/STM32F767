@@ -496,19 +496,15 @@
               "Type": "TriggerClicked"
             },
             "Action": {
-              "Alpha": 0,
-              "Easing": "Linear",
-              "EasingOption": "In",
-              "Duration": 2000,
-              "ActionComponent": "ButPowerOn",
-              "Type": "ActionFade"
+              "FunctionName": "PowerOnPrepare",
+              "Type": "ActionCustom"
             }
           },
           {
             "InteractionName": "GoToMain",
             "HasCompletedTrigger": false,
             "Trigger": {
-              "InteractionToTriggerOn": "PowerOnPrepare",
+              "InteractionToTriggerOn": "InteractionPrepareNext",
               "Type": "TriggerInteractionCompleted"
             },
             "Action": {
@@ -516,6 +512,22 @@
               "ScreenTransitionDirection": "East",
               "ActionComponent": "Main",
               "Type": "ActionGotoScreen"
+            }
+          },
+          {
+            "InteractionName": "InteractionPrepareNext",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "InteractionToTriggerOn": "PowerOnPrepare",
+              "Type": "TriggerInteractionCompleted"
+            },
+            "Action": {
+              "Alpha": 0,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 2000,
+              "ActionComponent": "ButPowerOn",
+              "Type": "ActionFade"
             }
           }
         ],
@@ -526,9 +538,9 @@
       {
         "Components": [
           {
-            "FileName": "makro-boke-dozhd-kapli-voda.png",
+            "FileName": "abstraktsiia-zolotaia-fantaziia-sfera-linii-fraktaly-fon.png",
             "Alpha": 255,
-            "OffsetX": 0,
+            "OffsetX": 21,
             "OffsetY": 0,
             "Name": "tiledImage1",
             "X": 0,
@@ -1191,12 +1203,8 @@
               "Type": "TriggerClicked"
             },
             "Action": {
-              "Alpha": 0,
-              "Easing": "Linear",
-              "EasingOption": "In",
-              "Duration": 2000,
-              "ActionComponent": "buttonPowOff",
-              "Type": "ActionFade"
+              "FunctionName": "prepareOff",
+              "Type": "ActionCustom"
             }
           },
           {
@@ -1269,7 +1277,7 @@
             "InteractionName": "GoToPowerOff",
             "HasCompletedTrigger": false,
             "Trigger": {
-              "InteractionToTriggerOn": "PowerOffPrepare",
+              "InteractionToTriggerOn": "InteractionPreOffNext",
               "Type": "TriggerInteractionCompleted"
             },
             "Action": {
@@ -1277,6 +1285,22 @@
               "ScreenTransitionDirection": "West",
               "ActionComponent": "Screen2",
               "Type": "ActionGotoScreen"
+            }
+          },
+          {
+            "InteractionName": "InteractionPreOffNext",
+            "HasCompletedTrigger": true,
+            "Trigger": {
+              "InteractionToTriggerOn": "PowerOffPrepare",
+              "Type": "TriggerInteractionCompleted"
+            },
+            "Action": {
+              "Alpha": 0,
+              "Easing": "Linear",
+              "EasingOption": "In",
+              "Duration": 2000,
+              "ActionComponent": "buttonPowOff",
+              "Type": "ActionFade"
             }
           }
         ],
@@ -1625,7 +1649,7 @@
       {
         "Components": [
           {
-            "FileName": "fractal-digital-art-colorful-blue-red-green-abstract.png",
+            "FileName": "tekstura-chernyi-fon-seryi-uzor-ornament-vintazh-oboi.png",
             "Alpha": 255,
             "OffsetX": 0,
             "OffsetY": 0,
@@ -1754,7 +1778,7 @@
               "Green": 0,
               "Blue": 3
             },
-            "Alpha": 36,
+            "Alpha": 20,
             "Name": "box1_1",
             "X": 404,
             "Y": 203,

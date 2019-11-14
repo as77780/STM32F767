@@ -14,6 +14,7 @@ public:
     virtual void tearDownScreen();
     virtual void handleTickEvent();
     virtual void TimeView();
+    virtual void PowerOnPrepare(){POWER_ON();}
 protected:
     uint8_t hour;
     uint8_t minute;

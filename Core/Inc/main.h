@@ -62,7 +62,10 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#define POWER_OFF() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_5, GPIO_PIN_RESET)
+#define SOUND_OFF() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_RESET)
+#define POWER_ON() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_5, GPIO_PIN_SET)
+#define SOUND_ON() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_SET)
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);

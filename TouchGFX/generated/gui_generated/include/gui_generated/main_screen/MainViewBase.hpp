@@ -32,6 +32,11 @@ public:
     /*
      * Virtual Action Handlers
      */
+    virtual void prepareOff()
+    {
+        // Override and implement this function in Main
+    }
+
     virtual void FunVolUP()
     {
         // Override and implement this function in Main
@@ -107,13 +112,13 @@ private:
     /*
      * Interaction Callback Declarations
      */
-    touchgfx::Callback < MainViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  powerOffPrepareEndedCallback;
+    touchgfx::Callback < MainViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  interactionPreOffNextEndedCallback;
 
 
     /*
      * Interaction Handlers
      */
-    void powerOffPrepareEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp);
+    void interactionPreOffNextEndedCallbackHandler(const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& comp);
 
     /*
      * Canvas Buffer Size

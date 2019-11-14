@@ -21,6 +21,7 @@ public:
 
     virtual void GetTimeOut();
     virtual void ViewTemp();
+    virtual void prepareOff(){SOUND_OFF();}
 
     void CheckIncoder();
 

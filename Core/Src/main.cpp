@@ -922,7 +922,7 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : sound_on_Pin lcd_Pin power_on_Pin */
   GPIO_InitStruct.Pin = sound_on_Pin|lcd_Pin|power_on_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
 

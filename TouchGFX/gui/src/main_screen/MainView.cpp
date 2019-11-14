@@ -1,5 +1,6 @@
 #include <gui/main_screen/MainView.hpp>
 #include "cmsis_os.h"
+#include "main.h"
 
 extern osMessageQId QueueIncoderHandle;
 
@@ -19,7 +20,7 @@ void MainView::setupScreen()
   	Count=presenter->GetVol();
   	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
   	 textVolume.invalidate();
-
+  	SOUND_ON();
 }
 
 void MainView::tearDownScreen()
