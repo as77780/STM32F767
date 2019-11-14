@@ -8,8 +8,8 @@
 #include <mvp/View.hpp>
 #include <gui/screeninputmenu_screen/ScreenInputMenuPresenter.hpp>
 #include <touchgfx/widgets/TiledImage.hpp>
-#include <touchgfx/widgets/RadioButton.hpp>
 #include <touchgfx/widgets/Box.hpp>
+#include <touchgfx/widgets/RadioButton.hpp>
 #include <touchgfx/widgets/Button.hpp>
 #include <touchgfx/widgets/TextArea.hpp>
 #include <touchgfx/widgets/RadioButtonGroup.hpp>
@@ -53,6 +53,7 @@ protected:
      * Member Declarations
      */
     touchgfx::TiledImage tiledImage1;
+    touchgfx::Box box1_2;
     touchgfx::RadioButton InternalBut;
     touchgfx::RadioButton ButInput_1;
     touchgfx::RadioButton ButInput_2;

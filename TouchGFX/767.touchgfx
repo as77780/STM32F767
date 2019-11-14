@@ -4,7 +4,7 @@
       {
         "Components": [
           {
-            "FileName": "uzory-siniy-zavitushki.png",
+            "FileName": "tekstura-fon-zelenyi-tsvety-listia.png",
             "Alpha": 255,
             "OffsetX": 0,
             "OffsetY": 0,
@@ -26,10 +26,10 @@
               "Green": 4,
               "Blue": 28
             },
-            "Alpha": 100,
+            "Alpha": 60,
             "Name": "box2",
-            "X": 80,
-            "Y": 35,
+            "X": 19,
+            "Y": 12,
             "Width": 97,
             "Height": 96,
             "Type": "Box",
@@ -45,10 +45,10 @@
               "Green": 4,
               "Blue": 28
             },
-            "Alpha": 100,
+            "Alpha": 60,
             "Name": "box2_1",
-            "X": 303,
-            "Y": 35,
+            "X": 156,
+            "Y": 12,
             "Width": 97,
             "Height": 96,
             "Type": "Box",
@@ -62,16 +62,16 @@
             "TextId": "SingleUseId1",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 230,
+              "Green": 230,
+              "Blue": 230
             },
             "Alpha": 255,
             "AutoSize": false,
             "LineSpacing": 0,
             "Name": "textAreaHourCaption",
-            "X": 86,
-            "Y": 46,
+            "X": 25,
+            "Y": 22,
             "Width": 85,
             "Height": 24,
             "Type": "TextArea",
@@ -85,9 +85,9 @@
             "TextId": "SingleUseId2",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 250,
+              "Green": 244,
+              "Blue": 244
             },
             "Alpha": 255,
             "AutoSize": false,
@@ -98,8 +98,8 @@
               "BufferSize": 3
             },
             "Name": "textAreaHour",
-            "X": 88,
-            "Y": 70,
+            "X": 26,
+            "Y": 52,
             "Width": 83,
             "Height": 50,
             "Type": "TextArea",
@@ -113,16 +113,16 @@
             "TextId": "SingleUseId4",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 240,
+              "Green": 240,
+              "Blue": 240
             },
             "Alpha": 255,
             "AutoSize": false,
             "LineSpacing": 0,
             "Name": "textAreaMinuteCaption",
-            "X": 309,
-            "Y": 46,
+            "X": 162,
+            "Y": 22,
             "Width": 85,
             "Height": 24,
             "Type": "TextArea",
@@ -136,9 +136,9 @@
             "TextId": "SingleUseId5",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 252,
+              "Green": 252,
+              "Blue": 252
             },
             "Alpha": 255,
             "AutoSize": false,
@@ -149,8 +149,8 @@
               "BufferSize": 3
             },
             "Name": "textAreaMinute",
-            "X": 310,
-            "Y": 68,
+            "X": 163,
+            "Y": 52,
             "Width": 83,
             "Height": 50,
             "Type": "TextArea",
@@ -165,8 +165,8 @@
             "Released": "up_arrow.png",
             "Alpha": 255,
             "Name": "buttonHourUp",
-            "X": 184,
-            "Y": 51,
+            "X": 116,
+            "Y": 27,
             "Width": 32,
             "Height": 19,
             "Type": "Button",
@@ -181,8 +181,8 @@
             "Released": "down_arrow.png",
             "Alpha": 255,
             "Name": "buttonHourDown",
-            "X": 184,
-            "Y": 93,
+            "X": 116,
+            "Y": 68,
             "Width": 32,
             "Height": 19,
             "Type": "Button",
@@ -197,8 +197,8 @@
             "Released": "up_arrow.png",
             "Alpha": 255,
             "Name": "buttonMinuteUp",
-            "X": 266,
-            "Y": 51,
+            "X": 253,
+            "Y": 27,
             "Width": 32,
             "Height": 19,
             "Type": "Button",
@@ -213,8 +213,8 @@
             "Released": "down_arrow.png",
             "Alpha": 255,
             "Name": "buttonMinuteDown",
-            "X": 266,
-            "Y": 93,
+            "X": 253,
+            "Y": 68,
             "Width": 32,
             "Height": 19,
             "Type": "Button",
@@ -230,9 +230,9 @@
             "Alpha": 255,
             "TextId": "SingleUseId7",
             "ReleasedColor": {
-              "Red": 66,
-              "Green": 66,
-              "Blue": 66
+              "Red": 10,
+              "Green": 6,
+              "Blue": 6
             },
             "PressedColor": {
               "Red": 166,
@@ -241,8 +241,8 @@
             },
             "TextRotation": "0",
             "Name": "buttonSave",
-            "X": 80,
-            "Y": 172,
+            "X": 19,
+            "Y": 112,
             "Width": 97,
             "Height": 60,
             "Type": "ButtonWithLabel",
@@ -258,9 +258,9 @@
             "Alpha": 255,
             "TextId": "SingleUseId9",
             "ReleasedColor": {
-              "Red": 66,
-              "Green": 66,
-              "Blue": 66
+              "Red": 10,
+              "Green": 6,
+              "Blue": 6
             },
             "PressedColor": {
               "Red": 166,
@@ -269,8 +269,8 @@
             },
             "TextRotation": "0",
             "Name": "buttonClock",
-            "X": 303,
-            "Y": 172,
+            "X": 156,
+            "Y": 112,
             "Width": 97,
             "Height": 60,
             "Type": "ButtonWithLabel",
@@ -1409,7 +1409,7 @@
               "Green": 39,
               "Blue": 39
             },
-            "Alpha": 255,
+            "Alpha": 34,
             "Name": "box1",
             "X": 345,
             "Y": 0,
@@ -1625,7 +1625,7 @@
       {
         "Components": [
           {
-            "FileName": "makro-listik-listochek-listya-6128.png",
+            "FileName": "fractal-digital-art-colorful-blue-red-green-abstract.png",
             "Alpha": 255,
             "OffsetX": 0,
             "OffsetY": 0,
@@ -1635,6 +1635,25 @@
             "Width": 480,
             "Height": 272,
             "Type": "TiledImage",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "Color": {
+              "Red": 43,
+              "Green": 39,
+              "Blue": 39
+            },
+            "Alpha": 78,
+            "Name": "box1_2",
+            "X": 31,
+            "Y": 16,
+            "Width": 160,
+            "Height": 230,
+            "Type": "Box",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -1735,7 +1754,7 @@
               "Green": 0,
               "Blue": 3
             },
-            "Alpha": 255,
+            "Alpha": 36,
             "Name": "box1_1",
             "X": 404,
             "Y": 203,
@@ -1770,7 +1789,7 @@
               "Green": 39,
               "Blue": 39
             },
-            "Alpha": 255,
+            "Alpha": 118,
             "Name": "box1",
             "X": 393,
             "Y": 0,
@@ -1810,15 +1829,15 @@
             "TextId": "SingleUseId29",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 200,
+              "Green": 255,
+              "Blue": 5
             },
             "Alpha": 255,
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea2",
-            "X": 112,
+            "X": 92,
             "Y": 32,
             "Width": 80,
             "Height": 25,
@@ -1833,15 +1852,15 @@
             "TextId": "SingleUseId30",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 200,
+              "Green": 255,
+              "Blue": 5
             },
             "Alpha": 255,
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea2_1",
-            "X": 112,
+            "X": 92,
             "Y": 88,
             "Width": 79,
             "Height": 25,
@@ -1856,15 +1875,15 @@
             "TextId": "SingleUseId31",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 200,
+              "Green": 255,
+              "Blue": 5
             },
             "Alpha": 255,
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea2_1_1",
-            "X": 112,
+            "X": 92,
             "Y": 146,
             "Width": 79,
             "Height": 25,
@@ -1879,15 +1898,15 @@
             "TextId": "SingleUseId32",
             "TextRotation": "0",
             "Color": {
-              "Red": 171,
-              "Green": 171,
-              "Blue": 171
+              "Red": 200,
+              "Green": 255,
+              "Blue": 5
             },
             "Alpha": 255,
             "AutoSize": true,
             "LineSpacing": 0,
             "Name": "textArea2_1_2",
-            "X": 113,
+            "X": 92,
             "Y": 203,
             "Width": 79,
             "Height": 25,

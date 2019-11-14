@@ -10,9 +10,13 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
     buttonCallback(this, &ScreenInputMenuViewBase::buttonCallbackHandler),
     radioButtonSelectedCallback(this, &ScreenInputMenuViewBase::radioButtonSelectedCallbackHandler)
 {
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_MAKRO_LISTIK_LISTOCHEK_LISTYA_6128_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_FRACTAL_DIGITAL_ART_COLORFUL_BLUE_RED_GREEN_ABSTRACT_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
     tiledImage1.setOffset(0, 0);
+
+    box1_2.setPosition(31, 16, 160, 230);
+    box1_2.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
+    box1_2.setAlpha(78);
 
     InternalBut.setXY(41, 22);
     InternalBut.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_INACTIVE_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_ACTIVE_ID), touchgfx::Bitmap(BITMAP_DARK_RADIO_BUTTONS_RADIO_ROUND_BUTTON_NORMAL_ID));
@@ -36,6 +40,7 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
 
     box1_1.setPosition(404, 203, 64, 43);
     box1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(0, 0, 3));
+    box1_1.setAlpha(36);
 
     buttonBack.setXY(404, 193);
     buttonBack.setBitmaps(touchgfx::Bitmap(BITMAP_IC_ID), touchgfx::Bitmap(BITMAP_IC_ID));
@@ -43,33 +48,35 @@ ScreenInputMenuViewBase::ScreenInputMenuViewBase() :
 
     box1.setPosition(393, 0, 87, 32);
     box1.setColor(touchgfx::Color::getColorFrom24BitRGB(43, 39, 39));
+    box1.setAlpha(118);
 
     textArea1.setXY(400, 0);
     textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(69, 250, 121));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID28));
 
-    textArea2.setXY(112, 32);
-    textArea2.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
+    textArea2.setXY(92, 32);
+    textArea2.setColor(touchgfx::Color::getColorFrom24BitRGB(200, 255, 5));
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID29));
 
-    textArea2_1.setXY(112, 88);
-    textArea2_1.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
+    textArea2_1.setXY(92, 88);
+    textArea2_1.setColor(touchgfx::Color::getColorFrom24BitRGB(200, 255, 5));
     textArea2_1.setLinespacing(0);
     textArea2_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID30));
 
-    textArea2_1_1.setXY(112, 146);
-    textArea2_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
+    textArea2_1_1.setXY(92, 146);
+    textArea2_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(200, 255, 5));
     textArea2_1_1.setLinespacing(0);
     textArea2_1_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID31));
 
-    textArea2_1_2.setXY(113, 203);
-    textArea2_1_2.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
+    textArea2_1_2.setXY(92, 203);
+    textArea2_1_2.setColor(touchgfx::Color::getColorFrom24BitRGB(200, 255, 5));
     textArea2_1_2.setLinespacing(0);
     textArea2_1_2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID32));
 
     add(tiledImage1);
+    add(box1_2);
     add(InternalBut);
     add(ButInput_1);
     add(ButInput_2);

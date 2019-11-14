@@ -1026,7 +1026,7 @@ void hw_init(void){
 	     //Deactivate speculative/cache access to first FMC Bank to save FMC bandwidth
 	   // FMC_Bank1->BTCR[0] = 0x000030D2;
 
-/*
+
 	  HAL_NVIC_DisableIRQ(QUADSPI_IRQn);
 
 	  MPU_Region_InitTypeDef MPU_InitStruct;
@@ -1059,14 +1059,10 @@ void hw_init(void){
 	  HAL_MPU_ConfigRegion(&MPU_InitStruct);
 
 	  HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
-*/
-	     /* Enable the MPU */
-
-
 	    /* Enable L1 Cache */
-	    //SCB_EnableDCache();
-	    //SCB_EnableICache();
-	 //   FMC_Bank1->BTCR[0] = 0x000030D2;
+	   // SCB_EnableDCache();
+	   // SCB_EnableICache();
+
 }
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
