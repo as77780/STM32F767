@@ -87,8 +87,12 @@ ow_t ow;
 ow_rom_t rom_ids[20];
 size_t rom_found;
 uint8_t FAN1Speed,FAN2Speed;
-volatile uint8_t capture_is_ready = 0;
-volatile Direction direction = FORWARD;
+typedef struct struct_enc_t {
+ uint8_t capture_is_ready=0;
+ uint8_t EncDirect;
+}struct_enc;
+
+struct_enc enc;
 
 typedef struct struct_arg_t {
  // char str_name[10];
@@ -574,7 +578,7 @@ static void MX_TIM2_Init(void)
   {
     Error_Handler();
   }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_OC1;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
   {
@@ -1066,14 +1070,12 @@ void hw_init(void){
 }
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
-	uint16_t cnt1;
 
 
 	if(htim->Instance==TIM2){
-		 capture_is_ready = 1;
-		 direction = (TIM2->CR1 & TIM_CR1_DIR ? FORWARD : BACKWARD);
-		 cnt1=(direction==FORWARD ? 0 : 1);
-		 osMessagePut(QueueIncoderHandle,cnt1,1000);
+		enc.capture_is_ready = 1;
+		enc.EncDirect = __HAL_TIM_DIRECTION_STATUS(htim);
+
 	}
 
 	if (htim->Instance==TIM3) {

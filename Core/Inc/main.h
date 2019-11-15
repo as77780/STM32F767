@@ -89,7 +89,7 @@ void Error_Handler(void);
 #define power_on_Pin GPIO_PIN_5
 #define power_on_GPIO_Port GPIOI
 /* USER CODE BEGIN Private defines */
-typedef enum { FORWARD, BACKWARD } Direction;
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

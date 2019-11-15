@@ -2,7 +2,13 @@
 #include "cmsis_os.h"
 #include "main.h"
 
+
 extern osMessageQId QueueIncoderHandle;
+typedef struct  {
+ uint8_t capture_is_ready=0;
+ uint8_t EncDirect;
+}struct_enc;
+extern struct_enc enc;
 
 MainView::MainView()
 //:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
@@ -21,6 +27,7 @@ void MainView::setupScreen()
   	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
   	 textVolume.invalidate();
   	SOUND_ON();
+  	enc.capture_is_ready=0;
 }
 
 void MainView::tearDownScreen()
@@ -175,11 +182,10 @@ if(Count<80){
 
 
 void MainView::CheckIncoder(){
-	 osEvent event;
-	 event = osMessageGet(QueueIncoderHandle, 10);
-	 if (event.status == osEventMessage)
-	   {
-	  if(event.value.v){
+	 if ( enc.capture_is_ready)
+	 {
+
+		 if(enc.EncDirect){
 		  if(Count<80){
 		  	 Count++;
 		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
@@ -197,7 +203,7 @@ void MainView::CheckIncoder(){
 		  	      }
 
 	  }
-
+		 enc.capture_is_ready=0;
 	   }
 
 }
