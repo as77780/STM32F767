@@ -538,9 +538,9 @@
       {
         "Components": [
           {
-            "FileName": "tekstura-uzor-chernyy-fon.png",
+            "FileName": "makro-boke-dozhd-kapli-voda.png",
             "Alpha": 255,
-            "OffsetX": 106,
+            "OffsetX": 0,
             "OffsetY": 0,
             "Name": "tiledImage1",
             "X": 0,
@@ -1087,11 +1087,11 @@
             "Moveable": false
           },
           {
-            "RelativeFilename": "ethOn.png",
+            "RelativeFilename": "linux.png",
             "Alpha": 67,
             "Name": "image1",
-            "X": 213,
-            "Y": 197,
+            "X": 209,
+            "Y": 194,
             "Width": 64,
             "Height": 64,
             "Type": "Image",

@@ -234,7 +234,7 @@ int main(void)
 
   /* Create the queue(s) */
   /* definition and creation of QueueIncoder */
-  osMessageQDef(QueueIncoder, 16, uint16_t);
+  osMessageQDef(QueueIncoder, 1, uint16_t);
   QueueIncoderHandle = osMessageCreate(osMessageQ(QueueIncoder), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -1075,6 +1075,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 	if(htim->Instance==TIM2){
 		enc.capture_is_ready = 1;
 		enc.EncDirect = __HAL_TIM_DIRECTION_STATUS(htim);
+		osMessagePut(QueueIncoderHandle,enc.EncDirect,0);
 
 	}
 

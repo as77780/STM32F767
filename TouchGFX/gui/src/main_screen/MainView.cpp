@@ -1,3 +1,4 @@
+#include "BitmapDatabase.hpp"
 #include <gui/main_screen/MainView.hpp>
 #include "cmsis_os.h"
 #include "main.h"
@@ -10,16 +11,13 @@ typedef struct  {
 }struct_enc;
 extern struct_enc enc;
 
-MainView::MainView()
-//:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
+MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
 {
 
 }
 
 void MainView::setupScreen()
-{
-
-	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
+{	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
     MainViewBase::setupScreen();
     TIM5->CCR1=100;
   	 GetTimeOut();
@@ -47,8 +45,16 @@ void MainView::handleTickEvent()
  void  MainView::GetTimeOut()
         {
 	    digitalClock1.setTime24Hour(presenter->getHour(), presenter->getMinute(), presenter->getSecond());
+
 	    if(presenter->GetStatLogin()==1){image1.setAlpha(255);image1.invalidate();}
-	 	 }
+
+	    if(presenter->GetStatInet()==1){
+	    	image1.setBitmap(touchgfx::Bitmap(BITMAP_INTERNET_ID));image1.invalidate();
+	     }
+	     else if(presenter->GetStatInet()==0){
+	    	image1.setBitmap(touchgfx::Bitmap(BITMAP_LINUX_ID));image1.invalidate();
+	     }
+	    }
  void MainView::ViewTemp() {
 	 uint8_t tempPOW=(uint8_t)presenter->getTempPow();
 	 uint8_t tempSOUND=(uint8_t)presenter->getTempSound();
@@ -182,10 +188,12 @@ if(Count<80){
 
 
 void MainView::CheckIncoder(){
-	 if ( enc.capture_is_ready)
-	 {
-
+	//osEvent event;
+	//event = osMessageGet(QueueIncoderHandle,0);
+	//  if (event.status == osEventMessage){
+	 if ( enc.capture_is_ready){
 		 if(enc.EncDirect){
+//		  if(event.value.v){
 		  if(Count<80){
 		  	 Count++;
 		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);

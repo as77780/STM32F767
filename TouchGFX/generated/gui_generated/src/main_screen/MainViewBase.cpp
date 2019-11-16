@@ -12,9 +12,9 @@ MainViewBase::MainViewBase() :
 {
     touchgfx::CanvasWidgetRenderer::setupBuffer(canvasBuffer, CANVAS_BUFFER_SIZE);
 
-    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_TEKSTURA_UZOR_CHERNYY_FON_ID));
+    tiledImage1.setBitmap(touchgfx::Bitmap(BITMAP_MAKRO_BOKE_DOZHD_KAPLI_VODA_ID));
     tiledImage1.setPosition(0, 0, 480, 272);
-    tiledImage1.setOffset(106, 0);
+    tiledImage1.setOffset(0, 0);
 
     boxWithBorder1_1.setPosition(7, 194, 183, 68);
     boxWithBorder1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
@@ -162,8 +162,8 @@ MainViewBase::MainViewBase() :
     textArea1_1.setLinespacing(0);
     textArea1_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID41));
 
-    image1.setXY(213, 197);
-    image1.setBitmap(touchgfx::Bitmap(BITMAP_ETHON_ID));
+    image1.setXY(209, 194);
+    image1.setBitmap(touchgfx::Bitmap(BITMAP_LINUX_ID));
     image1.setAlpha(67);
 
     buttonPowOff.setXY(11, 199);

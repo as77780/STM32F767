@@ -9,7 +9,7 @@ Screen2View::Screen2View()
 void Screen2View::setupScreen()
 {
 	Screen2ViewBase::setupScreen();
-	  TIM5->CCR1=100;
+	  TIM5->CCR1=20;
 	  TimeView();
 	  POWER_OFF();
 }
