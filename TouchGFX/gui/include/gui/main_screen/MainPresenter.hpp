@@ -39,6 +39,7 @@ public:
         uint8_t GetVol(){return (model->GetVol()) ;}
         uint8_t GetStatLogin(){return model->GetStatLogin();}
         uint8_t GetStatInet(){return model->GetStatInet();}
+        uint8_t GetState(){return pl->GetState();}
 
 private:
     MainPresenter();

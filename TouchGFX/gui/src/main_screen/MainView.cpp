@@ -10,7 +10,7 @@ typedef struct  {
  uint8_t EncDirect;
 }struct_enc;
 extern struct_enc enc;
-
+uint8_t s;
 MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
 {
 
@@ -18,6 +18,25 @@ MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheel
 
 void MainView::setupScreen()
 {	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
+
+	 s=presenter->GetState();
+	    if(s==1){
+	    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_HDD_ID), touchgfx::Bitmap(BITMAP_HDD_ID));
+	    	buttonPlay.invalidate();
+	    }
+	    if(s==2){
+	    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_RADIO_ID), touchgfx::Bitmap(BITMAP_RADIO_ID));
+	    	buttonPlay.invalidate();
+	    }
+	    if(s==3){
+	      	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BUD_ID), touchgfx::Bitmap(BITMAP_BUD_ID));
+	    	buttonPlay.invalidate();
+	    }
+	    if(s==0){
+	    	 buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));
+	    	 buttonPlay.invalidate();
+	    }
+
     MainViewBase::setupScreen();
     TIM5->CCR1=100;
   	 GetTimeOut();

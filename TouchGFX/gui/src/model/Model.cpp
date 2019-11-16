@@ -20,6 +20,7 @@ extern osMailQId mail;
 Model::Model() : modelListener(0)
 {
 
+
 }
 
 void Model::tick()
@@ -73,3 +74,64 @@ uint8_t Model::GetStatInet(){
 		}
 }
 
+uint8_t Player::PlayBUD(){
+if((Eth_REDy[0]==complit)){
+	if((HDD==play)||(Radio==play)){
+						Stop();
+					}
+	prog_bud_eth();
+	Bud=play;
+	return 1;
+	}
+	return 0;
+}
+uint8_t Player::PlayRadio(){
+	if(Eth_INET==complit){
+		if((HDD==play)||(Bud==play)){
+					Stop();
+				}
+	prog_eth();
+	Radio=play;
+	return 1;
+		}
+	return 0;
+	}
+uint8_t Player::PlayHDD(){
+	if((Eth_REDy[0]==complit)){
+		if((Radio==play)||(Bud==play)){
+			Stop();
+		}
+	prog_pl_eth();
+	HDD=play;
+	return 1;
+	}
+	return 0;
+	}
+void Player::Stop(){
+	if((HDD==play)||(Radio==play)||(Bud==play)){
+		R_stop_eth();
+		Radio=stop;
+		HDD=stop;
+		Bud=stop;
+	}
+}
+uint8_t Player::EnyPlay(){
+	if((HDD==play)||(Radio==play)||(Bud==play)){
+	return 1;
+	}
+
+	return 0;
+
+}
+void Player::FF_Play(){
+	if(EnyPlay()){R_Right_eth();}
+	}
+void Player::Back_Play(){
+	if(EnyPlay()){R_Left_eth();}
+}
+uint8_t Player::GetState(){
+	if(HDD==play){return 1;}
+	if(Radio==play){return 2;}
+	if(Bud==play){return 3;}
+	return 0;
+}

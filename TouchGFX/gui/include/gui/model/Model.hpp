@@ -10,6 +10,8 @@ extern UART_HandleTypeDef huart1;
 
 class ModelListener;
 enum sensor {t_power=0,T_sound};
+enum state {stop=0,play};
+
 
 /**
  * The Model class defines the data model in the model-view-presenter paradigm.
@@ -23,6 +25,27 @@ enum sensor {t_power=0,T_sound};
  * pointer, which is automatically configured to point to the current presenter.
  * Conversely, the current presenter can trigger events in the backend through the Model.
  */
+class Player
+{
+public:
+	Player():Bud(stop),Radio(stop),HDD(stop){}
+	uint8_t EnyPlay();
+
+	uint8_t PlayBUD();
+	uint8_t PlayRadio();
+	uint8_t PlayHDD();
+	void Stop();
+	void FF_Play();
+	void Back_Play();
+
+	uint8_t GetState();
+
+protected:
+	state Bud;
+	state Radio;
+	state HDD;
+};
+
 class Model
 {
 public:
@@ -83,7 +106,9 @@ protected:
     int16_t tickCount;
     float temper[2];
     uint8_t FAN1Speed,FAN2Speed;
+    Player play;
 
 };
+
 
 #endif /* MODEL_HPP */
