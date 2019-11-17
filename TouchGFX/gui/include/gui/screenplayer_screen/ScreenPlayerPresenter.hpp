@@ -29,13 +29,13 @@ public:
     uint8_t GetStatLogin(){return model->GetStatLogin();}
     uint8_t GetStatInet(){return model->GetStatInet();}
 
-    uint8_t PlayBUD(){return pl->PlayBUD();}
-    uint8_t PlayRadio(){return pl->PlayRadio();}
-    uint8_t PlayHDD(){return pl->PlayHDD();}
-    void Stop(){pl->Stop();}
-    void FF_Play(){pl->FF_Play();}
-    void Back_Play(){pl->Back_Play();}
-    uint8_t GetState(){return pl->GetState();}
+    uint8_t PlayBUD(){return model->play.PlayBUD();}
+    uint8_t PlayRadio(){return  model->play.PlayRadio();}
+    uint8_t PlayHDD(){return  model->play.PlayHDD();}
+    void Stop(){ model->play.Stop();}
+    void FF_Play() {model->play.FF_Play();}
+    void Back_Play(){ model->play.Back_Play();}
+    uint8_t GetState(){return  model->play.GetState();}
 
 private:
     ScreenPlayerPresenter();

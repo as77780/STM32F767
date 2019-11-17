@@ -29,7 +29,7 @@ public:
     }
 protected:
     Model* model;
-    Player* pl;
+  //  Player* pl;
 };
 
 #endif /* MODELLISTENER_HPP */

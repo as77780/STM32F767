@@ -234,3 +234,16 @@ void MainView::CheckIncoder(){
 	   }
 
 }
+void MainView::ButPlayEnter(){
+if (s!=0){
+	     presenter->Stop();
+	     buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));
+		 buttonPlay.invalidate();
+       }
+else{
+	if(presenter->PlayRadio()){
+		buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_RADIO_ID), touchgfx::Bitmap(BITMAP_RADIO_ID));
+		buttonPlay.invalidate();
+	}
+}
+}

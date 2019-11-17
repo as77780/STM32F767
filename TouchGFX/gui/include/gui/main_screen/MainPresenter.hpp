@@ -39,7 +39,12 @@ public:
         uint8_t GetVol(){return (model->GetVol()) ;}
         uint8_t GetStatLogin(){return model->GetStatLogin();}
         uint8_t GetStatInet(){return model->GetStatInet();}
-        uint8_t GetState(){return pl->GetState();}
+        uint8_t GetState(){return model->play.GetState();}
+
+        uint8_t PlayBUD(){return model->play.PlayBUD();}
+        uint8_t PlayRadio(){return  model->play.PlayRadio();}
+        uint8_t PlayHDD(){return  model->play.PlayHDD();}
+        void Stop(){ model->play.Stop();}
 
 private:
     MainPresenter();

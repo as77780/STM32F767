@@ -137,6 +137,7 @@ MainViewBase::MainViewBase() :
     buttonPlay.setXY(309, 199);
     buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));
     buttonPlay.setIconXY(5, 5);
+    buttonPlay.setAction(buttonCallback);
 
     textTempPower.setPosition(358, 10, 112, 15);
     textTempPower.setColor(touchgfx::Color::getColorFrom24BitRGB(242, 242, 242));
@@ -242,6 +243,13 @@ void MainViewBase::buttonCallbackHandler(const touchgfx::AbstractButton& src)
         //When ButVolDown clicked call virtual function
         //Call FunVolDown
         FunVolDown();
+    }
+    else if (&src == &buttonPlay)
+    {
+        //InteractionButPlayEnter
+        //When buttonPlay clicked call virtual function
+        //Call ButPlayEnter
+        ButPlayEnter();
     }
     else if (&src == &buttonPowOff)
     {

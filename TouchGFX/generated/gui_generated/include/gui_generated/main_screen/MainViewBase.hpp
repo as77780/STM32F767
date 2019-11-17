@@ -47,6 +47,11 @@ public:
         // Override and implement this function in Main
     }
 
+    virtual void ButPlayEnter()
+    {
+        // Override and implement this function in Main
+    }
+
 protected:
     FrontendApplication& application() {
         return *static_cast<FrontendApplication*>(touchgfx::Application::getInstance());

@@ -24,6 +24,7 @@ public:
     virtual void prepareOff(){SOUND_OFF();}
 
     void CheckIncoder();
+    virtual void ButPlayEnter();
 
 protected:
     int16_t hour;

@@ -76,47 +76,48 @@ uint8_t Model::GetStatInet(){
 
 uint8_t Player::PlayBUD(){
 if((Eth_REDy[0]==complit)){
-	if((HDD==play)||(Radio==play)){
+	if((HDD)||(Bud)||(Radio)){
 						Stop();
 					}
 	prog_bud_eth();
-	Bud=play;
+	Bud=1;
 	return 1;
 	}
 	return 0;
 }
 uint8_t Player::PlayRadio(){
 	if(Eth_INET==complit){
-		if((HDD==play)||(Bud==play)){
+		if((HDD)||(Bud)||(Radio)){
 					Stop();
 				}
 	prog_eth();
-	Radio=play;
+	Radio=1;
 	return 1;
 		}
 	return 0;
 	}
 uint8_t Player::PlayHDD(){
 	if((Eth_REDy[0]==complit)){
-		if((Radio==play)||(Bud==play)){
+		if((HDD)||(Bud)||(Radio)){
 			Stop();
 		}
 	prog_pl_eth();
-	HDD=play;
+	HDD=1;
 	return 1;
 	}
 	return 0;
 	}
 void Player::Stop(){
-	if((HDD==play)||(Radio==play)||(Bud==play)){
+	if((HDD)||(Radio)||(Bud)){
 		R_stop_eth();
-		Radio=stop;
-		HDD=stop;
-		Bud=stop;
+		osDelay(500);
+		Radio=0;
+		HDD=0;
+		Bud=0;
 	}
 }
 uint8_t Player::EnyPlay(){
-	if((HDD==play)||(Radio==play)||(Bud==play)){
+	if((HDD)||(Radio)||(Bud)){
 	return 1;
 	}
 
@@ -130,8 +131,8 @@ void Player::Back_Play(){
 	if(EnyPlay()){R_Left_eth();}
 }
 uint8_t Player::GetState(){
-	if(HDD==play){return 1;}
-	if(Radio==play){return 2;}
-	if(Bud==play){return 3;}
+	if(HDD){return 1;}
+	if(Radio){return 2;}
+	if(Bud){return 3;}
 	return 0;
 }

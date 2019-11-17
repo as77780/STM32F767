@@ -1302,6 +1302,18 @@
               "ActionComponent": "buttonPowOff",
               "Type": "ActionFade"
             }
+          },
+          {
+            "InteractionName": "InteractionButPlayEnter",
+            "HasCompletedTrigger": false,
+            "Trigger": {
+              "TriggerComponent": "buttonPlay",
+              "Type": "TriggerClicked"
+            },
+            "Action": {
+              "FunctionName": "ButPlayEnter",
+              "Type": "ActionCustom"
+            }
           }
         ],
         "Name": "Main",

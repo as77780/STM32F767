@@ -28,7 +28,7 @@ enum state {stop=0,play};
 class Player
 {
 public:
-	Player():Bud(stop),Radio(stop),HDD(stop){}
+	Player():Bud(0),Radio(0),HDD(0){}
 	uint8_t EnyPlay();
 
 	uint8_t PlayBUD();
@@ -41,9 +41,9 @@ public:
 	uint8_t GetState();
 
 protected:
-	state Bud;
-	state Radio;
-	state HDD;
+	volatile uint8_t Bud=0;
+	volatile uint8_t Radio=0;
+	volatile uint8_t HDD=0;
 };
 
 class Model
@@ -95,6 +95,7 @@ public:
      * the ModelListener interface.
      */
     void tick();
+    Player play;
 protected:
     /**
      * Pointer to the currently active presenter.
@@ -106,7 +107,7 @@ protected:
     int16_t tickCount;
     float temper[2];
     uint8_t FAN1Speed,FAN2Speed;
-    Player play;
+  //  Player play;
 
 };
 
