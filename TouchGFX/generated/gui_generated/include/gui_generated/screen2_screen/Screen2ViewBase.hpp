@@ -9,6 +9,7 @@
 #include <gui/screen2_screen/Screen2Presenter.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/containers/clock/AnalogClock.hpp>
+#include <touchgfx/containers/clock/DigitalClock.hpp>
 #include <touchgfx/widgets/ButtonWithIcon.hpp>
 #include <touchgfx/EasingEquations.hpp>
 #include <touchgfx/mixins/FadeAnimator.hpp>
@@ -39,6 +40,7 @@ protected:
      */
     touchgfx::Image image1;
     touchgfx::AnalogClock analogClock1;
+    touchgfx::DigitalClock digitalClock1;
     touchgfx::ButtonWithIcon buttonSettings;
     touchgfx::FadeAnimator< touchgfx::ButtonWithIcon > ButPowerOn;
 

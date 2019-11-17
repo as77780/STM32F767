@@ -27,6 +27,9 @@ touchgfx::Font* ApplicationFontProvider::getFont(touchgfx::FontId typography)
     case Typography::TYP3:
         // verdana_50_4bpp
         return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[5]);
+    case Typography::BIG_CLOCK:
+        // verdana_100_4bpp
+        return const_cast<touchgfx::Font*>(TypedTextDatabase::getFonts()[6]);
     default:
         return 0;
     }

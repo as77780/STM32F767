@@ -3,6 +3,7 @@
 /*********************************************************************************/
 #include <gui_generated/screen2_screen/Screen2ViewBase.hpp>
 #include "BitmapDatabase.hpp"
+#include <texts/TextKeysAndLanguages.hpp>
 
 Screen2ViewBase::Screen2ViewBase() :
     buttonCallback(this, &Screen2ViewBase::buttonCallbackHandler),
@@ -13,7 +14,7 @@ Screen2ViewBase::Screen2ViewBase() :
     image1.setXY(0, 0);
     image1.setBitmap(touchgfx::Bitmap(BITMAP_OBOI_ID));
 
-    analogClock1.setXY(124, 20);
+    analogClock1.setXY(120, 19);
     analogClock1.setBackground(BITMAP_DARK_CLOCKS_BACKGROUNDS_CLOCK_CLASSIC_BACKGROUND_ID, 116, 116);
     analogClock1.setupSecondHand(BITMAP_DARK_CLOCKS_HANDS_CLOCK_CLASSIC_SECOND_HAND_ID, 4, 79);
     analogClock1.setupMinuteHand(BITMAP_DARK_CLOCKS_HANDS_CLOCK_CLASSIC_MINUTE_HAND_ID, 2, 64);
@@ -22,6 +23,15 @@ Screen2ViewBase::Screen2ViewBase() :
     analogClock1.setHourHandMinuteCorrection(false);
     analogClock1.initializeTime24Hour(10, 10, 0);
     analogClock1.setAnimation(30, touchgfx::EasingEquations::backEaseOut);
+    analogClock1.setVisible(false);
+
+    digitalClock1.setPosition(86, 69, 308, 143);
+    digitalClock1.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
+    digitalClock1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID44));
+    digitalClock1.displayLeadingZeroForHourIndicator(true);
+    digitalClock1.setDisplayMode(touchgfx::DigitalClock::DISPLAY_24_HOUR_NO_SECONDS);
+    digitalClock1.setTime24Hour(10, 10, 0);
+    digitalClock1.setVisible(false);
 
     buttonSettings.setXY(410, 9);
     buttonSettings.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_SETTINGS_32_ID), touchgfx::Bitmap(BITMAP_DARK_ICONS_SETTINGS_32_ID));
@@ -35,6 +45,7 @@ Screen2ViewBase::Screen2ViewBase() :
 
     add(image1);
     add(analogClock1);
+    add(digitalClock1);
     add(buttonSettings);
     add(ButPowerOn);
 }

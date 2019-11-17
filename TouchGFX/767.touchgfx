@@ -414,12 +414,38 @@
             "InitialMinute": 10,
             "InitialSecond": 0,
             "Name": "analogClock1",
-            "X": 124,
-            "Y": 20,
-            "Width": 233,
-            "Height": 243,
+            "X": 120,
+            "Y": 19,
+            "Width": 240,
+            "Height": 234,
             "Type": "AnalogClock",
-            "Visible": true,
+            "Visible": false,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextColor": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "TextId": "SingleUseId44",
+            "DisplaySeconds": false,
+            "DisplayLeadingZeroForHourIndicator": true,
+            "Alpha": 255,
+            "UseAmPm": false,
+            "InitialHour": 10,
+            "InitialMinute": 10,
+            "InitialSecond": 0,
+            "Name": "digitalClock1",
+            "X": 86,
+            "Y": 69,
+            "Width": 308,
+            "Height": 143,
+            "Type": "DigitalClock",
+            "Visible": false,
             "Draggable": false,
             "Clickable": false,
             "Fadeable": false,
@@ -2717,6 +2743,10 @@
       },
       {
         "TextEntryId": "SingleUseId43",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId44",
         "IsResource": false
       }
     ],
