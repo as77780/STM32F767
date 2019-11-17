@@ -207,15 +207,10 @@ void R_V_PL_eth (void){net_wr(NetConn[0],"*");}
 void R_V_Min_eth (void){net_wr(NetConn[0],"/");}
 void Inet_test_eth (void){net_wr(NetConn[1],"./inet.sh\r");	net_wr(NetConn[1],"date\r");}
 int8_t IsLogin(uint8_t n){
-	if(n && Eth_REDy[n]==complit){
-		return 0;
-	}
-	else if(n && Eth_REDy[n]==complit){
+	if(Eth_REDy[n]==complit){
 		return 1;
 	}
-	else{
-		return -1;
+		else
+		return 0;
 	}
-
-}
 

@@ -104,7 +104,7 @@ protected:
     int16_t hour;
     int16_t minute;
     int16_t second;
-    int16_t tickCount;
+    int16_t tickCount,tickCount1;
     float temper[2];
     uint8_t FAN1Speed,FAN2Speed;
   //  Player play;

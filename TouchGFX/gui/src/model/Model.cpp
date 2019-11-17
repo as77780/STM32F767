@@ -37,12 +37,18 @@ void Model::tick()
 	if (tickCount == 60)
 		    {
 		    tickCount = 0;
-
 		    getTime();
 		    FAN1Speed=(uint8_t)TIM4->CCR1;
 		    FAN2Speed=(uint8_t)TIM4->CCR2;
 		    	    }
+	if (tickCount1 == 600)  {
+		tickCount1=0;
+		if(IsLogin(1)==1){
+				    	Inet_test_eth();
+				    }
+	}
 			tickCount++;
+			tickCount1++;
 
 }
 void Model::getTime(){

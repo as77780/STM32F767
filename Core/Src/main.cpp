@@ -1205,9 +1205,7 @@ void CallbackTimer01(void const * argument)
 		           }
 		    temp_check((uint8_t)tp[t_power],(uint8_t)tp[T_sound]);
 		    osMailPut(mail, qstruct);
-		    if(IsLogin(1)==1){
-		    	Inet_test_eth();
-		    }
+
 
 
   /* USER CODE END CallbackTimer01 */
