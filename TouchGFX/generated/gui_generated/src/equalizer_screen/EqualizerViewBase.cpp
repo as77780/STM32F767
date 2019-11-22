@@ -24,21 +24,21 @@ EqualizerViewBase::EqualizerViewBase() :
     SliderBass.setXY(6, 168);
     SliderBass.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderBass.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderBass.setValueRange(0, 15);
+    SliderBass.setValueRange(0, 14);
     SliderBass.setValue(8);
     SliderBass.setNewValueCallback(sliderValueChangedCallback);
 
     SliderMid.setXY(6, 119);
     SliderMid.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderMid.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderMid.setValueRange(0, 15);
+    SliderMid.setValueRange(0, 14);
     SliderMid.setValue(8);
     SliderMid.setNewValueCallback(sliderValueChangedCallback);
 
     SliderTreble.setXY(6, 62);
     SliderTreble.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderTreble.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderTreble.setValueRange(0, 15);
+    SliderTreble.setValueRange(0, 14);
     SliderTreble.setValue(8);
     SliderTreble.setNewValueCallback(sliderValueChangedCallback);
 

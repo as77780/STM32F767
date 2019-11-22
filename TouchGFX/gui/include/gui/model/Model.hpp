@@ -76,17 +76,17 @@ public:
     void SetVolume(uint8_t vol){tda7439VolumeSet(vol);}
     uint8_t GetVol(){return (GetTda7439Volume()) ;}
 
-    void SetGain(uint8_t gain){tda7439GainSet(gain);}
-    uint8_t GetGain(){return (GetTda7439Gain()) ;}
+    void SetGain(uint8_t gain){tda7439GainSet(0b00001111-gain);}
+    uint8_t GetGain(){return (0b00001111-GetTda7439Gain()) ;}
 
-    void SetBass(uint8_t bass){tda7439BassSet(bass);}
-    uint8_t GetBass(){return (GetTda7439Bass()) ;}
+    void SetBass(uint8_t bass){tda7439BassSet(0b00001110-bass);}
+    uint8_t GetBass(){return (0b00001110-GetTda7439Bass()) ;}
 
-    void SetMiddle(uint8_t middle){tda7439MiddleSet(middle);}
-    uint8_t GetMiddle(){return (GetTda7439Middle()) ;}
+    void SetMiddle(uint8_t middle){tda7439MiddleSet(0b00001110-middle);}
+    uint8_t GetMiddle(){return (0b00001110-GetTda7439Middle()) ;}
 
-    void SetTrible(uint8_t trible){tda7439TribleSet(trible);}
-    uint8_t GetTrible(){return (GetTda7439Trible()) ;}
+    void SetTrible(uint8_t trible){tda7439TribleSet(0b00001110-trible);}
+    uint8_t GetTrible(){return (0b00001110-GetTda7439Trible()) ;}
 
 
     /**
