@@ -17,28 +17,28 @@ EqualizerViewBase::EqualizerViewBase() :
     SliderAmplified.setXY(6, 220);
     SliderAmplified.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderAmplified.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderAmplified.setValueRange(0, 16);
+    SliderAmplified.setValueRange(0, 15);
     SliderAmplified.setValue(0);
     SliderAmplified.setNewValueCallback(sliderValueChangedCallback);
 
     SliderBass.setXY(6, 168);
     SliderBass.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderBass.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderBass.setValueRange(0, 16);
+    SliderBass.setValueRange(0, 15);
     SliderBass.setValue(8);
     SliderBass.setNewValueCallback(sliderValueChangedCallback);
 
     SliderMid.setXY(6, 119);
     SliderMid.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderMid.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderMid.setValueRange(0, 16);
+    SliderMid.setValueRange(0, 15);
     SliderMid.setValue(8);
     SliderMid.setNewValueCallback(sliderValueChangedCallback);
 
     SliderTreble.setXY(6, 62);
     SliderTreble.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderTreble.setupHorizontalSlider(0, 10, 0, 0, 300);
-    SliderTreble.setValueRange(0, 16);
+    SliderTreble.setValueRange(0, 15);
     SliderTreble.setValue(8);
     SliderTreble.setNewValueCallback(sliderValueChangedCallback);
 

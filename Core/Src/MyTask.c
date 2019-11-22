@@ -39,8 +39,8 @@ void NetRouting(uint8_t arg){
 
 		  	  IP_ADDRESS_REM[0] = 192;
 		  	  IP_ADDRESS_REM[1] = 168;
-		  	  IP_ADDRESS_REM[2] = 0;
-		  	  IP_ADDRESS_REM[3] = 103;
+		  	  IP_ADDRESS_REM[2] = 1;
+		  	  IP_ADDRESS_REM[3] = 111;
 		  	  ip4_addr_t remote_ip;
 		  	  ip4_addr_t local_ip =gnetif.ip_addr;
 
