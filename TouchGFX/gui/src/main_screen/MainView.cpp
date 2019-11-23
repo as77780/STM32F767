@@ -10,7 +10,7 @@ typedef struct  {
  uint8_t EncDirect;
 }struct_enc;
 extern struct_enc enc;
-uint8_t s;
+//uint8_t s;
 MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
 {
 
@@ -18,7 +18,7 @@ MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheel
 
 void MainView::setupScreen()
 {	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
-
+	uint8_t s;
 	 s=presenter->GetState();
 	    if(s==1){
 	    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_HDD_ID), touchgfx::Bitmap(BITMAP_HDD_ID));
@@ -235,6 +235,8 @@ void MainView::CheckIncoder(){
 
 }
 void MainView::ButPlayEnter(){
+	uint8_t s;
+	s=presenter->GetState();
 if (s!=0){
 	     presenter->Stop();
 	     buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));

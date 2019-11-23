@@ -66,6 +66,9 @@ extern "C" {
 #define SOUND_OFF() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_RESET)
 #define POWER_ON() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_5, GPIO_PIN_SET)
 #define SOUND_ON() HAL_GPIO_WritePin(GPIOI, GPIO_PIN_1, GPIO_PIN_SET)
+#define LED_10()  { TIM5->CCR1=2;}
+#define LED_50()  { TIM5->CCR1=30;}
+#define LED_100() {TIM5->CCR1=100;}
 /* USER CODE END EM */
 
 void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
