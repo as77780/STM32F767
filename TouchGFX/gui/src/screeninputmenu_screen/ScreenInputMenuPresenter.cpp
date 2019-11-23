@@ -8,10 +8,10 @@ ScreenInputMenuPresenter::ScreenInputMenuPresenter(ScreenInputMenuView& v)
 
 void ScreenInputMenuPresenter::activate()
 {
-
+	model->ActivEnc();
 }
 
 void ScreenInputMenuPresenter::deactivate()
 {
-
+	 model->DisativEnc();
 }

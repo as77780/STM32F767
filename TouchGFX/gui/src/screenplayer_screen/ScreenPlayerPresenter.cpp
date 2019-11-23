@@ -8,10 +8,10 @@ ScreenPlayerPresenter::ScreenPlayerPresenter(ScreenPlayerView& v)
 
 void ScreenPlayerPresenter::activate()
 {
-
+	model->ActivEnc();
 }
 
 void ScreenPlayerPresenter::deactivate()
 {
-
+	model->DisativEnc();
 }

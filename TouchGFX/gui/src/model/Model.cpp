@@ -19,14 +19,17 @@ extern osMailQId mail;
 
 Model::Model() : modelListener(0)
 {
-
+	Count=GetVolume();
 
 }
+
 
 void Model::tick()
 {
 	struct_temp *qstruct;
 	osEvent evt;
+
+	CheckIncoder();
 
 	evt = osMailGet(mail, osFeature_Wait);
 			   			 if (evt.status == osEventMail) {
@@ -78,6 +81,31 @@ uint8_t Model::GetStatInet(){
 		else{
 			return 0;
 		}
+}
+
+void Model::CheckIncoder(){
+	//osEvent event;
+	//event = osMessageGet(QueueIncoderHandle,0);
+	//  if (event.status == osEventMessage){
+	 if ( enc.capture_is_ready&(EncActiv)){
+		 if(enc.EncDirect){
+//		  if(event.value.v){
+		  if(Count<80){
+		  	 Count++;
+		  	 SetVolume(Count);
+		  }
+
+	  }
+	  else{
+		  if(Count>0){
+		  	 Count--;
+		  	  SetVolume(Count);
+		  	      }
+
+	  }
+		 enc.capture_is_ready=0;
+	   }
+
 }
 
 uint8_t Player::PlayBUD(){
@@ -142,3 +170,4 @@ uint8_t Player::GetState(){
 	if(Bud){return 3;}
 	return 0;
 }
+

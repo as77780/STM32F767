@@ -5,11 +5,7 @@
 
 
 extern osMessageQId QueueIncoderHandle;
-typedef struct  {
- uint8_t capture_is_ready=0;
- uint8_t EncDirect;
-}struct_enc;
-extern struct_enc enc;
+
 //uint8_t s;
 MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
 {
@@ -57,7 +53,7 @@ void MainView::handleTickEvent()
 {
 	GetTimeOut();
 	ViewTemp();
-	CheckIncoder();
+	CheckVOL();
 }
 
 
@@ -188,50 +184,22 @@ void MainView::handleTickEvent()
  void  MainView::FunVolUP()
  {
 if(Count<80){
-	 Count++;
-	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
-	 textVolume.invalidate();
-	 presenter->SetVolume(Count);
+	  presenter->SetVolume(++Count);
 }
  }
 
  void  MainView::FunVolDown()
  {
 	 if(Count>0){
-	 Count--;
-	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
-	 textVolume.invalidate();
-	 presenter->SetVolume(Count);
+		 presenter->SetVolume(--Count);
 	      }
  }
 
 
-void MainView::CheckIncoder(){
-	//osEvent event;
-	//event = osMessageGet(QueueIncoderHandle,0);
-	//  if (event.status == osEventMessage){
-	 if ( enc.capture_is_ready){
-		 if(enc.EncDirect){
-//		  if(event.value.v){
-		  if(Count<80){
-		  	 Count++;
+void MainView::CheckVOL(){
+	Count= presenter->GetVol();
 		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
 		  	 textVolume.invalidate();
-		  	 presenter->SetVolume(Count);
-		  }
-
-	  }
-	  else{
-		  if(Count>0){
-		  	 Count--;
-		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
-		  	 textVolume.invalidate();
-		  	 presenter->SetVolume(Count);
-		  	      }
-
-	  }
-		 enc.capture_is_ready=0;
-	   }
 
 }
 void MainView::ButPlayEnter(){

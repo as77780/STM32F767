@@ -8,10 +8,10 @@ EqualizerPresenter::EqualizerPresenter(EqualizerView& v)
 
 void EqualizerPresenter::activate()
 {
-
+	model->ActivEnc();
 }
 
 void EqualizerPresenter::deactivate()
 {
-
+	 model->DisativEnc();
 }

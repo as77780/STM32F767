@@ -4,7 +4,11 @@
 #include <touchgfx/Utils.hpp>
 #include "main.h"
 
-
+typedef struct  {
+ uint8_t capture_is_ready=0;
+ uint8_t EncDirect;
+}struct_enc;
+extern struct_enc enc;
 extern  RTC_HandleTypeDef hrtc;
 extern UART_HandleTypeDef huart1;
 
@@ -44,6 +48,7 @@ protected:
 	volatile uint8_t Bud=0;
 	volatile uint8_t Radio=0;
 	volatile uint8_t HDD=0;
+
 };
 
 class Model
@@ -71,10 +76,14 @@ public:
     uint8_t getFan1(){return FAN1Speed;}
     uint8_t getFan2(){return FAN2Speed;}
     void getTime();
+    void CheckIncoder();
+  //  uint8_t GetVol(){return CountVol;}
+  //  void SetVol(uint8_t vol){CountVol=vol;}
   // void temp_check(uint8_t t_pow,uint8_t t_amp);
 
-    void SetVolume(uint8_t vol){tda7439VolumeSet(vol);}
-    uint8_t GetVol(){return (GetTda7439Volume()) ;}
+    void SetVolume(uint8_t vol){tda7439VolumeSet(vol);Count=vol;}
+    uint8_t GetVolume(){return (GetTda7439Volume()) ;}
+    uint8_t GetVol(){return Count ;}
 
     void SetGain(uint8_t gain){tda7439GainSet(0b00001111-gain);}
     uint8_t GetGain(){return (0b00001111-GetTda7439Gain()) ;}
@@ -87,7 +96,8 @@ public:
 
     void SetTrible(uint8_t trible){tda7439TribleSet(0b00001110-trible);}
     uint8_t GetTrible(){return (0b00001110-GetTda7439Trible()) ;}
-
+    void ActivEnc(){EncActiv=1;}
+    void DisativEnc(){EncActiv=0;}
 
     /**
      * This function will be called automatically every frame. Can be used to e.g. sample hardware
@@ -95,6 +105,7 @@ public:
      * the ModelListener interface.
      */
     void tick();
+    void setupScreen();
     Player play;
 protected:
     /**
@@ -107,6 +118,8 @@ protected:
     int16_t tickCount,tickCount1;
     float temper[2];
     uint8_t FAN1Speed,FAN2Speed;
+    uint8_t Count ;
+    uint8_t EncActiv;
   //  Player play;
 
 };

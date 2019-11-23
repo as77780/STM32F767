@@ -23,7 +23,7 @@ public:
     virtual void ViewTemp();
     virtual void prepareOff(){SOUND_OFF();}
 
-    void CheckIncoder();
+    void CheckVOL();
     virtual void ButPlayEnter();
 
 protected:
@@ -31,7 +31,7 @@ protected:
     int16_t minute;
     int16_t second;
     int16_t tickCount ;
-    int16_t Count=0 ;
+    uint8_t Count ;
 
     Callback<MainView, int16_t> scrollWheelAnimateToCallback;
     void scrollWheelAnimateToHandler(int16_t itemSelected);

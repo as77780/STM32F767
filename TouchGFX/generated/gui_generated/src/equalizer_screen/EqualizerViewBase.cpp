@@ -16,6 +16,7 @@ EqualizerViewBase::EqualizerViewBase() :
 
     SliderAmplified.setXY(6, 220);
     SliderAmplified.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
+    SliderAmplified.setVisible(false);
     SliderAmplified.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderAmplified.setValueRange(0, 15);
     SliderAmplified.setValue(0);
@@ -28,7 +29,7 @@ EqualizerViewBase::EqualizerViewBase() :
     SliderBass.setValue(8);
     SliderBass.setNewValueCallback(sliderValueChangedCallback);
 
-    SliderMid.setXY(6, 119);
+    SliderMid.setXY(6, 115);
     SliderMid.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderMid.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderMid.setValueRange(0, 14);
@@ -52,6 +53,7 @@ EqualizerViewBase::EqualizerViewBase() :
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID17));
 
     textArea2.setXY(260, 198);
+    textArea2.setVisible(false);
     textArea2.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID18));

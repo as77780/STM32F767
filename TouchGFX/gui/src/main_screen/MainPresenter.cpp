@@ -8,10 +8,10 @@ MainPresenter::MainPresenter(MainView& v)
 
 void MainPresenter::activate()
 {
-
+	model->ActivEnc();
 }
 
 void MainPresenter::deactivate()
 {
-
+   model->DisativEnc();
 }
