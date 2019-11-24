@@ -603,6 +603,7 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 0 */
 
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
   TIM_SlaveConfigTypeDef sSlaveConfig = {0};
   TIM_MasterConfigTypeDef sMasterConfig = {0};
 
@@ -610,12 +611,17 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 83;
+  htim3.Init.Prescaler = 107;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim3.Init.Period = 0xFFFF;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
   {
     Error_Handler();
   }
@@ -711,7 +717,7 @@ static void MX_TIM5_Init(void)
 
   /* USER CODE END TIM5_Init 1 */
   htim5.Instance = TIM5;
-  htim5.Init.Prescaler = 84;
+  htim5.Init.Prescaler = 107;
   htim5.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim5.Init.Period = 100;
   htim5.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
