@@ -3,7 +3,7 @@
 
 #include <touchgfx/Utils.hpp>
 #include "main.h"
-
+#include"NEC_Decode.h"
 typedef struct  {
  uint8_t capture_is_ready=0;
  uint8_t EncDirect;

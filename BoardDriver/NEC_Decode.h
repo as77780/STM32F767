@@ -30,7 +30,33 @@
 #define IR_NEC_TOL                      5
 
 /////////////////////////////////////////////////////////////////////////////
-
+#define P_POWER ((address==0)&(cmd==69))
+#define P_M_LEFT ((address==0)&(cmd==18)&(power_stat==POW_ON))
+#define P_M_WRITE ((address==0)&(cmd==64)&(power_stat==POW_ON))
+#define P_ITEM_WRITE ((address==0)&(cmd==30)&(power_stat==POW_ON))
+#define P_ITEM_LEFT ((address==0)&(cmd==10)&(power_stat==POW_ON))
+#define P_INPUT1 ((address==0)&(cmd==12)&(power_stat==POW_ON))
+#define P_INPUT2 ((address==0)&(cmd==24)&(power_stat==POW_ON))
+#define P_INPUT3 ((address==0)&(cmd==94)&(power_stat==POW_ON))
+#define P_INPUT4 ((address==0)&(cmd==8)&(power_stat==POW_ON))
+#define P_BASS ((address==0)&(cmd==17)&(power_stat==POW_ON))
+#define P_VOLUME ((address==0)&(cmd==20)&(power_stat==POW_ON))
+#define P_MIDDLE ((address==0)&(cmd==21)&(power_stat==POW_ON))
+#define P_TREBLE ((address==0)&(cmd==23)&(power_stat==POW_ON))
+#define P_GAIN_PL ((address==0)&(cmd==25)&(power_stat==POW_ON))
+#define P_GAIN_MIN ((address==0)&(cmd==22)&(power_stat==POW_ON))
+#define P_CHENGE_BUD ((address==0)&(cmd==68)&(power_stat==POW_ON))
+#define P_CHENGE_TIME ((address==0)&(cmd==15)&(power_stat==POW_ON))
+#define P_CHENGE_MUTE ((address==0)&(cmd==71)&(power_stat==POW_ON))
+#define P_CHENGE_TIME_B  ((address==0)&(cmd==0)&(power_stat==POW_ON))
+#define P_prog  ((address==0)&(cmd==66)&(power_stat==POW_ON))
+#define P_stop  ((address==0)&(cmd==70)&(power_stat==POW_ON))
+#define P_PL_LEFT  ((address==0)&(cmd==07)&(power_stat==POW_ON))
+#define P_PL_Right  ((address==0)&(cmd==21)&(power_stat==POW_ON))
+#define P_PL_V_PL  ((address==0)&(cmd==90)&(power_stat==POW_ON))
+#define P_PL_V_MIN ((address==0)&(cmd==28)&(power_stat==POW_ON))
+#define P_PL_MUZ ((address==0)&(cmd==82)&(power_stat==POW_ON))
+#define P_MUZ_BUD ((address==0)&(cmd==74)&(power_stat==POW_ON))
 ////////////////////////////////////////////////////////////////////////////
 
 
