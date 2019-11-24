@@ -93,6 +93,7 @@ typedef struct struct_enc_t {
 }struct_enc;
 
 struct_enc enc;
+extern NEC nec;
 
 typedef struct struct_arg_t {
  // char str_name[10];
@@ -620,7 +621,7 @@ static void MX_TIM3_Init(void)
   }
   sSlaveConfig.SlaveMode = TIM_SLAVEMODE_TRIGGER;
   sSlaveConfig.InputTrigger = TIM_TS_TI1FP1;
-  sSlaveConfig.TriggerPolarity = TIM_TRIGGERPOLARITY_RISING;
+  sSlaveConfig.TriggerPolarity = TIM_TRIGGERPOLARITY_FALLING;
   sSlaveConfig.TriggerFilter = 4;
   if (HAL_TIM_SlaveConfigSynchro(&htim3, &sSlaveConfig) != HAL_OK)
   {
@@ -1080,7 +1081,7 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
 	}
 
 	if (htim->Instance==TIM3) {
-	      //  NEC_TIM_IC_CaptureCallback(&nec);
+	        NEC_TIM_IC_CaptureCallback(&nec);
 	    }
 
 

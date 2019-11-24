@@ -22,21 +22,21 @@ EqualizerViewBase::EqualizerViewBase() :
     SliderAmplified.setValue(0);
     SliderAmplified.setNewValueCallback(sliderValueChangedCallback);
 
-    SliderBass.setXY(6, 168);
+    SliderBass.setXY(36, 188);
     SliderBass.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderBass.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderBass.setValueRange(0, 14);
     SliderBass.setValue(8);
     SliderBass.setNewValueCallback(sliderValueChangedCallback);
 
-    SliderMid.setXY(6, 115);
+    SliderMid.setXY(36, 129);
     SliderMid.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderMid.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderMid.setValueRange(0, 14);
     SliderMid.setValue(8);
     SliderMid.setNewValueCallback(sliderValueChangedCallback);
 
-    SliderTreble.setXY(6, 62);
+    SliderTreble.setXY(36, 70);
     SliderTreble.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_BACK_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_SLIDER_ROUND_FILL_ID), touchgfx::Bitmap(BITMAP_DARK_SLIDER_HORIZONTAL_MEDIUM_INDICATORS_SLIDER2_ROUND_NOB_ID));
     SliderTreble.setupHorizontalSlider(0, 10, 0, 0, 300);
     SliderTreble.setValueRange(0, 14);
@@ -58,17 +58,17 @@ EqualizerViewBase::EqualizerViewBase() :
     textArea2.setLinespacing(0);
     textArea2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID18));
 
-    textArea2_1.setXY(307, 147);
+    textArea2_1.setXY(343, 163);
     textArea2_1.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
     textArea2_1.setLinespacing(0);
     textArea2_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID19));
 
-    textArea2_2.setXY(289, 96);
+    textArea2_2.setXY(325, 104);
     textArea2_2.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
     textArea2_2.setLinespacing(0);
     textArea2_2.setTypedText(touchgfx::TypedText(T_SINGLEUSEID20));
 
-    textArea2_3.setXY(295, 40);
+    textArea2_3.setXY(327, 45);
     textArea2_3.setColor(touchgfx::Color::getColorFrom24BitRGB(171, 171, 171));
     textArea2_3.setLinespacing(0);
     textArea2_3.setTypedText(touchgfx::TypedText(T_SINGLEUSEID21));

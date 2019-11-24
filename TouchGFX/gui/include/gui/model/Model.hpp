@@ -80,7 +80,7 @@ public:
   //  uint8_t GetVol(){return CountVol;}
   //  void SetVol(uint8_t vol){CountVol=vol;}
   // void temp_check(uint8_t t_pow,uint8_t t_amp);
-
+    void SetVol(uint8_t vol){Count=vol;}
     void SetVolume(uint8_t vol){tda7439VolumeSet(vol);Count=vol;}
     uint8_t GetVolume(){return (GetTda7439Volume()) ;}
     uint8_t GetVol(){return Count ;}

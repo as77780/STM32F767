@@ -151,7 +151,7 @@ void myNecRepeatCallback() {
     NEC_Read(&nec);
 }
 void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
-
+	 NEC_Read(&nec);
 }
 
 /*

@@ -26,6 +26,8 @@ public:
     virtual void deactivate();
 
     virtual ~ScreenInputMenuPresenter() {};
+    void SetVol(int8_t vol) { model->SetVol(vol);  }
+    uint8_t GetVolume(){return (model->GetVolume()) ;}
 
 private:
     ScreenInputMenuPresenter();
