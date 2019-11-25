@@ -107,6 +107,7 @@ public:
     void tick();
     void setupScreen();
     Player play;
+
 protected:
     /**
      * Pointer to the currently active presenter.
@@ -123,6 +124,6 @@ protected:
   //  Player play;
 
 };
-
+void myNecDecodedCallback(uint16_t address, uint8_t cmd);
 
 #endif /* MODEL_HPP */

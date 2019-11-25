@@ -1,8 +1,11 @@
 #include <gui/model/Model.hpp>
+
 #include <gui/model/ModelListener.hpp>
+
 #include <stdio.h>
 #include "../../../../BoardDriver/EEPROM.h"
 #include "MyTask.h"
+#include <gui/screeninputmenu_screen/ScreenInputMenuView.hpp>
 
 #include "cmsis_os.h"
 extern TIM_HandleTypeDef htim4;
@@ -12,7 +15,81 @@ typedef  struct struct_temp_t {
 	float temper[2];
 }struct_temp;
 extern osMailQId mail;
+extern NEC nec;
+ModelListener m;
+Model model;
 
+
+void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
+	m.bind(&model);
+	if(P_POWER){
+	//POWER_CAP=1;
+		}
+	if(P_INPUT1){
+		SetInput(0);
+model.SetVol(model.GetVolume());
+			}
+	if(P_INPUT2){
+		SetInput(1);
+model.SetVol(model.GetVolume());
+			// bat_view();
+		}
+	if(P_INPUT3){
+		SetInput(2);
+
+		}
+	if(P_INPUT4){
+		SetInput(3);
+
+		}
+	if(P_stop){
+	//	P_STOP();
+	}
+	if(P_MUZ_BUD){
+		//		PL_BUD();
+			}
+	if(P_prog){
+	//	PL_RAD();
+			}
+	if(P_PL_MUZ){
+	//	PL_MUZ();
+			}
+	if(P_PL_V_PL){
+		//R_V_PL(&huart7);
+		R_V_PL_eth();
+		}
+	if(P_PL_V_MIN){
+		//R_V_Min(&huart7);
+	R_V_Min_eth();
+	}
+	if(P_PL_LEFT){
+		//if((Eth_REDy[0]==complit)&((pl==on)|(rad==on)|(bud==on))){
+			//R_Left(&huart7);
+		R_Left_eth();
+	//	}
+
+			}
+	if(P_PL_Right){
+		//if((Eth_REDy[0]==complit)&((pl==on)|(rad==on)|(bud==on))){
+		//	R_Right(&huart7);
+			R_Right_eth();
+	//	}
+
+			}
+	if(P_GAIN_PL){
+
+				}
+	if(P_GAIN_MIN){
+
+				}
+	if(P_CHENGE_BUD){
+
+	}
+
+
+	 NEC_Read(&nec);
+
+}
 
 
 

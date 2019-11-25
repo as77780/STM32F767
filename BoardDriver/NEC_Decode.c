@@ -9,13 +9,12 @@
 
 #include"NEC_Decode.h"
 
-void TIM3_Init(void);
+void TIM3_Init(TIM_HandleTypeDef* handle);
 
 
 NEC nec;
-extern TIM_HandleTypeDef htim3;
 
-void TIM3_Init(void)
+void TIM3_Init(TIM_HandleTypeDef* handle)
 {
 
   TIM_ClockConfigTypeDef sClockSourceConfig;
@@ -23,23 +22,23 @@ void TIM3_Init(void)
   TIM_MasterConfigTypeDef sMasterConfig;
   TIM_IC_InitTypeDef sConfigIC;
 
-  htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 107;
-  htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 0xFFFF;
-  htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  if (HAL_TIM_Base_Init(&htim3) != HAL_OK)
+  handle->Instance = TIM3;
+  handle->Init.Prescaler = 107;
+  handle->Init.CounterMode = TIM_COUNTERMODE_UP;
+  handle->Init.Period = 0xFFFF;
+  handle->Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  if (HAL_TIM_Base_Init(handle) != HAL_OK)
   {
     Error_Handler();
   }
 
   sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim3, &sClockSourceConfig) != HAL_OK)
+  if (HAL_TIM_ConfigClockSource(handle, &sClockSourceConfig) != HAL_OK)
   {
     Error_Handler();
   }
 
-  if (HAL_TIM_IC_Init(&htim3) != HAL_OK)
+  if (HAL_TIM_IC_Init(handle) != HAL_OK)
   {
     Error_Handler();
   }
@@ -48,14 +47,14 @@ void TIM3_Init(void)
   sSlaveConfig.InputTrigger = TIM_TS_TI1FP1;
   sSlaveConfig.TriggerPolarity = TIM_INPUTCHANNELPOLARITY_FALLING;
   sSlaveConfig.TriggerFilter = 4;
-  if (HAL_TIM_SlaveConfigSynchronization(&htim3, &sSlaveConfig) != HAL_OK)
+  if (HAL_TIM_SlaveConfigSynchronization(handle, &sSlaveConfig) != HAL_OK)
   {
     Error_Handler();
   }
 
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
+  if (HAL_TIMEx_MasterConfigSynchronization(handle, &sMasterConfig) != HAL_OK)
   {
     Error_Handler();
   }
@@ -64,7 +63,7 @@ void TIM3_Init(void)
   sConfigIC.ICSelection = TIM_ICSELECTION_DIRECTTI;
   sConfigIC.ICPrescaler = TIM_ICPSC_DIV1;
   sConfigIC.ICFilter = 4;
-  if (HAL_TIM_IC_ConfigChannel(&htim3, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
+  if (HAL_TIM_IC_ConfigChannel(handle, &sConfigIC, TIM_CHANNEL_1) != HAL_OK)
   {
     Error_Handler();
           }
@@ -92,7 +91,7 @@ void TIM3_Init(void)
 }
 
 void NEC_Init(TIM_HandleTypeDef* handle){
-	TIM3_Init();
+	TIM3_Init(handle);
 	nec.timerHandle =handle;
 	   nec.state=NEC_one;
 	   nec.timerChannel = TIM_CHANNEL_1;
@@ -227,9 +226,7 @@ void myNecErrorCallback() {
 void myNecRepeatCallback() {
     NEC_Read(&nec);
 }
-void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
-	 NEC_Read(&nec);
-}
+
 
 /*
  * insert in main
