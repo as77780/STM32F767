@@ -26,20 +26,20 @@ void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
 	//POWER_CAP=1;
 		}
 	if(P_INPUT1){
-		SetInput(0);
+		tda7439SetInput(0);
 model.SetVol(model.GetVolume());
 			}
 	if(P_INPUT2){
-		SetInput(1);
+		tda7439SetInput(1);
 model.SetVol(model.GetVolume());
 			// bat_view();
 		}
 	if(P_INPUT3){
-		SetInput(2);
+		tda7439SetInput(2);
 
 		}
 	if(P_INPUT4){
-		SetInput(3);
+		tda7439SetInput(3);
 
 		}
 	if(P_stop){
@@ -182,6 +182,12 @@ void Model::CheckIncoder(){
 	  }
 		 enc.capture_is_ready=0;
 	   }
+
+}
+
+void Model::SetInput(uint8_t in){
+	tda7439SetInput(in);
+	SetVol(GetVolume());
 
 }
 

@@ -468,6 +468,4 @@ uint8_t GetTda7439Trible(void){
 uint8_t GetInput(void){
 	return INPUT;
 }
-void SetInput(uint8_t in){
-	tda7439SetInput(in);
-}
+

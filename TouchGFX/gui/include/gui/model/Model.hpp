@@ -64,6 +64,7 @@ public:
     {
         modelListener = listener;
     }
+    void SetInput(uint8_t in);
     uint8_t GetStatLogin();
     uint8_t GetStatInet();
     void saveHour(int16_t saveHour){ hour = saveHour;}

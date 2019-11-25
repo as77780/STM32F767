@@ -90,7 +90,7 @@ uint8_t GetTda7439Bass(void);
 uint8_t GetTda7439Middle(void);
 uint8_t GetTda7439Trible(void);
 uint8_t GetInput(void);
-void SetInput(uint8_t in);
+
 
 uint8_t EEPROM_readData(uint16_t addr, uint8_t *data, uint16_t len);
 uint8_t EEPROM_writeData(uint16_t addr, uint8_t *data, uint16_t len);

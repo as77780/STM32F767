@@ -42,22 +42,22 @@ void ScreenInputMenuView::tearDownScreen()
 
 void ScreenInputMenuView::FunInterButInt()
 {
-	SetInput(0);
-	 presenter->SetVol(presenter->GetVolume());
+	 presenter->SetInput(0);
+	// presenter->SetVol(presenter->GetVolume());
 
 }
 void ScreenInputMenuView::FunInterBut1()
 {
-	SetInput(1);
-	presenter->SetVol(presenter->GetVolume());
+	 presenter->SetInput(1);
+	//presenter->SetVol(presenter->GetVolume());
 }
 void ScreenInputMenuView::FunInterBut2()
 {
-	SetInput(2);
-	presenter->SetVol(presenter->GetVolume());
+	 presenter->SetInput(2);
+	//presenter->SetVol(presenter->GetVolume());
 }
 void ScreenInputMenuView::FunInterBut3()
 {
-	SetInput(3);
-	presenter->SetVol(presenter->GetVolume());
+	 presenter->SetInput(3);
+	//presenter->SetVol(presenter->GetVolume());
 }
