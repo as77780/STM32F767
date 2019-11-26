@@ -8,10 +8,11 @@
 
 
 #include"NEC_Decode.h"
+#include "cmsis_os.h"
 
 void TIM3_Init(TIM_HandleTypeDef* handle);
 
-
+extern osMessageQId QueueIncoderHandle;
 NEC nec;
 
 void TIM3_Init(TIM_HandleTypeDef* handle)
@@ -113,7 +114,8 @@ void NEC_Init(TIM_HandleTypeDef* handle){
 
 }
 
-uint8_t NEC_TIM_IC_CaptureCallback(NEC* handle) {
+pult_comand NEC_TIM_IC_CaptureCallback(NEC* handle) {
+	pult_comand pult_com=null;
 	static	uint8_t mach, c=0;
    uint16_t cap;
    static uint8_t copy[2];
@@ -194,11 +196,13 @@ uint8_t NEC_TIM_IC_CaptureCallback(NEC* handle) {
 		        	copy[0]=handle->decoded[0];
 		        	copy[1]=handle->decoded[2];
 
-		        			             handle->NEC_DecodedCallback(handle->decoded[0], handle->decoded[2]);
+		        	pult_com=handle->NEC_DecodedCallback(handle->decoded[0], handle->decoded[2]);
                      c=valid;
                      res_IR=50;
 
-
+                if(pult_com!=null){
+                	        osMessagePut(QueueIncoderHandle,pult_com,0);
+                		     }
 		         }
 		             else
 		             handle->NEC_ErrorCallback();
@@ -227,6 +231,65 @@ void myNecRepeatCallback() {
     NEC_Read(&nec);
 }
 
+pult_comand myNecDecodedCallback(uint16_t address, uint8_t cmd) {
+	pult_comand com;
+	if(P_POWER){
+		com=Power;
+		}
+	else if(P_INPUT1){
+		com=InputInt;
+			}
+	else if(P_INPUT2){
+		com=input1;
+		}
+	else if(P_INPUT3){
+		com=input2;
+		}
+	else if(P_INPUT4){
+		com=input3;
+		}
+	else if(P_stop){
+		com=P_break;
+	}
+	else if(P_MUZ_BUD){
+		com=bud;
+			}
+	else if(P_prog){
+		com=radio;
+			}
+	else if(P_PL_MUZ){
+		com=hdd;
+			}
+	else if(P_PL_V_PL){
+		R_V_PL_eth();
+		}
+	else if(P_PL_V_MIN){
+		R_V_Min_eth();
+	}
+	else if(P_PL_LEFT){
+		com=P_back;
+				}
+	else if(P_PL_Right){
+		com=P_forward;
+			}
+	else if(P_GAIN_PL){
+		com=vol_add;
+				}
+	else if(P_GAIN_MIN){
+		com=vol_sub;
+				}
+	else if(P_CHENGE_BUD){
+		com=dream;
+	}
+
+	else
+	{
+		com=null;
+	}
+
+	 NEC_Read(&nec);
+	 return com;
+}
 
 /*
  * insert in main

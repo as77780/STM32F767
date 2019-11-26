@@ -9,24 +9,34 @@ ScreenPlayerView::ScreenPlayerView()
 void ScreenPlayerView::setupScreen()
 {
     ScreenPlayerViewBase::setupScreen();
-    uint8_t s=presenter->GetState();
-    if(s==1){
-    	imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_HDD_ID));
-    	imagePlay.setAlpha(255);
-    	imagePlay.invalidate();
-    }
-    if(s==2){
-    	imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_RADIO_ID));
-    	imagePlay.setAlpha(255);
-    	imagePlay.invalidate();
-    }
-    if(s==3){
-    	imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_BUD_ID));
-    	imagePlay.setAlpha(255);
-    	imagePlay.invalidate();
-    }
+
+}
+void ScreenPlayerView::handleTickEvent(){
+	CheckIkonBat();
 }
 
+void ScreenPlayerView::CheckIkonBat(){
+	uint8_t s=presenter->GetState();
+	    if(s==1){
+	    	imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_HDD_ID));
+	    	imagePlay.setAlpha(255);
+	    	imagePlay.invalidate();
+	    }
+	    if(s==2){
+	    	imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_RADIO_ID));
+	    	imagePlay.setAlpha(255);
+	    	imagePlay.invalidate();
+	    }
+	    if(s==3){
+	    	imagePlay.setBitmap(touchgfx::Bitmap(BITMAP_BUD_ID));
+	    	imagePlay.setAlpha(255);
+	    	imagePlay.invalidate();
+	    }
+	    if(s==0){
+	    	imagePlay.setAlpha(0);
+	    	imagePlay.invalidate();
+	    }
+}
 void ScreenPlayerView::tearDownScreen()
 {
     ScreenPlayerViewBase::tearDownScreen();

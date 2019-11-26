@@ -40,6 +40,8 @@ public:
         uint8_t GetStatLogin(){return model->GetStatLogin();}
         uint8_t GetStatInet(){return model->GetStatInet();}
         uint8_t GetState(){return model->play.GetState();}
+        void ResetPowerFlag(){model->ResetPowerFlag();}
+        uint8_t CheckPowerFlag(){return model->CheckPowerFlag();}
 
         uint8_t PlayBUD(){return model->play.PlayBUD();}
         uint8_t PlayRadio(){return  model->play.PlayRadio();}

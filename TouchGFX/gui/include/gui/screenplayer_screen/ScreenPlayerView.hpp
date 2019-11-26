@@ -11,6 +11,8 @@ public:
     virtual ~ScreenPlayerView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    virtual void handleTickEvent();
+    void CheckIkonBat();
 protected:
     virtual void PlayToBack();
     virtual void PlayToPlay();

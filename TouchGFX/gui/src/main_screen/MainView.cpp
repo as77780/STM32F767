@@ -14,24 +14,7 @@ MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheel
 
 void MainView::setupScreen()
 {	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
-	uint8_t s;
-	 s=presenter->GetState();
-	    if(s==1){
-	    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_HDD_ID), touchgfx::Bitmap(BITMAP_HDD_ID));
-	    	buttonPlay.invalidate();
-	    }
-	    if(s==2){
-	    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_RADIO_ID), touchgfx::Bitmap(BITMAP_RADIO_ID));
-	    	buttonPlay.invalidate();
-	    }
-	    if(s==3){
-	      	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BUD_ID), touchgfx::Bitmap(BITMAP_BUD_ID));
-	    	buttonPlay.invalidate();
-	    }
-	    if(s==0){
-	    	 buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));
-	    	 buttonPlay.invalidate();
-	    }
+
 
     MainViewBase::setupScreen();
     TIM5->CCR1=100;
@@ -54,6 +37,17 @@ void MainView::handleTickEvent()
 	GetTimeOut();
 	ViewTemp();
 	CheckVOL();
+	CheckIkonBat();
+	/*
+	if((presenter->CheckPowerFlag())==1){
+				prepareOff();
+		presenter->ResetPowerFlag();
+		 buttonPowOff.clearFadeAnimationEndedAction();
+		 buttonPowOff.startFadeAnimation(0, 120, touchgfx::EasingEquations::linearEaseIn);
+		 touchgfx::Callback < MainViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  interactionPreOffNextEndedCallback;
+		 buttonPowOff.setFadeAnimationEndedAction(interactionPreOffNextEndedCallback);
+	}
+	*/
 }
 
 
@@ -216,4 +210,24 @@ else{
 		buttonPlay.invalidate();
 	}
 }
+}
+void MainView::CheckIkonBat(){
+	uint8_t s;
+		 s=presenter->GetState();
+		    if(s==1){
+		    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_HDD_ID), touchgfx::Bitmap(BITMAP_HDD_ID));
+		    	buttonPlay.invalidate();
+		    }
+		    if(s==2){
+		    	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_RADIO_ID), touchgfx::Bitmap(BITMAP_RADIO_ID));
+		    	buttonPlay.invalidate();
+		    }
+		    if(s==3){
+		      	buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_BUD_ID), touchgfx::Bitmap(BITMAP_BUD_ID));
+		    	buttonPlay.invalidate();
+		    }
+		    if(s==0){
+		    	 buttonPlay.setBitmaps(touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_ID), touchgfx::Bitmap(BITMAP_DARK_BUTTONS_ROUND_EDGE_ICON_BUTTON_PRESSED_ID), touchgfx::Bitmap(BITMAP_PLAY_ID), touchgfx::Bitmap(BITMAP_PLAY_ID));
+		    	 buttonPlay.invalidate();
+		    }
 }

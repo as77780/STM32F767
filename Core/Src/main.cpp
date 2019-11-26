@@ -1090,18 +1090,19 @@ void hw_init(void){
 }
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim){
-
+	//pult_comand com;
 
 	if(htim->Instance==TIM2){
 		enc.capture_is_ready = 1;
 		enc.EncDirect = __HAL_TIM_DIRECTION_STATUS(htim);
-		osMessagePut(QueueIncoderHandle,enc.EncDirect,0);
+
 
 	}
 
 	if (htim->Instance==TIM3) {
-	        NEC_TIM_IC_CaptureCallback(&nec);
-	    }
+		NEC_TIM_IC_CaptureCallback(&nec);
+
+	}
 
 
 }

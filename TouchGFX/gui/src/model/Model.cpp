@@ -15,81 +15,13 @@ typedef  struct struct_temp_t {
 	float temper[2];
 }struct_temp;
 extern osMailQId mail;
+extern osMessageQId QueueIncoderHandle;
 extern NEC nec;
 ModelListener m;
 Model model;
 
 
-void myNecDecodedCallback(uint16_t address, uint8_t cmd) {
-	m.bind(&model);
-	if(P_POWER){
-	//POWER_CAP=1;
-		}
-	if(P_INPUT1){
-		tda7439SetInput(0);
-model.SetVol(model.GetVolume());
-			}
-	if(P_INPUT2){
-		tda7439SetInput(1);
-model.SetVol(model.GetVolume());
-			// bat_view();
-		}
-	if(P_INPUT3){
-		tda7439SetInput(2);
 
-		}
-	if(P_INPUT4){
-		tda7439SetInput(3);
-
-		}
-	if(P_stop){
-	//	P_STOP();
-	}
-	if(P_MUZ_BUD){
-		//		PL_BUD();
-			}
-	if(P_prog){
-	//	PL_RAD();
-			}
-	if(P_PL_MUZ){
-	//	PL_MUZ();
-			}
-	if(P_PL_V_PL){
-		//R_V_PL(&huart7);
-		R_V_PL_eth();
-		}
-	if(P_PL_V_MIN){
-		//R_V_Min(&huart7);
-	R_V_Min_eth();
-	}
-	if(P_PL_LEFT){
-		//if((Eth_REDy[0]==complit)&((pl==on)|(rad==on)|(bud==on))){
-			//R_Left(&huart7);
-		R_Left_eth();
-	//	}
-
-			}
-	if(P_PL_Right){
-		//if((Eth_REDy[0]==complit)&((pl==on)|(rad==on)|(bud==on))){
-		//	R_Right(&huart7);
-			R_Right_eth();
-	//	}
-
-			}
-	if(P_GAIN_PL){
-
-				}
-	if(P_GAIN_MIN){
-
-				}
-	if(P_CHENGE_BUD){
-
-	}
-
-
-	 NEC_Read(&nec);
-
-}
 
 
 
@@ -107,6 +39,7 @@ void Model::tick()
 	osEvent evt;
 
 	CheckIncoder();
+	CheckPult();
 
 	evt = osMailGet(mail, osFeature_Wait);
 			   			 if (evt.status == osEventMail) {
@@ -129,6 +62,57 @@ void Model::tick()
 	}
 			tickCount++;
 			tickCount1++;
+
+}
+void Model::CheckPult(){
+	osEvent event;
+	pult_comand pult;
+		event = osMessageGet(QueueIncoderHandle,0);
+		 if (event.status == osEventMessage){
+			 pult=(pult_comand)event.value.v;
+			 if(pult==InputInt){
+				 SetInput(0);
+			 }
+			 else if(pult==input1){
+				 SetInput(1);
+			 }
+			 else if(pult==input2){
+				 SetInput(2);
+			 }
+			 else if(pult==input3){
+				 SetInput(3);
+			 }
+			 else if(pult==vol_add){
+				 Count++;
+				 tda7439VolumeSet(Count);
+			 			 }
+			 else if(pult==vol_sub){
+			 				 Count--;
+			 				 tda7439VolumeSet(Count);
+			 			 			 }
+			 else if(pult==P_break){
+			 				play.Stop();
+			 			 }
+			 else if(pult==radio){
+			 			play.PlayRadio();
+			 	    }
+			 else if(pult==hdd){
+						play.PlayHDD();
+				 	    }
+			 else if(pult==bud){
+						play.PlayBUD();
+					   }
+			 else if(pult==P_forward){
+				play.FF_Play();
+			   }
+			 else if(pult==P_back){
+							play.Back_Play();
+						   }
+			 else if(pult==Power){
+				 PowerFlag=1;
+			 		  }
+
+		 }
 
 }
 void Model::getTime(){

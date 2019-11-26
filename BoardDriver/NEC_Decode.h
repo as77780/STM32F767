@@ -66,7 +66,9 @@
 // ���� ������ ������ ���������� �������� � �������� ��������� � ���������
 #define checkVal(var,val,tol) (var>(val*(100-tol)/100) && var<(val*(100+tol)/100))
 
-
+typedef enum {
+	null,Power,P_forward,P_back,P_break,bud,hdd,radio,vol_add,vol_sub,dream,InputInt,input1,input2,input3
+}pult_comand;
 
 
 typedef enum {
@@ -93,7 +95,7 @@ typedef struct {
     uint16_t timingAgcBoundary;
     NEC_TYPE type;
 
-    void (*NEC_DecodedCallback)(uint16_t, uint8_t);
+    pult_comand (*NEC_DecodedCallback)(uint16_t, uint8_t);
     void (*NEC_ErrorCallback)();
     void (*NEC_RepeatCallback)();
 } NEC;
@@ -103,10 +105,10 @@ typedef struct {
 void NEC_Init(TIM_HandleTypeDef* handle);
 void NEC_DeInit(NEC* handle);
 
-uint8_t NEC_TIM_IC_CaptureCallback(NEC* handle);
+pult_comand NEC_TIM_IC_CaptureCallback(NEC* handle);
 
 
-void myNecDecodedCallback(uint16_t address, uint8_t cmd);
+pult_comand myNecDecodedCallback(uint16_t address, uint8_t cmd);
 void myNecErrorCallback();
 void myNecRepeatCallback();
 

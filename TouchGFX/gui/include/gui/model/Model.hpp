@@ -76,8 +76,11 @@ public:
     float getTempSound(){return temper[T_sound];}
     uint8_t getFan1(){return FAN1Speed;}
     uint8_t getFan2(){return FAN2Speed;}
+    void ResetPowerFlag(void){PowerFlag=0;}
+    uint8_t CheckPowerFlag(void){return PowerFlag;}
     void getTime();
     void CheckIncoder();
+    void CheckPult();
   //  uint8_t GetVol(){return CountVol;}
   //  void SetVol(uint8_t vol){CountVol=vol;}
   // void temp_check(uint8_t t_pow,uint8_t t_amp);
@@ -121,10 +124,11 @@ protected:
     float temper[2];
     uint8_t FAN1Speed,FAN2Speed;
     uint8_t Count ;
+    uint8_t PowerFlag;
     uint8_t EncActiv;
   //  Player play;
 
 };
-void myNecDecodedCallback(uint16_t address, uint8_t cmd);
+
 
 #endif /* MODEL_HPP */

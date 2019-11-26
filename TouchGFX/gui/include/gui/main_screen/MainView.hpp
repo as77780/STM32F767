@@ -24,6 +24,7 @@ public:
     virtual void prepareOff(){SOUND_OFF();}
 
     void CheckVOL();
+    void CheckIkonBat();
     virtual void ButPlayEnter();
 
 protected:
