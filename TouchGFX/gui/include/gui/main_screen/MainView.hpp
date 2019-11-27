@@ -22,6 +22,7 @@ public:
     virtual void GetTimeOut();
     virtual void ViewTemp();
     virtual void prepareOff(){SOUND_OFF();}
+    void PowerOff();
 
     void CheckVOL();
     void CheckIkonBat();

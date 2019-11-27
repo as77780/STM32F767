@@ -32,6 +32,9 @@ public:
     uint8_t getMinute(){ return model->getMinute(); }
     uint8_t getSecond(){ return model->getSecond(); }
 
+    void ResetPowerFlag(){model->ResetPowerFlag();}
+    uint8_t CheckPowerFlag(){return model->CheckPowerFlag();}
+
 
 private:
     Screen2Presenter();

@@ -8,7 +8,7 @@ Screen2Presenter::Screen2Presenter(Screen2View& v)
 
 void Screen2Presenter::activate()
 {
-
+	model->ResetPowerFlag();
 }
 
 void Screen2Presenter::deactivate()

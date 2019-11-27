@@ -9,6 +9,7 @@ MainPresenter::MainPresenter(MainView& v)
 void MainPresenter::activate()
 {
 	model->ActivEnc();
+	model->ResetPowerFlag();
 }
 
 void MainPresenter::deactivate()

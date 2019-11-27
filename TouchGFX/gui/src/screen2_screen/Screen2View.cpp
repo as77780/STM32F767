@@ -1,5 +1,6 @@
 #include <gui/screen2_screen/Screen2View.hpp>
 #include "main.h"
+#include "cmsis_os.h"
 
 Screen2View::Screen2View()
 {
@@ -20,7 +21,20 @@ void Screen2View::tearDownScreen()
 void Screen2View::handleTickEvent()
 {
     TimeView();
+    PowerOff();
+
 }
+
+void Screen2View::PowerOff(){
+	if((presenter->CheckPowerFlag())==1){
+	      //   presenter->ResetPowerFlag();
+	         PowerOnPrepare();
+	    		        osDelay(2000);
+	    		        application().gotoMainScreenCoverTransitionEast();
+	    	}
+}
+
+
 void Screen2View:: TimeView()
 {
 	hour=presenter->getHour();

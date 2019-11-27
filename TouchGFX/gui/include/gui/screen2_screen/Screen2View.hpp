@@ -15,6 +15,7 @@ public:
     virtual void handleTickEvent();
     virtual void TimeView();
     virtual void PowerOnPrepare(){POWER_ON();}
+    void PowerOff();
 protected:
     uint8_t hour;
     uint8_t minute;

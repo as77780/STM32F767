@@ -6,6 +6,8 @@
 
 extern osMessageQId QueueIncoderHandle;
 
+
+
 //uint8_t s;
 MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheelAnimateToHandler)
 {
@@ -26,6 +28,17 @@ void MainView::setupScreen()
   	enc.capture_is_ready=0;
 }
 
+void MainView::PowerOff(){
+	if((presenter->CheckPowerFlag())==1){
+	   //  presenter->ResetPowerFlag();
+	          	 prepareOff();
+			       // buttonPowOff.clearFadeAnimationEndedAction();
+			        buttonPowOff.startFadeAnimation(0, 120, touchgfx::EasingEquations::linearEaseIn);
+			        osDelay(2000);
+			        application().gotoScreen2ScreenCoverTransitionWest();
+		}
+}
+
 void MainView::tearDownScreen()
 {
     MainViewBase::tearDownScreen();
@@ -38,16 +51,10 @@ void MainView::handleTickEvent()
 	ViewTemp();
 	CheckVOL();
 	CheckIkonBat();
-	/*
-	if((presenter->CheckPowerFlag())==1){
-				prepareOff();
-		presenter->ResetPowerFlag();
-		 buttonPowOff.clearFadeAnimationEndedAction();
-		 buttonPowOff.startFadeAnimation(0, 120, touchgfx::EasingEquations::linearEaseIn);
-		 touchgfx::Callback < MainViewBase, const touchgfx::FadeAnimator<touchgfx::ButtonWithIcon>& >  interactionPreOffNextEndedCallback;
-		 buttonPowOff.setFadeAnimationEndedAction(interactionPreOffNextEndedCallback);
-	}
-	*/
+	PowerOff();
+
+
+
 }
 
 
