@@ -82,6 +82,7 @@ public:
     void getTime();
     void CheckIncoder();
     void CheckPult();
+    void CheckSleep();
   //  uint8_t GetVol(){return CountVol;}
   //  void SetVol(uint8_t vol){CountVol=vol;}
   // void temp_check(uint8_t t_pow,uint8_t t_amp);
@@ -118,15 +119,17 @@ protected:
      * Pointer to the currently active presenter.
      */
     ModelListener* modelListener;
-    int16_t hour;
-    int16_t minute;
+    int16_t hour,HourSleep;
+    int16_t minute,MinuteSleep;
     int16_t second;
     int16_t tickCount,tickCount1;
     float temper[2];
     uint8_t FAN1Speed,FAN2Speed;
     uint8_t Count ;
     uint8_t PowerFlag;
+    uint8_t SleepFlag;
     uint8_t EncActiv;
+
   //  Player play;
 
 };

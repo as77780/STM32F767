@@ -40,7 +40,7 @@ void Model::tick()
 
 	CheckIncoder();
 	CheckPult();
-
+	CheckSleep();
 	evt = osMailGet(mail, osFeature_Wait);
 			   			 if (evt.status == osEventMail) {
 			   				qstruct=(struct_temp*)evt.value.p;
@@ -63,6 +63,14 @@ void Model::tick()
 			tickCount++;
 			tickCount1++;
 
+
+}
+
+void Model::CheckSleep(){
+	if((SleepFlag==1)&&( HourSleep==(hour))&&( MinuteSleep==minute)){
+		SleepFlag=0;
+		 PowerFlag=1;
+	}
 }
 void Model::CheckPult(){
 	osEvent event;
@@ -110,7 +118,40 @@ void Model::CheckPult(){
 						   }
 			 else if(pult==Power){
 				 PowerFlag=1;
-			 		  }
+				 			 		  }
+			 else if(pult==dream){
+				 if(SleepFlag==0){
+				       SleepFlag=1;
+				       MinuteSleep=minute;
+				       if(hour!=23){
+				       HourSleep=hour+1;
+					         }
+				       else{
+				    	   HourSleep=0;
+				       }
+				       LED_10();
+				       osDelay(200);
+				       LED_100();
+				       osDelay(200);
+				       LED_10();
+				       osDelay(200);
+				       LED_100();
+				       osDelay(200);
+				       LED_10();
+				 }
+				 else{
+					 SleepFlag=0;
+					  LED_100();
+					  osDelay(200);
+					  LED_10();
+					  osDelay(200);
+					  LED_100();
+					  osDelay(200);
+					  LED_10();
+					  osDelay(200);
+					  LED_100();
+				 }
+			 			 		  }
 
 		 }
 
