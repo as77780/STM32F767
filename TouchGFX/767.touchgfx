@@ -931,7 +931,7 @@
             "Width": 52,
             "Height": 10,
             "Type": "Line",
-            "Visible": true,
+            "Visible": false,
             "Draggable": false,
             "Clickable": false,
             "Fadeable": false,
@@ -1080,7 +1080,7 @@
             "Name": "textArea1",
             "X": 184,
             "Y": 21,
-            "Width": 12,
+            "Width": 14,
             "Height": 25,
             "Type": "TextArea",
             "Visible": true,
@@ -1103,7 +1103,7 @@
             "Name": "textArea1_1",
             "X": 247,
             "Y": 21,
-            "Width": 14,
+            "Width": 12,
             "Height": 25,
             "Type": "TextArea",
             "Visible": true,
@@ -1213,6 +1213,34 @@
             "Width": 60,
             "Height": 60,
             "Type": "ButtonWithIcon",
+            "Visible": true,
+            "Draggable": false,
+            "Clickable": false,
+            "Fadeable": false,
+            "Moveable": false
+          },
+          {
+            "TextId": "SingleUseId45",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 252,
+              "Green": 249,
+              "Blue": 249
+            },
+            "Alpha": 255,
+            "AutoSize": true,
+            "LineSpacing": 0,
+            "Wildcard1": {
+              "TextId": "SingleUseId46",
+              "UseBuffer": true,
+              "BufferSize": 3
+            },
+            "Name": "channel",
+            "X": 319,
+            "Y": 103,
+            "Width": 16,
+            "Height": 31,
+            "Type": "TextArea",
             "Visible": true,
             "Draggable": false,
             "Clickable": false,
@@ -2747,6 +2775,14 @@
       },
       {
         "TextEntryId": "SingleUseId44",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId45",
+        "IsResource": false
+      },
+      {
+        "TextEntryId": "SingleUseId46",
         "IsResource": false
       }
     ],

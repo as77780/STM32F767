@@ -39,6 +39,7 @@ public:
         uint8_t GetVol(){return (model->GetVol()) ;}
         uint8_t GetStatLogin(){return model->GetStatLogin();}
         uint8_t GetStatInet(){return model->GetStatInet();}
+        void SetInput(uint8_t in){model->SetInput(in);}
         uint8_t GetState(){return model->play.GetState();}
         void ResetPowerFlag(){model->ResetPowerFlag();}
         uint8_t CheckPowerFlag(){return model->CheckPowerFlag();}

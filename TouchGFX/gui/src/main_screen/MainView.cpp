@@ -17,7 +17,7 @@ MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheel
 void MainView::setupScreen()
 {	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
 
-
+	CheckChannel();
     MainViewBase::setupScreen();
     TIM5->CCR1=100;
   	 GetTimeOut();
@@ -52,11 +52,17 @@ void MainView::handleTickEvent()
 	CheckVOL();
 	CheckIkonBat();
 	PowerOff();
+	CheckChannel();
 
 
 
 }
 
+void  MainView::CheckChannel(){
+	in=GetInput();
+	Unicode::snprintf(channelBuffer,CHANNEL_SIZE,"%d",4-in);
+	channel.invalidate();
+}
 
  void  MainView::GetTimeOut()
         {
@@ -184,20 +190,36 @@ void MainView::handleTickEvent()
         }
  void  MainView::FunVolUP()
  {
+	 uint8_t ch;
+/*
 if(Count<80){
 	  presenter->SetVolume(++Count);
 }
+ */
+	 ch=3-in;
+
+	 if(ch<3)
+	 presenter->SetInput(++ch);
  }
 
  void  MainView::FunVolDown()
  {
+	 uint8_t ch;
+	 ch=3-in;
+	 /*
 	 if(Count>0){
 		 presenter->SetVolume(--Count);
 	      }
+	      */
+	 if(ch>0){
+		 presenter->SetInput(--ch);
+	 }
+
  }
 
 
 void MainView::CheckVOL(){
+
 	Count= presenter->GetVol();
 		  	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
 		  	 textVolume.invalidate();

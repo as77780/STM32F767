@@ -120,6 +120,7 @@ MainViewBase::MainViewBase() :
     line1.setEnd(42, 5);
     line1.setLineWidth(4);
     line1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
+    line1.setVisible(false);
 
     boxWithBorder1_1_1.setPosition(292, 194, 178, 68);
     boxWithBorder1_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
@@ -187,6 +188,14 @@ MainViewBase::MainViewBase() :
     buttonPlayer.setIconXY(6, 6);
     buttonPlayer.setAction(buttonCallback);
 
+    channel.setXY(319, 103);
+    channel.setColor(touchgfx::Color::getColorFrom24BitRGB(252, 249, 249));
+    channel.setLinespacing(0);
+    Unicode::snprintf(channelBuffer, CHANNEL_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID46).getText());
+    channel.setWildcard(channelBuffer);
+    channel.resizeToCurrentText();
+    channel.setTypedText(touchgfx::TypedText(T_SINGLEUSEID45));
+
     add(tiledImage1);
     add(boxWithBorder1_1);
     add(boxWithBorder3);
@@ -213,6 +222,7 @@ MainViewBase::MainViewBase() :
     add(buttonInput);
     add(buttonEqual);
     add(buttonPlayer);
+    add(channel);
 }
 
 void MainViewBase::setupScreen()

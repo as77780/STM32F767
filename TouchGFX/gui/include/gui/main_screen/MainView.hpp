@@ -23,6 +23,7 @@ public:
     virtual void ViewTemp();
     virtual void prepareOff(){SOUND_OFF();}
     void PowerOff();
+    void CheckChannel();
 
     void CheckVOL();
     void CheckIkonBat();
@@ -34,6 +35,7 @@ protected:
     int16_t second;
     int16_t tickCount ;
     uint8_t Count ;
+    uint8_t in;
 
     Callback<MainView, int16_t> scrollWheelAnimateToCallback;
     void scrollWheelAnimateToHandler(int16_t itemSelected);

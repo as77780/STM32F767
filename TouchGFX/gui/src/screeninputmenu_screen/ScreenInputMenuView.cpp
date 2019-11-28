@@ -3,7 +3,32 @@
 void ScreenInputMenuView::handleTickEvent(){
 	if((presenter->CheckPowerFlag())==1){
  application().gotoMainScreenSlideTransitionNorth();
- }
+ 	}
+	uint8_t in=GetInput();
+	 if(in==3){
+	 	InternalBut.setSelected(true);
+	 	ButInput_1.setSelected(false);
+	 	ButInput_2.setSelected(false);
+	 	ButInput_3.setSelected(false);
+	 }
+	 else if(in==2){
+	 	InternalBut.setSelected(false);
+	 		ButInput_1.setSelected(true);
+	 		ButInput_2.setSelected(false);
+	 		ButInput_3.setSelected(false);
+	 }
+	 else if(in==1){
+	 	InternalBut.setSelected(false);
+	 		ButInput_1.setSelected(false);
+	 		ButInput_2.setSelected(true);
+	 		ButInput_3.setSelected(false);
+	 }
+	 else if(in==0){
+	 	InternalBut.setSelected(false);
+	 		ButInput_1.setSelected(false);
+	 		ButInput_2.setSelected(false);
+	 		ButInput_3.setSelected(true);
+	     }
 }
 ScreenInputMenuView::ScreenInputMenuView()
 {
@@ -13,31 +38,7 @@ ScreenInputMenuView::ScreenInputMenuView()
 void ScreenInputMenuView::setupScreen()
 {
     ScreenInputMenuViewBase::setupScreen();
-uint8_t in=GetInput();
-if(in==3){
-	InternalBut.setSelected(true);
-	ButInput_1.setSelected(false);
-	ButInput_2.setSelected(false);
-	ButInput_3.setSelected(false);
-}
-else if(in==2){
-	InternalBut.setSelected(false);
-		ButInput_1.setSelected(true);
-		ButInput_2.setSelected(false);
-		ButInput_3.setSelected(false);
-}
-else if(in==1){
-	InternalBut.setSelected(false);
-		ButInput_1.setSelected(false);
-		ButInput_2.setSelected(true);
-		ButInput_3.setSelected(false);
-}
-else if(in==0){
-	InternalBut.setSelected(false);
-		ButInput_1.setSelected(false);
-		ButInput_2.setSelected(false);
-		ButInput_3.setSelected(true);
-}
+
 }
 
 void ScreenInputMenuView::tearDownScreen()

@@ -92,6 +92,7 @@ protected:
     touchgfx::ButtonWithIcon buttonInput;
     touchgfx::ButtonWithIcon buttonEqual;
     touchgfx::ButtonWithIcon buttonPlayer;
+    touchgfx::TextAreaWithOneWildcard channel;
 
     /*
      * Wildcard Buffers
@@ -102,6 +103,8 @@ protected:
     touchgfx::Unicode::UnicodeChar textTempPowerBuffer[TEXTTEMPPOWER_SIZE];
     static const uint16_t TEXTTEMPSOUND_SIZE = 6;
     touchgfx::Unicode::UnicodeChar textTempSoundBuffer[TEXTTEMPSOUND_SIZE];
+    static const uint16_t CHANNEL_SIZE = 3;
+    touchgfx::Unicode::UnicodeChar channelBuffer[CHANNEL_SIZE];
 
 private:
 
