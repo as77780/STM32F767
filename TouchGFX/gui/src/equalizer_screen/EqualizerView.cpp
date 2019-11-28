@@ -19,3 +19,8 @@ void EqualizerView::tearDownScreen()
 {
     EqualizerViewBase::tearDownScreen();
 }
+void EqualizerView::handleTickEvent(){
+	if((presenter->CheckPowerFlag())==1){
+		application().gotoMainScreenCoverTransitionWest();
+	   	}
+}

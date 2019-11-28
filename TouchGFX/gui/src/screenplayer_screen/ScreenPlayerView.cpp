@@ -13,6 +13,9 @@ void ScreenPlayerView::setupScreen()
 }
 void ScreenPlayerView::handleTickEvent(){
 	CheckIkonBat();
+	if((presenter->CheckPowerFlag())==1){
+		application().gotoMainScreenSlideTransitionSouth();
+		   	}
 }
 
 void ScreenPlayerView::CheckIkonBat(){

@@ -39,7 +39,8 @@ public:
     void SetTrible(int8_t trible) { model->SetTrible(trible);  }
     uint8_t GetTrible(){return (model->GetTrible()) ;}
 
-
+    void ResetPowerFlag(){model->ResetPowerFlag();}
+    uint8_t CheckPowerFlag(){return model->CheckPowerFlag();}
 
 private:
     EqualizerPresenter();

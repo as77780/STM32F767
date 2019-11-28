@@ -4,6 +4,11 @@ Screen1View::Screen1View()
 {
 
 }
+void Screen1View::handleTickEvent(){
+	if((presenter->CheckPowerFlag())==1){
+		application().gotoScreen2ScreenCoverTransitionNorth();
+   	}
+}
 
 void Screen1View::setupScreen()
 {

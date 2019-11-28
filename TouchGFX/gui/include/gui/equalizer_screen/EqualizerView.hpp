@@ -11,6 +11,7 @@ public:
     virtual ~EqualizerView() {}
     virtual void setupScreen();
     virtual void tearDownScreen();
+    void handleTickEvent();
 protected:
     virtual void ChangeAmpl(int value)
        {

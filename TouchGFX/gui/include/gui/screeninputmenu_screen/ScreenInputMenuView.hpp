@@ -16,7 +16,7 @@ public:
     virtual void FunInterBut1();
     virtual void FunInterBut2();
     virtual void FunInterBut3();
-
+    void handleTickEvent();
 protected:
 };
 

@@ -16,6 +16,7 @@ public:
     virtual void buttonMinuteUpClicked();
     virtual void buttonMinuteDownClicked();
     virtual void buttonSaveClicked();
+    void handleTickEvent();
     //{ presenter->saveHour(hour);}
 
 

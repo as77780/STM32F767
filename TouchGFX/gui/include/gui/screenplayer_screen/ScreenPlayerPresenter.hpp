@@ -36,6 +36,8 @@ public:
     void FF_Play() {model->play.FF_Play();}
     void Back_Play(){ model->play.Back_Play();}
     uint8_t GetState(){return  model->play.GetState();}
+    void ResetPowerFlag(){model->ResetPowerFlag();}
+    uint8_t CheckPowerFlag(){return model->CheckPowerFlag();}
 
 private:
     ScreenPlayerPresenter();

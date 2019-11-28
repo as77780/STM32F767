@@ -1,5 +1,10 @@
 #include <gui/screeninputmenu_screen/ScreenInputMenuView.hpp>
 
+void ScreenInputMenuView::handleTickEvent(){
+	if((presenter->CheckPowerFlag())==1){
+ application().gotoMainScreenSlideTransitionNorth();
+ }
+}
 ScreenInputMenuView::ScreenInputMenuView()
 {
 
