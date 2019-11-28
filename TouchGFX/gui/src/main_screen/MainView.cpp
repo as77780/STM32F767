@@ -16,7 +16,8 @@ MainView::MainView()//:scrollWheelAnimateToCallback(this, &MainView::scrollWheel
 
 void MainView::setupScreen()
 {	//scrollWheelVolume.setAnimateToCallback(scrollWheelAnimateToCallback);
-
+	ViewTemp();
+	CheckIkonBat();
 	CheckChannel();
     MainViewBase::setupScreen();
     TIM5->CCR1=100;
