@@ -93,6 +93,8 @@ protected:
     touchgfx::ButtonWithIcon buttonEqual;
     touchgfx::ButtonWithIcon buttonPlayer;
     touchgfx::TextAreaWithOneWildcard channel;
+    touchgfx::Line line1_1;
+    touchgfx::PainterRGB888 line1_1Painter;
 
     /*
      * Wildcard Buffers

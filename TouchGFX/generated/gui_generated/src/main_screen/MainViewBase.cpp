@@ -113,14 +113,13 @@ MainViewBase::MainViewBase() :
     lineProgressTempPow.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
     lineProgressTempPow.setValue(0);
 
-    line1.setPosition(300, 112, 52, 10);
+    line1.setPosition(300, 128, 52, 10);
     line1Painter.setColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
     line1.setPainter(line1Painter);
     line1.setStart(10, 5);
     line1.setEnd(42, 5);
     line1.setLineWidth(4);
     line1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
-    line1.setVisible(false);
 
     boxWithBorder1_1_1.setPosition(292, 194, 178, 68);
     boxWithBorder1_1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(1, 4, 18));
@@ -188,13 +187,21 @@ MainViewBase::MainViewBase() :
     buttonPlayer.setIconXY(6, 6);
     buttonPlayer.setAction(buttonCallback);
 
-    channel.setXY(319, 103);
+    channel.setXY(319, 102);
     channel.setColor(touchgfx::Color::getColorFrom24BitRGB(252, 249, 249));
     channel.setLinespacing(0);
     Unicode::snprintf(channelBuffer, CHANNEL_SIZE, "%s", touchgfx::TypedText(T_SINGLEUSEID46).getText());
     channel.setWildcard(channelBuffer);
     channel.resizeToCurrentText();
     channel.setTypedText(touchgfx::TypedText(T_SINGLEUSEID45));
+
+    line1_1.setPosition(300, 98, 52, 10);
+    line1_1Painter.setColor(touchgfx::Color::getColorFrom24BitRGB(3, 80, 94));
+    line1_1.setPainter(line1_1Painter);
+    line1_1.setStart(10, 5);
+    line1_1.setEnd(42, 5);
+    line1_1.setLineWidth(4);
+    line1_1.setLineEndingStyle(touchgfx::Line::ROUND_CAP_ENDING);
 
     add(tiledImage1);
     add(boxWithBorder1_1);
@@ -223,6 +230,7 @@ MainViewBase::MainViewBase() :
     add(buttonEqual);
     add(buttonPlayer);
     add(channel);
+    add(line1_1);
 }
 
 void MainViewBase::setupScreen()
