@@ -9,7 +9,7 @@ ScreenPlayerView::ScreenPlayerView()
 void ScreenPlayerView::setupScreen()
 {
     ScreenPlayerViewBase::setupScreen();
-
+    CheckIkonBat();
 }
 void ScreenPlayerView::handleTickEvent(){
 	CheckIkonBat();

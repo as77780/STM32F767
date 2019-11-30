@@ -1201,7 +1201,7 @@ void StartTaskNet01(void const * argument)
 void CallbackTimer01(void const * argument)
 {
   /* USER CODE BEGIN CallbackTimer01 */
-	enum sensor {t_power=0,T_sound};
+	enum sensor {T_sound,t_power};
 		struct_temp *qstruct;
 		qstruct =(struct_temp*) osMailAlloc(mail, osWaitForever);
 
