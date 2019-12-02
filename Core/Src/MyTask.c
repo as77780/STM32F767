@@ -92,9 +92,12 @@ void NetRouting(uint8_t arg){
 			       osDelay(1);
 			         do
 		            {
-		             if(p<=10){
+		             if(p<5){
 		             netconn_write(xNetConn, data, strlen(data), NETCONN_COPY);
 		             p++;
+		             if(p==6){
+		            	// netconn_write(xNetConn, data, strlen(data), NETCONN_COPY);
+		             }
 		             }
 		           printf("%d: ",N);   //Log Enabl
 		            printf(data);
@@ -119,16 +122,26 @@ void NetRouting(uint8_t arg){
 
 
 void executeEthCommand(struct netconn *xNetConn,uint8_t* STK_US,uint8_t n ){
+	static uint8_t login[2],pas[2];
 		if (compareCommand(STK_US, "as-UP-CHT01 login:")==1)
 				  {
-			         net_wr(xNetConn, "as\r");
-			         osDelay(500);
+			        login[n]=1;
+				  }
+		if (login[n]==1){
+			 net_wr(xNetConn, "as\r");
+		//	 osDelay(500);
+			 login[n]=0;
+		}
+
+		 if (compareCommand(STK_US, "Password:") == 1) {
+			         pas[n]=1;
 				  }
 
-		 if (compareCommand(STK_US, "assword") == 1) {
-			            net_wr(xNetConn, "ASD777as\r");
-			            osDelay(500);
-				  }
+		 if(pas[n]==1){
+			 net_wr(xNetConn, "ASD777as\r");
+			// osDelay(500);
+			 pas[n]=0;
+		 }
 		 if (compareCommand(STK_US, "as@as-UP-CHT01:~$") == 1) {
 			 Eth_REDy[n]=complit;
 						  }

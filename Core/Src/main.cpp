@@ -1131,7 +1131,7 @@ void temp_check(uint8_t t_pow,uint8_t t_amp){
 		TIM4->CCR1=100;
 	}
 	if(t_amp<=35) {
-		TIM4->CCR1=10;
+		TIM4->CCR1=0;
 	}
 
 
@@ -1145,7 +1145,7 @@ void temp_check(uint8_t t_pow,uint8_t t_amp){
 			TIM4->CCR2=100;
 		}
 		 if(t_pow<=40) {
-			TIM4->CCR2=20;
+			TIM4->CCR2=0;
 		}
 
 }
