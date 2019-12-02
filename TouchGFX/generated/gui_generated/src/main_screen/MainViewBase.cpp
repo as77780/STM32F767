@@ -153,12 +153,12 @@ MainViewBase::MainViewBase() :
     textTempSound.setWildcard(textTempSoundBuffer);
     textTempSound.setTypedText(touchgfx::TypedText(T_SINGLEUSEID38));
 
-    textArea1.setXY(183, 21);
+    textArea1.setXY(184, 21);
     textArea1.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
     textArea1.setLinespacing(0);
     textArea1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID40));
 
-    textArea1_1.setXY(248, 21);
+    textArea1_1.setXY(247, 21);
     textArea1_1.setColor(touchgfx::Color::getColorFrom24BitRGB(255, 255, 255));
     textArea1_1.setLinespacing(0);
     textArea1_1.setTypedText(touchgfx::TypedText(T_SINGLEUSEID41));

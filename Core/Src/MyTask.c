@@ -92,6 +92,7 @@ void NetRouting(uint8_t arg){
 			       osDelay(1);
 			         do
 		            {
+
 		             if(p<5){
 		             netconn_write(xNetConn, data, strlen(data), NETCONN_COPY);
 		             p++;
@@ -102,7 +103,7 @@ void NetRouting(uint8_t arg){
 		           printf("%d: ",N);   //Log Enabl
 		            printf(data);
 		              executeEthCommand(xNetConn,data,N);
-                      }
+		                               }
 		            while (netbuf_next(buf) >= 0);
 
 		            netbuf_delete(buf);
