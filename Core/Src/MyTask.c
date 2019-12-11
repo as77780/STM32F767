@@ -16,7 +16,7 @@
 #include "string.h"
 
 
-
+uint8_t mas_date[3];
 volatile struct netconn *NetConn[2];
 extern volatile struct netif gnetif;
 
@@ -175,7 +175,7 @@ uint8_t compareCommand(uint8_t buf[], uint8_t compString[]){
 }
 
 void executeEthDate(struct netconn *xNetConn,uint8_t* STK_US,uint8_t* date){
-	uint8_t mas_date[3];
+
 	uint8_t* str="MSK";
 	uint8_t* sep=':';
 	uint8_t mas[8];

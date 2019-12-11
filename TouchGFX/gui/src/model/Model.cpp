@@ -17,6 +17,7 @@ typedef  struct struct_temp_t {
 extern osMailQId mail;
 extern osMessageQId QueueIncoderHandle;
 extern NEC nec;
+extern uint8_t mas_date[3];
 ModelListener m;
 Model model;
 
@@ -41,6 +42,7 @@ void Model::tick()
 	CheckIncoder();
 	CheckPult();
 	CheckSleep();
+	SyncTime();
 	evt = osMailGet(mail, osFeature_Wait);
 			   			 if (evt.status == osEventMail) {
 			   				qstruct=(struct_temp*)evt.value.p;
@@ -63,6 +65,21 @@ void Model::tick()
 			tickCount++;
 			tickCount1++;
 
+
+}
+
+void Model::SyncTime(){
+
+	if((Eth_INET==complit)&&(hour==12)&&(minute==0)&&(second==0)){
+		 RTC_TimeTypeDef sTime ;
+
+			 sTime.Hours = (uint8_t) mas_date[0];
+			 sTime.Minutes = (uint8_t) mas_date[1];
+			 sTime.Seconds = (uint8_t) mas_date[2];
+			 sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+			 sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+			 HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) ;
+	}
 
 }
 

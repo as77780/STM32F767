@@ -104,6 +104,7 @@ public:
     uint8_t GetTrible(){return (0b00001110-GetTda7439Trible()) ;}
     void ActivEnc(){EncActiv=1;}
     void DisativEnc(){EncActiv=0;}
+    void SyncTime();
 
     /**
      * This function will be called automatically every frame. Can be used to e.g. sample hardware
@@ -129,6 +130,7 @@ protected:
     uint8_t PowerFlag;
     uint8_t SleepFlag;
     uint8_t EncActiv;
+    uint8_t SyncT;
 
   //  Player play;
 
