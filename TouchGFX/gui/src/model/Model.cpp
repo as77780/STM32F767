@@ -20,7 +20,7 @@ extern NEC nec;
 extern uint8_t mas_date[3];
 ModelListener m;
 Model model;
-
+uint8_t SyncT;
 
 
 
@@ -71,14 +71,7 @@ void Model::tick()
 void Model::SyncTime(){
 
 	if((Eth_INET==complit)&&(hour==12)&&(minute==0)&&(second==0)){
-		 RTC_TimeTypeDef sTime ;
-
-			 sTime.Hours = (uint8_t) mas_date[0];
-			 sTime.Minutes = (uint8_t) mas_date[1];
-			 sTime.Seconds = (uint8_t) mas_date[2];
-			 sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
-			 sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-			 HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) ;
+		 SyncT=1;
 	}
 
 }

@@ -19,6 +19,8 @@
 uint8_t mas_date[3];
 volatile struct netconn *NetConn[2];
 extern volatile struct netif gnetif;
+extern uint8_t SyncT;
+extern  RTC_HandleTypeDef hrtc;
 
 STAT_t Eth_INET,Eth_REDy[task_N];
 
@@ -186,6 +188,17 @@ void executeEthDate(struct netconn *xNetConn,uint8_t* STK_US,uint8_t* date){
 	mas_date[0]=atoi(istr);
 	mas_date[1]=atoi(istr+3);
 	mas_date[2]=atoi(istr+6);
+	if(SyncT==1){
+		 RTC_TimeTypeDef sTime ;
+
+					 sTime.Hours = (uint8_t) mas_date[0];
+					 sTime.Minutes = (uint8_t) mas_date[1];
+					 sTime.Seconds = (uint8_t) mas_date[2];
+					 sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+					 sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+					 HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) ;
+					 SyncT=0;
+	}
 //	print("%02d : %02d : %02d\r\n",3,mas_date[0],mas_date[1],mas_date[2]);
 	/*
 	RTC_HandleTypeDef hrtc;

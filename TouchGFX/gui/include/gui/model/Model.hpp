@@ -130,7 +130,7 @@ protected:
     uint8_t PowerFlag;
     uint8_t SleepFlag;
     uint8_t EncActiv;
-    uint8_t SyncT;
+
 
   //  Player play;
 
