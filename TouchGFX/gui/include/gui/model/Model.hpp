@@ -105,7 +105,7 @@ public:
     void ActivEnc(){EncActiv=1;}
     void DisativEnc(){EncActiv=0;}
     void SyncTime();
-
+    void CheckLight();
     /**
      * This function will be called automatically every frame. Can be used to e.g. sample hardware
      * peripherals or read events from the surrounding system and inject events to the GUI through

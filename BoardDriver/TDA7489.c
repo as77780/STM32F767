@@ -444,7 +444,7 @@ ErrorStatus BH1750_Read(uint16_t* data){
 								    }
 
 						  }
-				 T=((uint16_t)(tmp[0] << 8) | (uint16_t) (tmp[1])); //���������
+				 T=((uint16_t)(tmp[0] << 8) | (uint16_t) (tmp[1]));
 
 															    	 *data=T;
 															    	 return SUCCESS;

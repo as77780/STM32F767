@@ -51,12 +51,14 @@ void Model::tick()
 			   			 }
 	if (tickCount == 60)
 		    {
+		    CheckLight();
 		    tickCount = 0;
 		    getTime();
 		    FAN1Speed=(uint8_t)TIM4->CCR1;
 		    FAN2Speed=(uint8_t)TIM4->CCR2;
 		    	    }
 	if (tickCount1 == 600)  {
+
 		tickCount1=0;
 		if(IsLogin(1)==1){
 				    	Inet_test_eth();
@@ -68,6 +70,38 @@ void Model::tick()
 
 }
 
+
+void Model::CheckLight(){
+	uint16_t sun;
+	static uint16_t s1,s2,s3;
+	if(BH1750_Read(&sun)==SUCCESS){
+		if(sun<3){
+			     s1++;
+			     s2=0;
+			     s3=0;
+				  if(s1>=5){
+				  LED_10();
+				  }
+		}
+		else if((sun>=3)&&(sun<100)){
+			s2++;
+			s1=0;
+			s3=0;
+			 if(s2>=5){
+			 LED_50();
+			 }
+		}
+		else{
+			 s3++;
+			 s1=0;
+			 s2=0;
+			 if(s3>=5){
+			 LED_100();
+			 }
+		}
+
+	}
+}
 void Model::SyncTime(){
 
 	if((Eth_INET==complit)&&(hour==12)&&(minute==0)&&(second==0)){

@@ -10,6 +10,7 @@ Screen2View::Screen2View()
 void Screen2View::setupScreen()
 {
 	Screen2ViewBase::setupScreen();
+	  LED_50();
 	  TimeView();
 	  POWER_OFF();
 }
@@ -29,6 +30,7 @@ void Screen2View::PowerOff(){
 	if((presenter->CheckPowerFlag())==1){
 	      //   presenter->ResetPowerFlag();
 	         PowerOnPrepare();
+	         LED_50();
 	    		        osDelay(2000);
 	    		        application().gotoMainScreenCoverTransitionEast();
 	    	}
@@ -46,7 +48,7 @@ void Screen2View:: TimeView()
 	digitalClock1.setVisible(true);
 	digitalClock1.invalidate();
 	analogClock1.invalidate();
-	LED_10();
+//	LED_10();
 	}
 	else{
     // digitalClock1.setTime24Hour(presenter->getHour(), presenter->getMinute(), presenter->getSecond());
@@ -54,6 +56,6 @@ void Screen2View:: TimeView()
      analogClock1.setVisible(true);
      digitalClock1.invalidate();
      analogClock1.invalidate();
-     LED_50();
+ //    LED_50();
 	}
 }

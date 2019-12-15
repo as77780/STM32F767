@@ -20,7 +20,7 @@ void MainView::setupScreen()
 	CheckIkonBat();
 	CheckChannel();
     MainViewBase::setupScreen();
-    TIM5->CCR1=100;
+ //   TIM5->CCR1=100;
   	 GetTimeOut();
   	Count=presenter->GetVol();
   	 Unicode::snprintf(textVolumeBuffer,TEXTVOLUME_SIZE,"%02d", Count);
