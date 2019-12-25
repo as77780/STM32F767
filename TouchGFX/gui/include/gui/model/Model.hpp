@@ -79,6 +79,8 @@ public:
     uint8_t getFan2(){return FAN2Speed;}
     void ResetPowerFlag(void){PowerFlag=0;}
     uint8_t CheckPowerFlag(void){return PowerFlag;}
+    void SwitchON (){PowerIs=1;}
+    void SwitchOFF (){PowerIs=0;}
     void getTime();
     void CheckIncoder();
     void CheckPult();
@@ -130,6 +132,7 @@ protected:
     uint8_t PowerFlag;
     uint8_t SleepFlag;
     uint8_t EncActiv;
+    uint8_t PowerIs;
 
 
   //  Player play;

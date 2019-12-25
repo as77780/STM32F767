@@ -8,10 +8,11 @@ Screen2Presenter::Screen2Presenter(Screen2View& v)
 
 void Screen2Presenter::activate()
 {
-
+	model->SwitchOFF();
 }
 
 void Screen2Presenter::deactivate()
 {
 	model->ResetPowerFlag();
+	model->SwitchON();
 }

@@ -115,6 +115,7 @@ void Model::CheckSleep(){
 		SleepFlag=0;
 		 PowerFlag=1;
 	}
+	if(PowerIs==0){SleepFlag=0;}
 }
 void Model::CheckPult(){
 	osEvent event;

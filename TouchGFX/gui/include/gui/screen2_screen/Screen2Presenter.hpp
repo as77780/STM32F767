@@ -31,6 +31,8 @@ public:
     uint8_t getHour(){ return model->getHour(); }
     uint8_t getMinute(){ return model->getMinute(); }
     uint8_t getSecond(){ return model->getSecond(); }
+  //  void SwitchON(){model->SwitchON();}
+//	void SwitchOFF(){model->SwitchOFF();}
 
     void ResetPowerFlag(){model->ResetPowerFlag();}
     uint8_t CheckPowerFlag(){return model->CheckPowerFlag();}
