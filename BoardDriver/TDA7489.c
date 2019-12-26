@@ -425,7 +425,7 @@ ErrorStatus BH1750_Init(void){
 					        }
 					    }
 					  //  HAL_Delay(5);
-					    return SUCCESS;
+					 //   return SUCCESS;
 
 }
 ErrorStatus BH1750_Read(uint16_t* data){
