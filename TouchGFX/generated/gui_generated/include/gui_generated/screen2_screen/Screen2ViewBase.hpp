@@ -7,6 +7,7 @@
 #include <gui/common/FrontendApplication.hpp>
 #include <mvp/View.hpp>
 #include <gui/screen2_screen/Screen2Presenter.hpp>
+#include <touchgfx/widgets/Box.hpp>
 #include <touchgfx/widgets/Image.hpp>
 #include <touchgfx/containers/clock/AnalogClock.hpp>
 #include <touchgfx/containers/clock/DigitalClock.hpp>
@@ -38,6 +39,7 @@ protected:
     /*
      * Member Declarations
      */
+    touchgfx::Box box1;
     touchgfx::Image image1;
     touchgfx::AnalogClock analogClock1;
     touchgfx::DigitalClock digitalClock1;

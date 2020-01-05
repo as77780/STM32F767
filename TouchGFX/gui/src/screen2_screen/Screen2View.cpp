@@ -48,7 +48,8 @@ void Screen2View:: TimeView()
 	digitalClock1.setVisible(true);
 	digitalClock1.invalidate();
 	analogClock1.invalidate();
-//	LED_10();
+    image1.setAlpha(0);
+    image1.invalidate();
 	}
 	else{
     // digitalClock1.setTime24Hour(presenter->getHour(), presenter->getMinute(), presenter->getSecond());
@@ -56,6 +57,7 @@ void Screen2View:: TimeView()
      analogClock1.setVisible(true);
      digitalClock1.invalidate();
      analogClock1.invalidate();
- //    LED_50();
+     image1.setAlpha(255);
+     image1.invalidate();
 	}
 }
