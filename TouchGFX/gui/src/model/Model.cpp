@@ -21,7 +21,7 @@ extern uint8_t mas_date[3];
 ModelListener m;
 Model model;
 uint8_t SyncT;
-ErrorStatus sun;
+ErrorStatus sun_detect;
 
 
 
@@ -31,7 +31,7 @@ ErrorStatus sun;
 Model::Model() : modelListener(0)
 {
 	Count=GetVolume();
-	sun=BH1750_Init();
+	sun_detect=BH1750_Init();
 
 }
 
@@ -76,7 +76,7 @@ void Model::tick()
 void Model::CheckLight(){
 	uint16_t sun;
 	static uint16_t s1,s2,s3;
-if(sun==SUCCESS){
+if(sun_detect==SUCCESS){
 	if(BH1750_Read(&sun)==SUCCESS){
 		if(sun<3){
 			     s1++;
