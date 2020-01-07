@@ -27,7 +27,7 @@
 #define IR_NEC_1_PULSE          562
 #define IR_NEC_1_WIDTH          2250
 
-#define IR_NEC_TOL                      5
+#define IR_NEC_TOL                      25
 
 /////////////////////////////////////////////////////////////////////////////
 #define P_POWER ((address==0)&(cmd==69))
